@@ -93,49 +93,56 @@
   </div>
 
   {# ========================================================================= #}
-  {# HEADER CATEGORIES BAR (Icon on top + Name below & Infinite Ticker / Scroll) #}
+  {# HEADER CATEGORIES BAR (Frameless Large PNG Icons + Dynamic Store Sync)    #}
   {# ========================================================================= #}
   {% if show_header_cats %}
     {% set default_cats = [
-        {'name': 'الكمبروسر والتبريد', 'url': '/products?keyword=كمبروسر', 'icon': 'sicon-snowflake'},
-        {'name': 'الفلاتر والزيوت', 'url': '/products?keyword=فلاتر', 'icon': 'sicon-drop'},
-        {'name': 'الفرامل والمكابح', 'url': '/products?keyword=فرامل', 'icon': 'sicon-shield'},
-        {'name': 'المساعدات والتعليق', 'url': '/products?keyword=مساعدات', 'icon': 'sicon-car-side'},
-        {'name': 'الكهرباء والبواجي', 'url': '/products?keyword=بواجي', 'icon': 'sicon-flash'},
-        {'name': 'السيور والشدادات', 'url': '/products?keyword=سيور', 'icon': 'sicon-settings'},
-        {'name': 'الإنارة والاصطبات', 'url': '/products?keyword=انارة', 'icon': 'sicon-bulb'},
-        {'name': 'قطع المحرك وجيربوكس', 'url': '/products?keyword=محرك', 'icon': 'sicon-wrench'}
+        {'name': 'سوناتا (Sonata)', 'url': '/products?keyword=سوناتا', 'icon': 'sicon-car-side'},
+        {'name': 'إلنترا (Elantra)', 'url': '/products?keyword=النترا', 'icon': 'sicon-car-side'},
+        {'name': 'أكسنت (Accent)', 'url': '/products?keyword=أكسنت', 'icon': 'sicon-car-side'},
+        {'name': 'أزيرا (Azera)', 'url': '/products?keyword=أزيرا', 'icon': 'sicon-car-side'},
+        {'name': 'توسان (Tucson)', 'url': '/products?keyword=توسان', 'icon': 'sicon-car-side'},
+        {'name': 'سنتافي (Santa Fe)', 'url': '/products?keyword=سنتافي', 'icon': 'sicon-car-side'},
+        {'name': 'أوبتيما / K5', 'url': '/products?keyword=أوبتيما', 'icon': 'sicon-car-side'},
+        {'name': 'سبورتاج (Sportage)', 'url': '/products?keyword=سبورتاج', 'icon': 'sicon-car-side'},
+        {'name': 'سيراتو / K3', 'url': '/products?keyword=سيراتو', 'icon': 'sicon-car-side'},
+        {'name': 'كادينزا / K8', 'url': '/products?keyword=كادينزا', 'icon': 'sicon-car-side'},
+        {'name': 'سورينتو (Sorento)', 'url': '/products?keyword=سورينتو', 'icon': 'sicon-car-side'},
+        {'name': 'ريو (Rio)', 'url': '/products?keyword=ريو', 'icon': 'sicon-car-side'}
     ] %}
 
-    <div class="header-categories-bar relative overflow-hidden border-t border-b border-white/10" style="background-color: {{ header_cats_bg }};">
+    <div class="header-categories-bar relative overflow-hidden border-t border-b border-white/10 shadow-sm" style="background-color: {{ header_cats_bg }};">
         <div class="container mx-auto px-2 sm:px-4">
+            
             {% if header_cats_style == 'marquee' %}
                 {# Continuous Seamless Ticker Marquee #}
-                <div class="header-cats-viewport">
-                    <div class="header-cats-track">
+                <div class="header-cats-viewport py-2">
+                    <div class="header-cats-track" id="header-cats-track-el">
                         {% for i in 1..2 %}
                             {% if categories and categories|length > 0 %}
                                 {% for cat in categories %}
-                                    <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-2 px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
-                                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 group-hover:bg-amber-400/20 border border-white/15 group-hover:border-amber-400/50 flex items-center justify-center mb-1 overflow-hidden transition-all duration-300 shadow-sm group-hover:scale-110">
-                                            {% if cat.icon or cat.image %}
-                                                <img src="{{ cat.icon|default(cat.image) }}" alt="{{ cat.name }}" class="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow" loading="lazy" />
+                                    {% set cat_img = cat.image.url|default(cat.image)|default(cat.icon.url)|default(cat.icon)|default(cat.avatar) %}
+                                    <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1 px-3.5 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
+                                        {# Frameless Icon Display for transparent PNGs #}
+                                        <div class="h-9 sm:h-10 w-auto min-w-[36px] max-w-[55px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
+                                            {% if cat_img %}
+                                                <img src="{{ cat_img }}" alt="{{ cat.name }}" class="max-h-full max-w-full object-contain drop-shadow" loading="lazy" />
                                             {% else %}
-                                                <i class="sicon-car-side text-amber-400 text-base sm:text-lg group-hover:scale-110 transition"></i>
+                                                <i class="sicon-car-side text-xl sm:text-2xl transition" style="color: {{ header_cats_accent }};"></i>
                                             {% endif %}
                                         </div>
-                                        <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors" style="color: {{ header_cats_text }};">
+                                        <span class="text-[11px] sm:text-[11.5px] font-bold whitespace-nowrap transition-colors duration-200" style="color: {{ header_cats_text }};">
                                             {{ cat.name }}
                                         </span>
                                     </a>
                                 {% endfor %}
                             {% else %}
                                 {% for cat in default_cats %}
-                                    <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-2 px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
-                                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 group-hover:bg-amber-400/20 border border-white/15 group-hover:border-amber-400/50 flex items-center justify-center mb-1 overflow-hidden transition-all duration-300 shadow-sm group-hover:scale-110">
-                                            <i class="{{ cat.icon }} text-amber-400 text-base sm:text-lg group-hover:scale-110 transition"></i>
+                                    <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1 px-3.5 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
+                                        <div class="h-9 sm:h-10 w-auto min-w-[36px] max-w-[55px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
+                                            <i class="{{ cat.icon }} text-xl sm:text-2xl transition" style="color: {{ header_cats_accent }};"></i>
                                         </div>
-                                        <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors" style="color: {{ header_cats_text }};">
+                                        <span class="text-[11px] sm:text-[11.5px] font-bold whitespace-nowrap transition-colors duration-200" style="color: {{ header_cats_text }};">
                                             {{ cat.name }}
                                         </span>
                                     </a>
@@ -146,29 +153,30 @@
                 </div>
             {% else %}
                 {# Horizontal Scroll Track with Smooth Touch #}
-                <div class="flex items-center gap-3 sm:gap-4 overflow-x-auto no-scrollbar py-2 px-1 scroll-smooth justify-start sm:justify-center">
+                <div class="flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar py-2.5 px-1 scroll-smooth justify-start sm:justify-center" id="header-cats-scroll-el">
                     {% if categories and categories|length > 0 %}
                         {% for cat in categories %}
-                            <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1.5 px-2.5 sm:px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
-                                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 group-hover:bg-amber-400/20 border border-white/15 group-hover:border-amber-400/50 flex items-center justify-center mb-1 overflow-hidden transition-all duration-300 shadow-sm group-hover:scale-110">
-                                    {% if cat.icon or cat.image %}
-                                        <img src="{{ cat.icon|default(cat.image) }}" alt="{{ cat.name }}" class="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow" loading="lazy" />
+                            {% set cat_img = cat.image.url|default(cat.image)|default(cat.icon.url)|default(cat.icon)|default(cat.avatar) %}
+                            <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1 px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
+                                <div class="h-9 sm:h-10 w-auto min-w-[36px] max-w-[55px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
+                                    {% if cat_img %}
+                                        <img src="{{ cat_img }}" alt="{{ cat.name }}" class="max-h-full max-w-full object-contain drop-shadow" loading="lazy" />
                                     {% else %}
-                                        <i class="sicon-car-side text-amber-400 text-base sm:text-lg group-hover:scale-110 transition"></i>
+                                        <i class="sicon-car-side text-xl sm:text-2xl transition" style="color: {{ header_cats_accent }};"></i>
                                     {% endif %}
                                 </div>
-                                <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors" style="color: {{ header_cats_text }};">
+                                <span class="text-[11px] sm:text-[11.5px] font-bold whitespace-nowrap transition-colors duration-200" style="color: {{ header_cats_text }};">
                                     {{ cat.name }}
                                 </span>
                             </a>
                         {% endfor %}
                     {% else %}
                         {% for cat in default_cats %}
-                            <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1.5 px-2.5 sm:px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
-                                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 group-hover:bg-amber-400/20 border border-white/15 group-hover:border-amber-400/50 flex items-center justify-center mb-1 overflow-hidden transition-all duration-300 shadow-sm group-hover:scale-110">
-                                    <i class="{{ cat.icon }} text-amber-400 text-base sm:text-lg group-hover:scale-110 transition"></i>
+                            <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1 px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
+                                <div class="h-9 sm:h-10 w-auto min-w-[36px] max-w-[55px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
+                                    <i class="{{ cat.icon }} text-xl sm:text-2xl transition" style="color: {{ header_cats_accent }};"></i>
                                 </div>
-                                <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors" style="color: {{ header_cats_text }};">
+                                <span class="text-[11px] sm:text-[11.5px] font-bold whitespace-nowrap transition-colors duration-200" style="color: {{ header_cats_text }};">
                                     {{ cat.name }}
                                 </span>
                             </a>
@@ -176,7 +184,60 @@
                     {% endif %}
                 </div>
             {% endif %}
+
         </div>
     </div>
+
+    {# Salla Store Categories Dynamic Live Sync Script #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof salla !== 'undefined' && salla.onReady) {
+                salla.onReady().then(function() {
+                    if (salla.api && salla.api.component && salla.api.component.getMenus) {
+                        salla.api.component.getMenus().then(function(res) {
+                            var menuData = (res && res.data) ? res.data : [];
+                            if (menuData && menuData.length > 0) {
+                                var track = document.getElementById('header-cats-track-el');
+                                var scrollEl = document.getElementById('header-cats-scroll-el');
+                                var target = track || scrollEl;
+                                if (!target) return;
+
+                                var htmlItems = '';
+                                menuData.forEach(function(item) {
+                                    var img = item.image || item.icon || item.avatar || '';
+                                    var name = item.title || item.name || '';
+                                    var url = item.url || '#';
+
+                                    var iconHtml = img ? 
+                                        '<img src="' + img + '" alt="' + name + '" class="max-h-full max-w-full object-contain drop-shadow" loading="lazy" />' :
+                                        '<i class="sicon-car-side text-xl sm:text-2xl" style="color: {{ header_cats_accent }};"></i>';
+
+                                    htmlItems += '<a href="' + url + '" class="group flex flex-col items-center justify-center py-1 px-3.5 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">' +
+                                        '<div class="h-9 sm:h-10 w-auto min-w-[36px] max-w-[55px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">' +
+                                            iconHtml +
+                                        '</div>' +
+                                        '<span class="text-[11px] sm:text-[11.5px] font-bold whitespace-nowrap transition-colors duration-200" style="color: {{ header_cats_text }};">' +
+                                            name +
+                                        '</span>' +
+                                    '</a>';
+                                });
+
+                                if (htmlItems) {
+                                    if (track) {
+                                        // Duplicate for seamless infinite loop
+                                        target.innerHTML = htmlItems + htmlItems;
+                                    } else {
+                                        target.innerHTML = htmlItems;
+                                    }
+                                }
+                            }
+                        }).catch(function(e) {
+                            console.warn('Salla header categories sync notice:', e);
+                        });
+                    }
+                });
+            }
+        });
+    </script>
   {% endif %}
 </header>

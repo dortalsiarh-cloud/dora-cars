@@ -32,20 +32,19 @@
             {% if component.categories and component.categories|length > 0 %}
                 {# Dynamic Merchant Categories #}
                 {% for cat in component.categories %}
-                    {% set cat_img = cat.image.url|default(cat.image) %}
-                    <a href="{{ cat.url|default('/products?keyword=' ~ cat.title) }}" class="speero-cat-card">
+                    {% set cat_name = cat.name|default(cat['categories.name'])|default(cat.title)|default('قسم') %}
+                    {% set cat_img = cat.image.url|default(cat.image)|default(cat['categories.image']) %}
+                    {% set cat_url = cat.url|default(cat['categories.url'])|default('/products?keyword=' ~ cat_name) %}
+                    <a href="{{ cat_url }}" class="speero-cat-card">
                         <div class="speero-cat-card__icon" {% if component.accent_color %}style="color: {{ component.accent_color }};"{% endif %}>
                             {% if cat_img %}
-                                <img src="{{ cat_img }}" alt="{{ cat.title }}" loading="lazy" class="w-full h-full object-contain p-0.5" />
+                                <img src="{{ cat_img }}" alt="{{ cat_name }}" loading="lazy" class="w-full h-full object-contain p-0.5" />
                             {% else %}
                                 <i class="{{ cat.icon|default('sicon-layout-grid') }}"></i>
                             {% endif %}
                         </div>
                         <div class="speero-cat-card__info">
-                            <strong {% if component.text_color %}style="color: {{ component.text_color }};"{% endif %}>{{ cat.title }}</strong>
-                            {% if cat.description %}
-                                <span>{{ cat.description }}</span>
-                            {% endif %}
+                            <strong {% if component.text_color %}style="color: {{ component.text_color }};"{% endif %}>{{ cat_name }}</strong>
                         </div>
                     </a>
                 {% endfor %}

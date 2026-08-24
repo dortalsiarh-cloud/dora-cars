@@ -68,19 +68,19 @@
             {% if component.brands and component.brands|length > 0 %}
                 {# Dynamic Merchant Brands: Logo on TOP, Text at BOTTOM #}
                 {% for item in component.brands %}
-                    <a href="{{ item.url|default('/products?keyword=' ~ item.title) }}" class="speero-brand-card">
+                    {% set b_name = item.name|default(item['brands.name'])|default(item.title)|default('ماركة') %}
+                    {% set b_logo = item.logo.url|default(item.logo)|default(item['brands.logo'])|default(item.image.url)|default(item.image) %}
+                    {% set b_url = item.url|default(item['brands.url'])|default('/products?keyword=' ~ b_name) %}
+                    <a href="{{ b_url }}" class="speero-brand-card">
                         <div class="speero-brand-card__badge">
-                            {% if item.image %}
-                                <img src="{{ item.image.url|default(item.image) }}" alt="{{ item.title }}" loading="lazy" />
+                            {% if b_logo %}
+                                <img src="{{ b_logo }}" alt="{{ b_name }}" loading="lazy" />
                             {% else %}
-                                <span class="font-black text-primary text-2xl tracking-wider">{{ item.title|slice(0, 3)|upper }}</span>
+                                <span class="font-black text-primary text-xl tracking-wider">{{ b_name|slice(0, 3)|upper }}</span>
                             {% endif %}
                         </div>
                         <div class="speero-brand-card__text">
-                            <strong>{{ item.title }}</strong>
-                            {% if item.sub_title %}
-                                <span>{{ item.sub_title }}</span>
-                            {% endif %}
+                            <strong>{{ b_name }}</strong>
                         </div>
                     </a>
                 {% endfor %}

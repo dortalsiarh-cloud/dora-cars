@@ -3,7 +3,9 @@
 | Speero Luxury 3-Action Launchpad & Smart Interactive Discovery Modal
 |--------------------------------------------------------------------------
 | Salla Twilight Component: home.speero-hero
-| 3 Big Interactive Hero Cards + Full Glassmorphism Discovery Modal
+| 1. Blog & Car Solutions Card (Hyundai/Kia Hub)
+| 2. WhatsApp VIN Quote Request Card
+| 3. Direct OEM/Keyword Store Search Card
 |--------------------------------------------------------------------------
 #}
 
@@ -18,15 +20,8 @@
 {% set text_color = component.text_color|default(component.settings.text_color)|default('#ffffff') %}
 
 {% set search_url = component.search_url|default(component.settings.search_url)|default('/products') %}
+{% set blog_url = component.blog_url|default(component.settings.blog_url)|default('/blog') %}
 {% set wa_phone = component.whatsapp_number|default(component.settings.whatsapp_number)|default(store.contacts.whatsapp|default(store.contacts.phone|default('966500000000')))|replace({'+': '', ' ': '', '-': ''}) %}
-
-{% set makes_raw = component.filter_makes|default(component.settings.filter_makes)|default("هيونداي (Hyundai)\nكيا (Kia)\nتويوتا (Toyota)\nنيسان (Nissan)\nفورد (Ford)\nجيلي (Geely)\nشانجان (Changan)\nشيفروليه (Chevrolet)\nهوندا (Honda)\nمازدا (Mazda)\nميتسوبيشي (Mitsubishi)") %}
-{% set makes_list = makes_raw|split("\n") %}
-
-{% set cats_raw = component.filter_categories|default(component.settings.filter_categories)|default("الفلاتر والمنقيات\nالفرامل والأقمشة\nالزيوت وسوائل الصيانة\nالمساعدات والتعليق\nالكهرباء والبواجي\nالتكييف والرديتر\nالإنارة والاصطبات\nالسيور والشدادات\nقطع المحرك") %}
-{% set cats_list = cats_raw|split("\n") %}
-
-{% set custom_models_raw = component.custom_models|default(component.settings.custom_models)|default("") %}
 
 <section
     id="{{ hero_id }}"
@@ -67,7 +62,7 @@
 
             {% if component.description|default(component.settings.description) %}
                 <p class="text-xs sm:text-base text-slate-300 max-w-2xl font-normal leading-relaxed opacity-90">
-                    {{ component.description|default(component.settings.description)|default('اختر الطريقة الأنسب لك للوصول إلى قطعتك الأصلية والمطابقة برقم الهيكل أو الموديل.') }}
+                    {{ component.description|default(component.settings.description)|default('تصفح آلاف القطع المتوافقة أو استفسر برقم الهيكل (VIN) أو تصفح مقالات وحلول مشاكل هيونداي وكيا.') }}
                 </p>
             {% endif %}
 
@@ -76,35 +71,37 @@
         {# 3 BIG LUXURY INTERACTIVE HERO CARDS (Launchpad) #}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
             
-            {# CARD 1: Filter by Vehicle & Model (Gold/Amber Theme) #}
-            <button
-                type="button"
-                onclick="openSpeeroModal('{{ modal_id }}', 'vehicle')"
-                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/70 hover:to-slate-850 border border-slate-800 hover:border-amber-400/60 shadow-lg hover:shadow-amber-500/15 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
+            {# CARD 1: Store Blog & Hyundai/Kia Solutions Hub (Gold/Amber Theme) #}
+            <a
+                href="{{ blog_url }}"
+                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/70 hover:to-slate-850 border border-slate-800 hover:border-amber-400/60 shadow-lg hover:shadow-amber-500/15 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 no-underline block"
             >
                 <div class="absolute -top-12 -left-12 w-28 h-28 bg-amber-400/10 rounded-full blur-2xl group-hover:bg-amber-400/25 transition"></div>
                 
                 <div>
                     <div class="w-14 h-14 rounded-2xl bg-amber-400/15 border border-amber-400/30 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-110 transition duration-300 shadow-inner">
-                        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
-                            <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                        <svg class="w-7 h-7 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                            <line x1="9" y1="7" x2="15" y2="7"></line>
+                            <line x1="9" y1="11" x2="15" y2="11"></line>
                         </svg>
                     </div>
 
                     <h3 class="text-base sm:text-lg font-black text-white group-hover:text-amber-300 transition mb-2">
-                        تصفية حسب سيارتك وموديلها
+                        {{ component.blog_title|default(component.settings.blog_title)|default('مدونة ومقالات درة السيارة') }}
                     </h3>
 
                     <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
-                        تصفية دقيقة للقطع الاستهلاكية والصيانة المتوافقة مع نوع وموديل وسنة صنع سيارتك.
+                        {{ component.blog_desc|default(component.settings.blog_desc)|default('دليلك الشامل لمشاكل وأعطال هيونداي وكيا، نصائح الصيانة، وأفضل الحلول لسيارتك.') }}
                     </p>
                 </div>
 
                 <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-bold text-amber-400">
-                    <span>تصفية القطع والزيوت</span>
+                    <span>{{ component.blog_btn_text|default(component.settings.blog_btn_text)|default('تصفح مقالات المدونة') }}</span>
                     <i class="sicon-keyboard_arrow_left group-hover:-translate-x-1 transition rtl:rotate-0 ltr:rotate-180 text-sm"></i>
                 </div>
-            </button>
+            </a>
 
             {# CARD 2: Request & Inquire via WhatsApp & VIN (Green/WhatsApp Theme) #}
             <button
@@ -126,20 +123,20 @@
                     </h3>
 
                     <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
-                        اطلب تسعيرة فورية وتأكيد التوافق برقم الهيكل (VIN) مع تحويل مباشر عبر واتساب.
+                        اطلب تسعيرة فورية وتأكيد التوافق برقم الهيكل (VIN) مع تحويل مباشر عبر واتساب مع خبرائنا.
                     </p>
                 </div>
 
                 <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-bold text-emerald-400">
-                    <span>طلب واستفسار فوري</span>
+                    <span>طلب واستفسار فوري عبر واتساب</span>
                     <i class="sicon-keyboard_arrow_left group-hover:-translate-x-1 transition rtl:rotate-0 ltr:rotate-180 text-sm"></i>
                 </div>
             </button>
 
-            {# CARD 3: Search by OEM Part Number (Blue/Sky Theme) #}
+            {# CARD 3: Direct OEM & Keyword Search in Store (Blue/Sky Theme) #}
             <button
                 type="button"
-                onclick="openSpeeroModal('{{ modal_id }}', 'oem')"
+                onclick="openSpeeroModal('{{ modal_id }}', 'search')"
                 class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/70 hover:to-slate-850 border border-slate-800 hover:border-blue-400/60 shadow-lg hover:shadow-blue-500/15 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
             >
                 <div class="absolute -top-12 -left-12 w-28 h-28 bg-blue-400/10 rounded-full blur-2xl group-hover:bg-blue-400/25 transition"></div>
@@ -152,16 +149,16 @@
                     </div>
 
                     <h3 class="text-base sm:text-lg font-black text-white group-hover:text-blue-300 transition mb-2">
-                        بحث برقم القطعة (OEM)
+                        بحث مباشر في قطع غيار المتجر
                     </h3>
 
                     <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
-                        ابحث مباشرة برقم القطعة الأصلي أو التجاري للوصول السريع بدون الحاجة لاختيار السيارة.
+                        ابحث باسم القطعة، الموديل، أو رقم OEM للوصول الفوري وتصفية القطع المتوافقة في المتجر.
                     </p>
                 </div>
 
                 <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-bold text-blue-400">
-                    <span>بحث مباشر برقم القطعة</span>
+                    <span>بحث مباشر برقم القطعة أو الاسم</span>
                     <i class="sicon-keyboard_arrow_left group-hover:-translate-x-1 transition rtl:rotate-0 ltr:rotate-180 text-sm"></i>
                 </div>
             </button>
@@ -171,7 +168,7 @@
     </div>
 
     {# ========================================================================= #}
-    {# SMART 3-TAB MODAL (نافذة البحث والتصفية المنبثقة الشاملة) #}
+    {# SMART 2-TAB MODAL (نافذة البحث المباشر وطلب الواتساب برقم الهيكل) #}
     {# ========================================================================= #}
     <div id="{{ modal_id }}" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md hidden transition-all duration-300">
         <div class="relative w-full max-w-xl bg-slate-900 text-white rounded-2xl border border-slate-700/80 shadow-2xl overflow-hidden animate-fadeIn">
@@ -179,12 +176,12 @@
             {# Modal Header with Close Button #}
             <div class="p-4 sm:p-5 bg-slate-850 border-b border-slate-700 flex items-center justify-between">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-9 h-9 rounded-xl bg-amber-400/20 text-amber-400 flex items-center justify-center text-lg">
-                        <i class="sicon-car-side"></i>
+                    <div class="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-lg">
+                        <i class="sicon-search"></i>
                     </div>
                     <div>
-                        <h3 class="text-base sm:text-lg font-bold text-white leading-tight">محرك البحث واختيار قطع الغيار</h3>
-                        <p class="text-xs text-slate-400">اختر نوع البحث أو الاستفسار المطلوب</p>
+                        <h3 class="text-base sm:text-lg font-bold text-white leading-tight">البحث والاستفسار الفوري لقطع الغيار</h3>
+                        <p class="text-xs text-slate-400">ابحث مباشرة في منتجات المتجر أو اطلب تسعيرة عبر واتساب</p>
                     </div>
                 </div>
                 <button type="button" onclick="closeSpeeroModal('{{ modal_id }}')" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-lg transition cursor-pointer">
@@ -192,16 +189,16 @@
                 </button>
             </div>
 
-            {# 3 Tabs Buttons Inside Modal #}
+            {# 2 Tabs Buttons Inside Modal #}
             <div class="flex border-b border-slate-700 bg-slate-900/60 p-2 gap-1.5 text-xs sm:text-sm font-bold">
                 <button
                     type="button"
-                    onclick="switchSpeeroModalTab('{{ modal_id }}', 'vehicle')"
-                    id="tab-btn-{{ modal_id }}-vehicle"
-                    class="flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer bg-slate-800 text-amber-300 border border-slate-700"
+                    onclick="switchSpeeroModalTab('{{ modal_id }}', 'search')"
+                    id="tab-btn-{{ modal_id }}-search"
+                    class="flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer bg-slate-800 text-blue-300 border border-slate-700"
                 >
-                    <i class="sicon-car"></i>
-                    <span>تصفية سيارتك</span>
+                    <i class="sicon-search text-blue-400"></i>
+                    <span>البحث المباشر في المتجر</span>
                 </button>
 
                 <button
@@ -211,73 +208,46 @@
                     class="flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-slate-400 hover:text-white"
                 >
                     <i class="sicon-whatsapp text-emerald-400"></i>
-                    <span>استفسار وطلب قطعة</span>
-                </button>
-
-                <button
-                    type="button"
-                    onclick="switchSpeeroModalTab('{{ modal_id }}', 'oem')"
-                    id="tab-btn-{{ modal_id }}-oem"
-                    class="flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-slate-400 hover:text-white"
-                >
-                    <i class="sicon-search text-blue-400"></i>
-                    <span>رقم القطعة OEM</span>
+                    <span>طلب واستفسار واتساب (VIN)</span>
                 </button>
             </div>
 
-            {# TAB PANE 1: Vehicle Cascading Filter #}
-            <div id="pane-{{ modal_id }}-vehicle" class="p-4 sm:p-6 space-y-4 text-right">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">الشركة المصنعة / الماركة</label>
-                        <select id="modal-make-{{ modal_id }}" onchange="onMakeChange(this, 'modal-model-{{ modal_id }}')" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-amber-400 focus:outline-none transition cursor-pointer">
-                            <option value="">-- اختر الماركة --</option>
-                            {% for make_item in makes_list %}
-                                {% set m_clean = make_item|trim %}
-                                {% if m_clean %}
-                                    <option value="{{ m_clean }}">{{ m_clean }}</option>
-                                {% endif %}
+            {# TAB PANE 1: Direct Store Search by Keyword, Part Number, Model #}
+            <div id="pane-{{ modal_id }}-search" class="p-4 sm:p-6 space-y-4 text-right">
+                <form onsubmit="submitDirectStoreSearch(event, '{{ modal_id }}', '{{ search_url }}')">
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">
+                        أدخل اسم القطعة، الموديل، أو رقم القطعة (OEM Part Number / SKU)
+                    </label>
+                    <div class="flex gap-2 mb-3">
+                        <input
+                            type="text"
+                            id="direct-search-input-{{ modal_id }}"
+                            placeholder="مثال: فحمات سوناتا 2020، بواجي كيا، 04465-33471..."
+                            class="flex-1 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:border-blue-400 focus:outline-none transition tracking-wide font-sans"
+                            required
+                        />
+                        <button type="submit" class="px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold text-sm transition shadow-lg hover:shadow-blue-500/20 cursor-pointer flex items-center gap-1.5">
+                            <i class="sicon-search"></i>
+                            <span>بحث</span>
+                        </button>
+                    </div>
+
+                    {# Quick Search Suggestion Pills #}
+                    <div class="pt-2 border-t border-slate-800">
+                        <span class="text-[11px] text-slate-400 block mb-2 font-semibold">عمليات بحث شائعة:</span>
+                        <div class="flex flex-wrap gap-1.5">
+                            {% for tag in ['فحمات فرامل', 'فلاتر زيت', 'بواجي وكهرباء', 'مساعدات ومقصات', 'كمبروسر تكييف', 'سيور وشدادات'] %}
+                                <button
+                                    type="button"
+                                    onclick="quickSearchTag('{{ modal_id }}', '{{ tag }}', '{{ search_url }}')"
+                                    class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs border border-slate-700 transition cursor-pointer"
+                                >
+                                    {{ tag }}
+                                </button>
                             {% endfor %}
-                        </select>
+                        </div>
                     </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">موديل السيارة</label>
-                        <select id="modal-model-{{ modal_id }}" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-amber-400 focus:outline-none transition cursor-pointer">
-                            <option value="">-- اختر الماركة أولاً --</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">سنة الصنع</label>
-                        <select id="modal-year-{{ modal_id }}" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-amber-400 focus:outline-none transition cursor-pointer">
-                            <option value="">-- كافة السنوات --</option>
-                            {% for y in (2005..2026)|reverse %}
-                                <option value="{{ y }}">{{ y }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">قسم القطع</label>
-                        <select id="modal-cat-{{ modal_id }}" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-amber-400 focus:outline-none transition cursor-pointer">
-                            <option value="">كافة القطع المتوافقة</option>
-                            {% for cat_item in cats_list %}
-                                {% set c_clean = cat_item|trim %}
-                                {% if c_clean %}
-                                    <option value="{{ c_clean }}">{{ c_clean }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-
-                <div class="pt-2">
-                    <button type="button" onclick="submitVehicleFilter('{{ modal_id }}', '{{ search_url }}')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-black text-sm sm:text-base flex items-center justify-center gap-2 transition duration-300 shadow-lg hover:shadow-amber-400/20 cursor-pointer">
-                        <i class="sicon-search text-base"></i>
-                        <span>عرض القطع المتوافقة مع سيارتك</span>
-                    </button>
-                </div>
+                </form>
             </div>
 
             {# TAB PANE 2: Inquire & VIN WhatsApp Request #}
@@ -317,135 +287,24 @@
                 </form>
             </div>
 
-            {# TAB PANE 3: Direct OEM Part Number Search #}
-            <div id="pane-{{ modal_id }}-oem" class="p-4 sm:p-6 space-y-4 text-right hidden">
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">أدخل رقم القطعة الأصلي (OEM Part Number / SKU)</label>
-                    <div class="flex gap-2">
-                        <input type="text" id="oem-input-{{ modal_id }}" placeholder="مثال: 04465-33471 أو 26300-35505" class="flex-1 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:border-blue-400 focus:outline-none transition tracking-wide font-mono">
-                        <button type="button" onclick="submitOemSearch('{{ modal_id }}', '{{ search_url }}')" class="px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold text-sm transition shadow-lg cursor-pointer">
-                            <span>بحث</span>
-                        </button>
-                    </div>
-                    <p class="text-xs text-slate-400 mt-2">
-                        💡 يمكنك إيجاد رقم القطعة مطبوعاً على القطعة القديمة أو في كتالوج الصيانة.
-                    </p>
-                </div>
-            </div>
-
         </div>
     </div>
 
 </section>
 
-{# Modal Engine & Cascading Models Logic #}
+{# Modal Engine & Direct Search Redirection Logic #}
 <script>
-    var defaultCarModelsData = {
-        'هيونداي': ['سوناتا', 'إلنترا', 'أكسنت', 'توسان', 'سنتافي', 'أزيرا', 'كريتا', 'باليسيد', 'كونا', 'فيلوستر', 'ستاريا', 'جينيسيس', 'i10', 'i20', 'i30'],
-        'hyundai': ['سوناتا', 'إلنترا', 'أكسنت', 'توسان', 'سنتافي', 'أزيرا', 'كريتا', 'باليسيد', 'كونا', 'فيلوستر', 'ستاريا', 'جينيسيس', 'i10', 'i20', 'i30'],
-        'كيا': ['أوبتيما / K5', 'سبورتاج', 'سيراتو / K3', 'ريو', 'سورينتو', 'كادينزا / K8', 'سيلتوس', 'تيلورايد', 'بيجاس', 'كرنفال', 'كارينز', 'ستينجر', 'K900', 'سونيت'],
-        'kia': ['أوبتيما / K5', 'سبورتاج', 'سيراتو / K3', 'ريو', 'سورينتو', 'كادينزا / K8', 'سيلتوس', 'تيلورايد', 'بيجاس', 'كرنفال', 'كارينز', 'ستينجر', 'K900', 'سونيت'],
-        'تويوتا': ['كامري', 'لاندكروزر', 'كورولا', 'هايلكس', 'يارس', 'افالون', 'فورتشنر', 'راف فور', 'برادو', 'اف جي كروزر', 'اينوفا', 'اوريون', 'سيكويا', 'هايلاندر', 'كراون', 'راش', 'شاص'],
-        'toyota': ['كامري', 'لاندكروزر', 'كورولا', 'هايلكس', 'يارس', 'افالون', 'فورتشنر', 'راف فور', 'برادو', 'اف جي كروزر', 'اينوفا', 'اوريون', 'سيكويا', 'هايلاندر', 'كراون', 'راش', 'شاص'],
-        'نيسان': ['باترول', 'التيما', 'صني', 'ماكسيما', 'نافارا', 'اكس تريل', 'باثفايندر', 'سنترا', 'كيكس', 'ارمادا', 'تيرانو', 'اورفان'],
-        'nissan': ['باترول', 'التيما', 'صني', 'ماكسيما', 'نافارا', 'اكس تريل', 'باثفايندر', 'سنترا', 'كيكس', 'ارمادا', 'تيرانو', 'اورفان'],
-        'فورد': ['تورس', 'اكسبلورر', 'F-150', 'موستنج', 'اكسبدشن', 'ايدج', 'فيوجن', 'رينجر', 'تيريتوري', 'فوكس', 'كراون فكتوريا', 'ايسكيب'],
-        'ford': ['تورس', 'اكسبلورر', 'F-150', 'موستنج', 'اكسبدشن', 'ايدج', 'فيوجن', 'رينجر', 'تيريتوري', 'فوكس', 'كراون فكتوريا', 'ايسكيب'],
-        'جيلي': ['مونجارو', 'كولراي', 'امجراند', 'ازكارا', 'توغيلا', 'اوكافانجو', 'بينراي', 'سيتي راي', 'GX3 Pro'],
-        'geely': ['مونجارو', 'كولراي', 'امجراند', 'ازكارا', 'توغيلا', 'اوكافانجو', 'بينراي', 'سيتي راي', 'GX3 Pro'],
-        'شانجان': ['CS95', 'CS75 Plus', 'CS85', 'CS35 Plus', 'Eado Plus', 'UNI-K', 'UNI-T', 'UNI-V', 'Alsvin', 'Hunter'],
-        'changan': ['CS95', 'CS75 Plus', 'CS85', 'CS35 Plus', 'Eado Plus', 'UNI-K', 'UNI-T', 'UNI-V', 'Alsvin', 'Hunter'],
-        'شيفروليه': ['تاهو', 'كابرس', 'لومينا', 'ماليبو', 'سيلفرادو', 'ترافيرس', 'تريل بليزر', 'كروز', 'اوبترا', 'سوبربان', 'كمارو', 'امبالا'],
-        'chevrolet': ['تاهو', 'كابرس', 'لومينا', 'ماليبو', 'سيلفرادو', 'ترافيرس', 'تريل بليزر', 'كروز', 'اوبترا', 'سوبربان', 'كمارو', 'امبالا'],
-        'هوندا': ['اكورد', 'سيفيك', 'CR-V', 'بايلوت', 'HR-V', 'اوديسي', 'سيتي'],
-        'honda': ['اكورد', 'سيفيك', 'CR-V', 'بايلوت', 'HR-V', 'اوديسي', 'سيتي'],
-        'مازدا': ['مازدا 6', 'مازدا 3', 'CX-9', 'CX-5', 'CX-30', 'CX-90', 'مازدا 2'],
-        'mazda': ['مازدا 6', 'مازدا 3', 'CX-9', 'CX-5', 'CX-30', 'CX-90', 'مازدا 2'],
-        'ميتسوبيشي': ['باجيرو', 'لانسر', 'L200', 'اوتلاندر', 'اكليبس كروس', 'اتراج', 'مونتيرو سبورت', 'ASX'],
-        'mitsubishi': ['باجيرو', 'لانسر', 'L200', 'اوتلاندر', 'اكليبس كروس', 'اتراج', 'مونتيرو سبورت', 'ASX']
-    };
-
-    function parseCustomModels() {
-        var raw = `{{ custom_models_raw|raw }}`;
-        var map = {};
-        if (!raw || !raw.trim()) return map;
-        var lines = raw.split('\n');
-        lines.forEach(function(l) {
-            var parts = l.split(':');
-            if (parts.length >= 2) {
-                var brand = parts[0].trim().toLowerCase();
-                var models = parts[1].split(',').map(function(m) { return m.trim(); }).filter(Boolean);
-                if (brand && models.length) {
-                    map[brand] = models;
-                }
-            }
-        });
-        return map;
-    }
-
-    function normalizeText(str) {
-        return (str || '').toLowerCase()
-            .replace(/[()\/\\-_]/g, ' ')
-            .replace(/أ|إ|آ/g, 'ا')
-            .replace(/ة/g, 'ه')
-            .replace(/ى/g, 'ي')
-            .trim();
-    }
-
-    function onMakeChange(makeSelect, modelSelectId) {
-        var rawMake = makeSelect.value;
-        var modelSelect = document.getElementById(modelSelectId);
-        if (!modelSelect) return;
-        modelSelect.innerHTML = '';
-
-        if (!rawMake) {
-            modelSelect.innerHTML = '<option value="">-- كافة الموديلات --</option>';
-            return;
-        }
-
-        var customMap = parseCustomModels();
-        var normalizedMake = normalizeText(rawMake);
-        var modelsFound = null;
-
-        // Check custom map first
-        Object.keys(customMap).forEach(function(k) {
-            if (normalizedMake.indexOf(normalizeText(k)) !== -1 || normalizeText(k).indexOf(normalizedMake) !== -1) {
-                modelsFound = customMap[k];
-            }
-        });
-
-        // Fallback to built-in database
-        if (!modelsFound) {
-            Object.keys(defaultCarModelsData).forEach(function(k) {
-                if (normalizedMake.indexOf(normalizeText(k)) !== -1 || normalizeText(k).indexOf(normalizedMake) !== -1) {
-                    modelsFound = defaultCarModelsData[k];
-                }
-            });
-        }
-
-        if (modelsFound && modelsFound.length) {
-            modelSelect.innerHTML = '<option value="">-- كافة موديلات ' + rawMake.split(' ')[0] + ' --</option>';
-            modelsFound.forEach(function(m) {
-                var opt = document.createElement('option');
-                opt.value = m;
-                opt.textContent = m;
-                modelSelect.appendChild(opt);
-            });
-        } else {
-            modelSelect.innerHTML = '<option value="">-- كافة الموديلات --</option>';
-        }
-    }
-
     function openSpeeroModal(modalId, tabName) {
         var modal = document.getElementById(modalId);
         if (modal) {
             modal.classList.remove('hidden');
             switchSpeeroModalTab(modalId, tabName);
 
-            // Trigger auto model population if make is already chosen
-            var makeSelect = document.getElementById('modal-make-' + modalId);
-            if (makeSelect && makeSelect.value) {
-                onMakeChange(makeSelect, 'modal-model-' + modalId);
+            if (tabName === 'search') {
+                setTimeout(function() {
+                    var input = document.getElementById('direct-search-input-' + modalId);
+                    if (input) input.focus();
+                }, 100);
             }
         }
     }
@@ -458,14 +317,14 @@
     }
 
     function switchSpeeroModalTab(modalId, tabName) {
-        var tabs = ['vehicle', 'vin', 'oem'];
+        var tabs = ['search', 'vin'];
         tabs.forEach(function(t) {
             var pane = document.getElementById('pane-' + modalId + '-' + t);
             var btn = document.getElementById('tab-btn-' + modalId + '-' + t);
             if (pane && btn) {
                 if (t === tabName) {
                     pane.classList.remove('hidden');
-                    btn.className = 'flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer bg-slate-800 text-amber-300 border border-slate-700';
+                    btn.className = 'flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer bg-slate-800 text-blue-300 border border-slate-700';
                 } else {
                     pane.classList.add('hidden');
                     btn.className = 'flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-slate-400 hover:text-white';
@@ -474,36 +333,23 @@
         });
     }
 
-    function submitVehicleFilter(modalId, searchUrl) {
-        var make = document.getElementById('modal-make-' + modalId).value;
-        var model = document.getElementById('modal-model-' + modalId).value;
-        var year = document.getElementById('modal-year-' + modalId).value;
-        var cat = document.getElementById('modal-cat-' + modalId).value;
-
-        var query = [];
-        if (make) {
-            var cleanMake = make.replace(/\(.*?\)/g, '').trim();
-            query.push(cleanMake);
-        }
-        if (model) query.push(model);
-        if (year) query.push(year);
-        if (cat) query.push(cat);
-
-        var keyword = query.join(' ');
-        if (!keyword) keyword = 'قطع غيار';
-        
-        var base = searchUrl || '/products';
-        var separator = base.indexOf('?') !== -1 ? '&' : '?';
-        window.location.href = base + separator + 'keyword=' + encodeURIComponent(keyword);
-    }
-
-    function submitOemSearch(modalId, searchUrl) {
-        var oem = document.getElementById('oem-input-' + modalId).value.trim();
-        if (oem) {
+    function submitDirectStoreSearch(e, modalId, searchUrl) {
+        if (e) e.preventDefault();
+        var input = document.getElementById('direct-search-input-' + modalId);
+        var keyword = input ? input.value.trim() : '';
+        if (keyword) {
             var base = searchUrl || '/products';
             var separator = base.indexOf('?') !== -1 ? '&' : '?';
-            window.location.href = base + separator + 'keyword=' + encodeURIComponent(oem);
+            window.location.href = base + separator + 'keyword=' + encodeURIComponent(keyword);
         }
+    }
+
+    function quickSearchTag(modalId, tagText, searchUrl) {
+        var input = document.getElementById('direct-search-input-' + modalId);
+        if (input) input.value = tagText;
+        var base = searchUrl || '/products';
+        var separator = base.indexOf('?') !== -1 ? '&' : '?';
+        window.location.href = base + separator + 'keyword=' + encodeURIComponent(tagText);
     }
 
     function submitModalVinQuote(e, modalId, waPhone) {
@@ -522,7 +368,7 @@
                       "🚗 *السيارة والموديل:* " + car + "\n" +
                       (vin ? ("🔢 *رقم الهيكل (VIN):* " + vin + "\n") : "") +
                       "📝 *القطع المطلوبة:* " + details + "\n\n" +
-                      "⚡ تم الإرسال عبر محرك البحث الذكي في المتجر.";
+                      "⚡ تم الإرسال عبر محرك البحث والاستفسار في المتجر.";
 
         var whatsappUrl = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + encodeURIComponent(message);
         

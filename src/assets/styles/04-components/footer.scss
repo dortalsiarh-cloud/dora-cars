@@ -1,49 +1,111 @@
-
 .store-footer {
-  @apply relative bg-darker text-white mt-8 sm:mt-16;
+  background: #061527;
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 
-  a{
-    @apply transition-opacity hover:opacity-75;
+  a {
+    transition: all 0.25s ease;
+    text-decoration: none;
   }
 
-  &__inner{
-    @apply bg-dark py-8 lg:py-16 border-b border-dashed border-b-white/10;
-  }  
-
-  h3{
-    @apply text-lg font-bold mb-3 lg:mb-5;
+  &__inner {
+    background: transparent;
   }
 
-  .social-link {
-    @apply border rounded-full w-8 h-8 justify-center flex items-center hover:opacity-75 transition duration-300 text-sm
+  h3, h4 {
+    font-family: inherit;
+    letter-spacing: -0.2px;
   }
 
-  .contact-social{
-    @apply mt-5 pt-5 border-t border-white/10;
+  /* Salla Menu items in Footer */
+  .store-footer-menu-wrapper {
+    ul, ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
 
-    ul {
-      @apply mb-0;
+    li a {
+      color: #94a3b8;
+      font-size: 0.825rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s ease, transform 0.2s ease;
+
+      &:hover {
+        color: #f59e0b;
+        transform: translateX(-3px);
+      }
     }
   }
 
-  .footer-is-light & {
-    @apply bg-gray-50 text-gray-700;
+  /* Salla Contacts in Footer */
+  salla-contacts {
+    .s-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.75rem;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 0.4rem;
+      transition: all 0.25s ease;
+      color: #cbd5e1;
+      font-size: 0.825rem;
+      font-weight: 600;
 
-    .store-footer__inner {
-      @apply bg-gray-100 border-b-gray-200;
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(245, 158, 11, 0.4);
+        color: #ffffff;
+        transform: translateY(-1px);
+      }
+
+      i {
+        font-size: 1rem;
+        color: #f59e0b;
+      }
+    }
+  }
+
+  /* Social Icons */
+  salla-social {
+    .s-social-list {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
-    .social-link {
-      @apply border-gray-300;
-    }
+    .s-social-item a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      transition: all 0.25s ease;
 
-    .contact-social{
-      @apply border-gray-100;
+      &:hover {
+        background: #f59e0b;
+        border-color: #f59e0b;
+        color: #061527;
+        transform: scale(1.1);
+      }
     }
   }
 }
 
-
-.copyright-text p{
-  @apply text-gray-700;
+.copyright-text p {
+  color: #94a3b8;
+  margin: 0;
 }

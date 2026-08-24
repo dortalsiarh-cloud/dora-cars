@@ -34,10 +34,7 @@
 ] %}
 
 <header data-testid="store-header" class="store-header">
-  {# Bullet Delivery tag — mobile: own full-width row above the top nav
-     (Figma "Mobile version"). Desktop keeps the inline pill below, next to
-     scopes. Both instances self-gate on the same backend flag; `lg:hidden`
-     matches the mobile/desktop split already used for the menu toggle below. #}
+  {# Bullet Delivery tag — mobile: own full-width row above the top nav #}
   <div class="lg:hidden">
     <salla-bullet-delivery-tag></salla-bullet-delivery-tag>
   </div>
@@ -58,7 +55,7 @@
               {% endif %}
           </div>
 
-          {# Bullet Delivery tag — desktop only; mobile instance is above the top nav #}
+          {# Bullet Delivery tag — desktop only #}
           <div class="hidden lg:block">
             <salla-bullet-delivery-tag></salla-bullet-delivery-tag>
           </div>
@@ -87,7 +84,7 @@
           <div class="container">
               <div class="flex items-center justify-between relative w-full py-1.5 sm:py-2 gap-2 sm:gap-4">
                   
-                  {# Right (RTL): Store Logo #}
+                  {# Right (RTL): Store Logo & Mobile Burger Menu #}
                   <div class="flex items-center shrink-0">
                       <a data-testid="store-header-mobile-toggle" class="lg:hidden mburger mburger--collapse leading-none rtl:ml-3 ltr:mr-3" href="#mobile-menu" aria-label="Open-menu">
                         <i class="sicon-menu text-primary text-2xl"></i>
@@ -102,9 +99,9 @@
                       </a>
                   </div>
 
-                  {# Center: Header Categories (Between Logo and User/Cart) OR Custom Menu #}
+                  {# Center: Header Categories (Desktop View) #}
                   {% if show_header_cats and header_cats_pos == 'inside_nav' %}
-                      <div class="flex-1 mx-1 sm:mx-3 min-w-0 flex items-center justify-center overflow-hidden">
+                      <div class="hidden lg:flex flex-1 mx-2 sm:mx-4 min-w-0 items-center justify-center overflow-hidden">
                           {% if header_cats_style == 'marquee' %}
                               <div class="header-cats-viewport py-1 max-w-full">
                                   <div class="header-cats-track" id="header-cats-nav-track-el">
@@ -141,7 +138,7 @@
                                   </div>
                               </div>
                           {% else %}
-                              <div class="flex items-center gap-3 sm:gap-5 overflow-x-auto no-scrollbar py-1 px-1 scroll-smooth justify-start sm:justify-center max-w-full" id="header-cats-nav-scroll-el">
+                              <div class="flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar py-1 px-1 scroll-smooth justify-center max-w-full" id="header-cats-nav-scroll-el">
                                   {% if categories and categories|length > 0 %}
                                       {% for cat in categories %}
                                           {% set cat_img = cat.image.url|default(cat.image)|default(cat.icon.url)|default(cat.icon)|default(cat.avatar) %}
@@ -174,7 +171,7 @@
                           {% endif %}
                       </div>
                   {% else %}
-                      <div class="flex-1 flex items-center justify-center">
+                      <div class="hidden lg:flex flex-1 items-center justify-center">
                           <custom-main-menu></custom-main-menu>
                       </div>
                   {% endif %}
@@ -193,10 +190,10 @@
   </div>
 
   {# ========================================================================= #}
-  {# OPTIONAL: HEADER CATEGORIES BAR (Below Navbar Mode)                      #}
+  {# HEADER CATEGORIES BAR (Below Navbar Mode / Responsive Mobile Strip)       #}
   {# ========================================================================= #}
-  {% if show_header_cats and header_cats_pos == 'below_nav' %}
-    <div class="header-categories-bar relative overflow-hidden border-t border-b border-white/10 shadow-sm" style="background-color: {{ header_cats_bg }};">
+  {% if show_header_cats %}
+    <div class="header-categories-bar relative overflow-hidden border-t border-b border-white/10 shadow-sm {{ header_cats_pos == 'inside_nav' ? 'block lg:hidden' : 'block' }}" style="background-color: {{ header_cats_bg }};">
         <div class="container mx-auto px-2 sm:px-4">
             {% if header_cats_style == 'marquee' %}
                 <div class="header-cats-viewport py-2">
@@ -205,26 +202,26 @@
                             {% if categories and categories|length > 0 %}
                                 {% for cat in categories %}
                                     {% set cat_img = cat.image.url|default(cat.image)|default(cat.icon.url)|default(cat.icon)|default(cat.avatar) %}
-                                    <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1 px-3.5 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
-                                        <div class="h-9 sm:h-10 w-auto min-w-[36px] max-w-[55px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
+                                    <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1 px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
+                                        <div class="h-9 sm:h-10 w-auto min-w-[34px] max-w-[50px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
                                             {% if cat_img %}
                                                 <img src="{{ cat_img }}" alt="{{ cat.name }}" class="max-h-full max-w-full object-contain drop-shadow" loading="lazy" />
                                             {% else %}
-                                                <i class="sicon-car-side text-xl sm:text-2xl transition" style="color: {{ header_cats_accent }};"></i>
+                                                <i class="sicon-car-side text-lg sm:text-xl transition" style="color: {{ header_cats_accent }};"></i>
                                             {% endif %}
                                         </div>
-                                        <span class="text-[11px] sm:text-[11.5px] font-bold whitespace-nowrap transition-colors duration-200" style="color: {{ header_cats_text }};">
+                                        <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors duration-200" style="color: #ffffff;">
                                             {{ cat.name }}
                                         </span>
                                     </a>
                                 {% endfor %}
                             {% else %}
                                 {% for cat in default_cats %}
-                                    <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1 px-3.5 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
-                                        <div class="h-9 sm:h-10 w-auto min-w-[36px] max-w-[55px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
-                                            <i class="{{ cat.icon }} text-xl sm:text-2xl transition" style="color: {{ header_cats_accent }};"></i>
+                                    <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1 px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
+                                        <div class="h-9 sm:h-10 w-auto min-w-[34px] max-w-[50px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
+                                            <i class="{{ cat.icon }} text-lg sm:text-xl transition" style="color: {{ header_cats_accent }};"></i>
                                         </div>
-                                        <span class="text-[11px] sm:text-[11.5px] font-bold whitespace-nowrap transition-colors duration-200" style="color: {{ header_cats_text }};">
+                                        <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors duration-200" style="color: #ffffff;">
                                             {{ cat.name }}
                                         </span>
                                     </a>
@@ -234,19 +231,19 @@
                     </div>
                 </div>
             {% else %}
-                <div class="flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar py-2.5 px-1 scroll-smooth justify-start sm:justify-center" id="header-cats-scroll-el">
+                <div class="flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar py-2 px-1 scroll-smooth justify-start sm:justify-center" id="header-cats-scroll-el">
                     {% if categories and categories|length > 0 %}
                         {% for cat in categories %}
                             {% set cat_img = cat.image.url|default(cat.image)|default(cat.icon.url)|default(cat.icon)|default(cat.avatar) %}
                             <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1 px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
-                                <div class="h-9 sm:h-10 w-auto min-w-[36px] max-w-[55px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
+                                <div class="h-9 sm:h-10 w-auto min-w-[34px] max-w-[50px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
                                     {% if cat_img %}
                                         <img src="{{ cat_img }}" alt="{{ cat.name }}" class="max-h-full max-w-full object-contain drop-shadow" loading="lazy" />
                                     {% else %}
-                                        <i class="sicon-car-side text-xl sm:text-2xl transition" style="color: {{ header_cats_accent }};"></i>
+                                        <i class="sicon-car-side text-lg sm:text-xl transition" style="color: {{ header_cats_accent }};"></i>
                                     {% endif %}
                                 </div>
-                                <span class="text-[11px] sm:text-[11.5px] font-bold whitespace-nowrap transition-colors duration-200" style="color: {{ header_cats_text }};">
+                                <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors duration-200" style="color: #ffffff;">
                                     {{ cat.name }}
                                 </span>
                             </a>
@@ -254,10 +251,10 @@
                     {% else %}
                         {% for cat in default_cats %}
                             <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1 px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
-                                <div class="h-9 sm:h-10 w-auto min-w-[36px] max-w-[55px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
-                                    <i class="{{ cat.icon }} text-xl sm:text-2xl transition" style="color: {{ header_cats_accent }};"></i>
+                                <div class="h-9 sm:h-10 w-auto min-w-[34px] max-w-[50px] flex items-center justify-center mb-1 group-hover:scale-115 transition-transform duration-300">
+                                    <i class="{{ cat.icon }} text-lg sm:text-xl transition" style="color: {{ header_cats_accent }};"></i>
                                 </div>
-                                <span class="text-[11px] sm:text-[11.5px] font-bold whitespace-nowrap transition-colors duration-200" style="color: {{ header_cats_text }};">
+                                <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors duration-200" style="color: #ffffff;">
                                     {{ cat.name }}
                                 </span>
                             </a>

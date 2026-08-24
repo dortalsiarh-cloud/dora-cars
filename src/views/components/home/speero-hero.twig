@@ -20,11 +20,13 @@
 {% set search_url = component.search_url|default(component.settings.search_url)|default('/products') %}
 {% set wa_phone = component.whatsapp_number|default(component.settings.whatsapp_number)|default(store.contacts.whatsapp|default(store.contacts.phone|default('966500000000')))|replace({'+': '', ' ': '', '-': ''}) %}
 
-{% set makes_raw = component.filter_makes|default(component.settings.filter_makes)|default("تويوتا (Toyota)\nهيونداي (Hyundai)\nكيا (Kia)\nنيسان (Nissan)\nفورد (Ford)\nجيلي (Geely)\nشانجان (Changan)\nشيفروليه (Chevrolet)\nهوندا (Honda)\nمازدا (Mazda)\nميتسوبيشي (Mitsubishi)") %}
+{% set makes_raw = component.filter_makes|default(component.settings.filter_makes)|default("هيونداي (Hyundai)\nكيا (Kia)\nتويوتا (Toyota)\nنيسان (Nissan)\nفورد (Ford)\nجيلي (Geely)\nشانجان (Changan)\nشيفروليه (Chevrolet)\nهوندا (Honda)\nمازدا (Mazda)\nميتسوبيشي (Mitsubishi)") %}
 {% set makes_list = makes_raw|split("\n") %}
 
 {% set cats_raw = component.filter_categories|default(component.settings.filter_categories)|default("الفلاتر والمنقيات\nالفرامل والأقمشة\nالزيوت وسوائل الصيانة\nالمساعدات والتعليق\nالكهرباء والبواجي\nالتكييف والرديتر\nالإنارة والاصطبات\nالسيور والشدادات\nقطع المحرك") %}
 {% set cats_list = cats_raw|split("\n") %}
+
+{% set custom_models_raw = component.custom_models|default(component.settings.custom_models)|default("") %}
 
 <section
     id="{{ hero_id }}"
@@ -338,23 +340,62 @@
 
 {# Modal Engine & Cascading Models Logic #}
 <script>
-    var carModelsData = {
-        'تويوتا': ['كامري', 'لاندكروزر', 'كورولا', 'هايلكس', 'يارس', 'افالون', 'فورتشنر', 'راف فور', 'برادو'],
-        'هيونداي': ['سوناتا', 'إلنترا', 'أكسنت', 'توسان', 'سنتافي', 'أزيرا', 'كريتا', 'باليسيد'],
-        'كيا': ['أوبتيما / K5', 'سبورتاج', 'سيراتو / K3', 'ريو', 'سورينتو', 'كادينزا / K8', 'سيلتوس'],
-        'نيسان': ['باترول', 'التيما', 'صني', 'ماكسيما', 'نافارا', 'اكس تريل', 'باثفايندر'],
-        'فورد': ['تورس', 'اكسبلورر', 'F-150', 'موستنج', 'اكسبدشن', 'ايدج'],
-        'جيلي': ['مونجارو', 'كولراي', 'امجراند', 'ازكارا', 'توغيلا'],
-        'شانجان': ['CS95', 'CS75 Plus', 'CS85', 'CS35 Plus', 'Eado Plus', 'UNI-K', 'UNI-T', 'UNI-V'],
-        'شيفروليه': ['تاهو', 'كابرس', 'لومينا', 'ماليبو', 'سيلفرادو', 'ترافيرس'],
-        'هوندا': ['اكورد', 'سيفيك', 'CR-V', 'بايلوت'],
-        'مازدا': ['مازدا 6', 'مازدا 3', 'CX-9', 'CX-5'],
-        'ميتسوبيشي': ['باجيرو', 'لانسر', 'L200', 'اوتلاندر', 'اكليبس كروس']
+    var defaultCarModelsData = {
+        'هيونداي': ['سوناتا', 'إلنترا', 'أكسنت', 'توسان', 'سنتافي', 'أزيرا', 'كريتا', 'باليسيد', 'كونا', 'فيلوستر', 'ستاريا', 'جينيسيس', 'i10', 'i20', 'i30'],
+        'hyundai': ['سوناتا', 'إلنترا', 'أكسنت', 'توسان', 'سنتافي', 'أزيرا', 'كريتا', 'باليسيد', 'كونا', 'فيلوستر', 'ستاريا', 'جينيسيس', 'i10', 'i20', 'i30'],
+        'كيا': ['أوبتيما / K5', 'سبورتاج', 'سيراتو / K3', 'ريو', 'سورينتو', 'كادينزا / K8', 'سيلتوس', 'تيلورايد', 'بيجاس', 'كرنفال', 'كارينز', 'ستينجر', 'K900', 'سونيت'],
+        'kia': ['أوبتيما / K5', 'سبورتاج', 'سيراتو / K3', 'ريو', 'سورينتو', 'كادينزا / K8', 'سيلتوس', 'تيلورايد', 'بيجاس', 'كرنفال', 'كارينز', 'ستينجر', 'K900', 'سونيت'],
+        'تويوتا': ['كامري', 'لاندكروزر', 'كورولا', 'هايلكس', 'يارس', 'افالون', 'فورتشنر', 'راف فور', 'برادو', 'اف جي كروزر', 'اينوفا', 'اوريون', 'سيكويا', 'هايلاندر', 'كراون', 'راش', 'شاص'],
+        'toyota': ['كامري', 'لاندكروزر', 'كورولا', 'هايلكس', 'يارس', 'افالون', 'فورتشنر', 'راف فور', 'برادو', 'اف جي كروزر', 'اينوفا', 'اوريون', 'سيكويا', 'هايلاندر', 'كراون', 'راش', 'شاص'],
+        'نيسان': ['باترول', 'التيما', 'صني', 'ماكسيما', 'نافارا', 'اكس تريل', 'باثفايندر', 'سنترا', 'كيكس', 'ارمادا', 'تيرانو', 'اورفان'],
+        'nissan': ['باترول', 'التيما', 'صني', 'ماكسيما', 'نافارا', 'اكس تريل', 'باثفايندر', 'سنترا', 'كيكس', 'ارمادا', 'تيرانو', 'اورفان'],
+        'فورد': ['تورس', 'اكسبلورر', 'F-150', 'موستنج', 'اكسبدشن', 'ايدج', 'فيوجن', 'رينجر', 'تيريتوري', 'فوكس', 'كراون فكتوريا', 'ايسكيب'],
+        'ford': ['تورس', 'اكسبلورر', 'F-150', 'موستنج', 'اكسبدشن', 'ايدج', 'فيوجن', 'رينجر', 'تيريتوري', 'فوكس', 'كراون فكتوريا', 'ايسكيب'],
+        'جيلي': ['مونجارو', 'كولراي', 'امجراند', 'ازكارا', 'توغيلا', 'اوكافانجو', 'بينراي', 'سيتي راي', 'GX3 Pro'],
+        'geely': ['مونجارو', 'كولراي', 'امجراند', 'ازكارا', 'توغيلا', 'اوكافانجو', 'بينراي', 'سيتي راي', 'GX3 Pro'],
+        'شانجان': ['CS95', 'CS75 Plus', 'CS85', 'CS35 Plus', 'Eado Plus', 'UNI-K', 'UNI-T', 'UNI-V', 'Alsvin', 'Hunter'],
+        'changan': ['CS95', 'CS75 Plus', 'CS85', 'CS35 Plus', 'Eado Plus', 'UNI-K', 'UNI-T', 'UNI-V', 'Alsvin', 'Hunter'],
+        'شيفروليه': ['تاهو', 'كابرس', 'لومينا', 'ماليبو', 'سيلفرادو', 'ترافيرس', 'تريل بليزر', 'كروز', 'اوبترا', 'سوبربان', 'كمارو', 'امبالا'],
+        'chevrolet': ['تاهو', 'كابرس', 'لومينا', 'ماليبو', 'سيلفرادو', 'ترافيرس', 'تريل بليزر', 'كروز', 'اوبترا', 'سوبربان', 'كمارو', 'امبالا'],
+        'هوندا': ['اكورد', 'سيفيك', 'CR-V', 'بايلوت', 'HR-V', 'اوديسي', 'سيتي'],
+        'honda': ['اكورد', 'سيفيك', 'CR-V', 'بايلوت', 'HR-V', 'اوديسي', 'سيتي'],
+        'مازدا': ['مازدا 6', 'مازدا 3', 'CX-9', 'CX-5', 'CX-30', 'CX-90', 'مازدا 2'],
+        'mazda': ['مازدا 6', 'مازدا 3', 'CX-9', 'CX-5', 'CX-30', 'CX-90', 'مازدا 2'],
+        'ميتسوبيشي': ['باجيرو', 'لانسر', 'L200', 'اوتلاندر', 'اكليبس كروس', 'اتراج', 'مونتيرو سبورت', 'ASX'],
+        'mitsubishi': ['باجيرو', 'لانسر', 'L200', 'اوتلاندر', 'اكليبس كروس', 'اتراج', 'مونتيرو سبورت', 'ASX']
     };
+
+    function parseCustomModels() {
+        var raw = `{{ custom_models_raw|raw }}`;
+        var map = {};
+        if (!raw || !raw.trim()) return map;
+        var lines = raw.split('\n');
+        lines.forEach(function(l) {
+            var parts = l.split(':');
+            if (parts.length >= 2) {
+                var brand = parts[0].trim().toLowerCase();
+                var models = parts[1].split(',').map(function(m) { return m.trim(); }).filter(Boolean);
+                if (brand && models.length) {
+                    map[brand] = models;
+                }
+            }
+        });
+        return map;
+    }
+
+    function normalizeText(str) {
+        return (str || '').toLowerCase()
+            .replace(/[()\/\\-_]/g, ' ')
+            .replace(/أ|إ|آ/g, 'ا')
+            .replace(/ة/g, 'ه')
+            .replace(/ى/g, 'ي')
+            .trim();
+    }
 
     function onMakeChange(makeSelect, modelSelectId) {
         var rawMake = makeSelect.value;
         var modelSelect = document.getElementById(modelSelectId);
+        if (!modelSelect) return;
         modelSelect.innerHTML = '';
 
         if (!rawMake) {
@@ -362,13 +403,29 @@
             return;
         }
 
-        var matchedKey = Object.keys(carModelsData).find(function(k) {
-            return rawMake.indexOf(k) !== -1;
+        var customMap = parseCustomModels();
+        var normalizedMake = normalizeText(rawMake);
+        var modelsFound = null;
+
+        // Check custom map first
+        Object.keys(customMap).forEach(function(k) {
+            if (normalizedMake.indexOf(normalizeText(k)) !== -1 || normalizeText(k).indexOf(normalizedMake) !== -1) {
+                modelsFound = customMap[k];
+            }
         });
 
-        if (matchedKey && carModelsData[matchedKey]) {
-            modelSelect.innerHTML = '<option value="">-- كافة موديلات ' + matchedKey + ' --</option>';
-            carModelsData[matchedKey].forEach(function(m) {
+        // Fallback to built-in database
+        if (!modelsFound) {
+            Object.keys(defaultCarModelsData).forEach(function(k) {
+                if (normalizedMake.indexOf(normalizeText(k)) !== -1 || normalizeText(k).indexOf(normalizedMake) !== -1) {
+                    modelsFound = defaultCarModelsData[k];
+                }
+            });
+        }
+
+        if (modelsFound && modelsFound.length) {
+            modelSelect.innerHTML = '<option value="">-- كافة موديلات ' + rawMake.split(' ')[0] + ' --</option>';
+            modelsFound.forEach(function(m) {
                 var opt = document.createElement('option');
                 opt.value = m;
                 opt.textContent = m;
@@ -384,6 +441,12 @@
         if (modal) {
             modal.classList.remove('hidden');
             switchSpeeroModalTab(modalId, tabName);
+
+            // Trigger auto model population if make is already chosen
+            var makeSelect = document.getElementById('modal-make-' + modalId);
+            if (makeSelect && makeSelect.value) {
+                onMakeChange(makeSelect, 'modal-model-' + modalId);
+            }
         }
     }
 
@@ -418,7 +481,10 @@
         var cat = document.getElementById('modal-cat-' + modalId).value;
 
         var query = [];
-        if (make) query.push(make.split(' ')[0]);
+        if (make) {
+            var cleanMake = make.replace(/\(.*?\)/g, '').trim();
+            query.push(cleanMake);
+        }
         if (model) query.push(model);
         if (year) query.push(year);
         if (cat) query.push(cat);

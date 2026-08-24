@@ -1,68 +1,66 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250">
-  <rect width="400" height="250" fill="#f8fafc"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 280" width="500" height="280">
+  <defs>
+    <linearGradient id="bgGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#061527"/>
+      <stop offset="100%" stop-color="#0b1e36"/>
+    </linearGradient>
+  </defs>
   
-  <!-- Header Bar -->
-  <rect x="140" y="15" width="120" height="16" rx="3" fill="#e41f37" fill-opacity="0.08" stroke="#e41f37" stroke-opacity="0.2" stroke-width="1"/>
-  <text x="200" y="26" fill="#e41f37" font-size="7.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">أقسام قطع الغيار</text>
-  
-  <text x="200" y="48" fill="#0b2545" font-size="12" font-family="sans-serif" font-weight="800" text-anchor="middle">تصفح حسب قسم القطعة</text>
+  <rect width="500" height="280" rx="16" fill="url(#bgGrad5)"/>
+  <rect x="1" y="1" width="498" height="278" rx="15" fill="none" stroke="#1e293b" stroke-width="2"/>
 
-  <!-- Categories Grid -->
-  <g transform="translate(20, 62)">
-    <!-- Cat 1: Filters -->
-    <rect x="0" y="0" width="170" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="8" y="7" width="24" height="24" rx="3" fill="#0b2545" fill-opacity="0.06"/>
-    <text x="20" y="23" font-size="12" text-anchor="middle">🌪️</text>
-    <text x="40" y="20" fill="#0f172a" font-size="8.5" font-family="sans-serif" font-weight="bold">الفلاتر والمنقيات</text>
-    <text x="40" y="29" fill="#64748b" font-size="6.5" font-family="sans-serif">فلاتر زيت، هواء، ومكيف</text>
+  <!-- Title -->
+  <text x="250" y="36" fill="#f59e0b" font-family="'Cairo', sans-serif" font-size="11" font-weight="700" text-anchor="middle">أقسام المتجر المصورة</text>
+  <text x="250" y="60" fill="#ffffff" font-family="'Cairo', sans-serif" font-size="17" font-weight="900" text-anchor="middle">تصفح قطع الغيار حسب التصنيف الفني</text>
 
-    <!-- Cat 2: Brakes -->
-    <rect x="190" y="0" width="170" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="198" y="7" width="24" height="24" rx="3" fill="#0b2545" fill-opacity="0.06"/>
-    <text x="210" y="23" font-size="12" text-anchor="middle">🛑</text>
-    <text x="230" y="20" fill="#0f172a" font-size="8.5" font-family="sans-serif" font-weight="bold">الفرامل والمكابح</text>
-    <text x="230" y="29" fill="#64748b" font-size="6.5" font-family="sans-serif">فحمات وهوبات وسوائل</text>
+  <!-- 4 Big Visual Category Cards with Top Icons -->
+  <g transform="translate(25, 80)">
+    <!-- Cat 1: Compressors -->
+    <g transform="translate(0, 0)">
+      <rect width="102" height="165" rx="12" fill="#0c2038" stroke="#1e3a5f" stroke-width="1.2"/>
+      <rect x="18" y="15" width="66" height="66" rx="12" fill="#061527" stroke="#334155" stroke-width="1"/>
+      <circle cx="51" cy="48" r="16" fill="#f59e0b" opacity="0.3"/>
+      <text x="51" y="52" fill="#f59e0b" font-size="16" text-anchor="middle">❄️</text>
+      <text x="51" y="105" fill="#ffffff" font-family="'Cairo', sans-serif" font-size="11" font-weight="800" text-anchor="middle">الكمبروسر</text>
+      <text x="51" y="122" fill="#94a3b8" font-family="'Cairo', sans-serif" font-size="8.5" text-anchor="middle">والتبريد</text>
+      <rect x="23" y="136" width="56" height="18" rx="5" fill="#1e293b"/>
+      <text x="51" y="148" fill="#f59e0b" font-family="'Cairo', sans-serif" font-size="8" font-weight="700" text-anchor="middle">تصفح</text>
+    </g>
 
-    <!-- Cat 3: Oils -->
-    <rect x="0" y="44" width="170" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="8" y="51" width="24" height="24" rx="3" fill="#0b2545" fill-opacity="0.06"/>
-    <text x="20" y="67" font-size="12" text-anchor="middle">🛢️</text>
-    <text x="40" y="64" fill="#0f172a" font-size="8.5" font-family="sans-serif" font-weight="bold">الزيوت وسوائل التبريد</text>
-    <text x="40" y="73" fill="#64748b" font-size="6.5" font-family="sans-serif">زيوت محرك وجيربوكس</text>
+    <!-- Cat 2: Filters & Oils -->
+    <g transform="translate(115, 0)">
+      <rect width="102" height="165" rx="12" fill="#0c2038" stroke="#1e3a5f" stroke-width="1.2"/>
+      <rect x="18" y="15" width="66" height="66" rx="12" fill="#061527" stroke="#334155" stroke-width="1"/>
+      <circle cx="51" cy="48" r="16" fill="#3b82f6" opacity="0.3"/>
+      <text x="51" y="52" fill="#60a5fa" font-size="16" text-anchor="middle">🛢️</text>
+      <text x="51" y="105" fill="#ffffff" font-family="'Cairo', sans-serif" font-size="11" font-weight="800" text-anchor="middle">فلاتر وزيوت</text>
+      <text x="51" y="122" fill="#94a3b8" font-family="'Cairo', sans-serif" font-size="8.5" text-anchor="middle">محرك وجيربوكس</text>
+      <rect x="23" y="136" width="56" height="18" rx="5" fill="#1e293b"/>
+      <text x="51" y="148" fill="#f59e0b" font-family="'Cairo', sans-serif" font-size="8" font-weight="700" text-anchor="middle">تصفح</text>
+    </g>
+
+    <!-- Cat 3: Brakes -->
+    <g transform="translate(230, 0)">
+      <rect width="102" height="165" rx="12" fill="#0c2038" stroke="#1e3a5f" stroke-width="1.2"/>
+      <rect x="18" y="15" width="66" height="66" rx="12" fill="#061527" stroke="#334155" stroke-width="1"/>
+      <circle cx="51" cy="48" r="16" fill="#ef4444" opacity="0.3"/>
+      <text x="51" y="52" fill="#f87171" font-size="16" text-anchor="middle">🛡️</text>
+      <text x="51" y="105" fill="#ffffff" font-family="'Cairo', sans-serif" font-size="11" font-weight="800" text-anchor="middle">الفرامل والمكابح</text>
+      <text x="51" y="122" fill="#94a3b8" font-family="'Cairo', sans-serif" font-size="8.5" text-anchor="middle">أقمشة وهوبات</text>
+      <rect x="23" y="136" width="56" height="18" rx="5" fill="#1e293b"/>
+      <text x="51" y="148" fill="#f59e0b" font-family="'Cairo', sans-serif" font-size="8" font-weight="700" text-anchor="middle">تصفح</text>
+    </g>
 
     <!-- Cat 4: Suspension -->
-    <rect x="190" y="44" width="170" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="198" y="51" width="24" height="24" rx="3" fill="#0b2545" fill-opacity="0.06"/>
-    <text x="210" y="67" font-size="12" text-anchor="middle">🚙</text>
-    <text x="230" y="64" fill="#0f172a" font-size="8.5" font-family="sans-serif" font-weight="bold">المساعدات والتعليق</text>
-    <text x="230" y="73" fill="#64748b" font-size="6.5" font-family="sans-serif">مساعدات ومقصات وجلود</text>
-
-    <!-- Cat 5: Electrical -->
-    <rect x="0" y="88" width="170" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="8" y="95" width="24" height="24" rx="3" fill="#0b2545" fill-opacity="0.06"/>
-    <text x="20" y="111" font-size="12" text-anchor="middle">⚡</text>
-    <text x="40" y="108" fill="#0f172a" font-size="8.5" font-family="sans-serif" font-weight="bold">الكهرباء والبواجي</text>
-    <text x="40" y="117" fill="#64748b" font-size="6.5" font-family="sans-serif">بواجي، كويلات، وبطاريات</text>
-
-    <!-- Cat 6: AC -->
-    <rect x="190" y="88" width="170" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="198" y="95" width="24" height="24" rx="3" fill="#0b2545" fill-opacity="0.06"/>
-    <text x="210" y="111" font-size="12" text-anchor="middle">❄️</text>
-    <text x="230" y="108" fill="#0f172a" font-size="8.5" font-family="sans-serif" font-weight="bold">التكييف والتبريد</text>
-    <text x="230" y="117" fill="#64748b" font-size="6.5" font-family="sans-serif">كمبروسر ورديتر مكيف</text>
-
-    <!-- Cat 7: Lights -->
-    <rect x="0" y="132" width="170" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="8" y="139" width="24" height="24" rx="3" fill="#0b2545" fill-opacity="0.06"/>
-    <text x="20" y="155" font-size="12" text-anchor="middle">💡</text>
-    <text x="40" y="152" fill="#0f172a" font-size="8.5" font-family="sans-serif" font-weight="bold">الإنارة والإضاءة</text>
-    <text x="40" y="161" fill="#64748b" font-size="6.5" font-family="sans-serif">شمعات واصطبات وكشافات</text>
-
-    <!-- Cat 8: Engine -->
-    <rect x="190" y="132" width="170" height="38" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="198" y="139" width="24" height="24" rx="3" fill="#0b2545" fill-opacity="0.06"/>
-    <text x="210" y="155" font-size="12" text-anchor="middle">⚙️</text>
-    <text x="230" y="152" fill="#0f172a" font-size="8.5" font-family="sans-serif" font-weight="bold">المحرك والسيور</text>
-    <text x="230" y="161" fill="#64748b" font-size="6.5" font-family="sans-serif">سيور مكينة وطرمبات ماء</text>
+    <g transform="translate(345, 0)">
+      <rect width="102" height="165" rx="12" fill="#0c2038" stroke="#1e3a5f" stroke-width="1.2"/>
+      <rect x="18" y="15" width="66" height="66" rx="12" fill="#061527" stroke="#334155" stroke-width="1"/>
+      <circle cx="51" cy="48" r="16" fill="#10b981" opacity="0.3"/>
+      <text x="51" y="52" fill="#34d399" font-size="16" text-anchor="middle">🚗</text>
+      <text x="51" y="105" fill="#ffffff" font-family="'Cairo', sans-serif" font-size="11" font-weight="800" text-anchor="middle">المساعدات</text>
+      <text x="51" y="122" fill="#94a3b8" font-family="'Cairo', sans-serif" font-size="8.5" text-anchor="middle">مقصات وتعليق</text>
+      <rect x="23" y="136" width="56" height="18" rx="5" fill="#1e293b"/>
+      <text x="51" y="148" fill="#f59e0b" font-family="'Cairo', sans-serif" font-size="8" font-weight="700" text-anchor="middle">تصفح</text>
+    </g>
   </g>
 </svg>

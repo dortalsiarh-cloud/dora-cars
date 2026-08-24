@@ -280,7 +280,7 @@
             },
             "icon": "sicon-image",
             "path": "home.store-identity-banner",
-            "image": "https://cdn.salla.network/images/themes/components/home/enhanced-slider.png",
+            "image": "https://raw.githubusercontent.com/dortalsiarh-cloud/dora-cars/master/public/images/components/speero-identity-banner.svg",
             "is_default": true,
             "fields": [
                 {
@@ -495,7 +495,7 @@
             },
             "icon": "sicon-search",
             "path": "home.speero-hero",
-            "image": "https://cdn.salla.network/images/themes/components/home/main-links.png",
+            "image": "https://raw.githubusercontent.com/dortalsiarh-cloud/dora-cars/master/public/images/components/speero-hero.svg",
             "is_default": true,
             "fields": [
                 {
@@ -632,7 +632,7 @@
             },
             "icon": "sicon-credit-card",
             "path": "home.speero-payment-marquee",
-            "image": "https://cdn.salla.network/images/themes/components/home/enhanced-square-banners.png",
+            "image": "https://raw.githubusercontent.com/dortalsiarh-cloud/dora-cars/master/public/images/components/speero-payment-marquee.svg",
             "is_default": true,
             "fields": [
                 {
@@ -729,7 +729,7 @@
             },
             "icon": "sicon-award-ribbon",
             "path": "home.speero-brands",
-            "image": "https://cdn.salla.network/images/themes/components/home/brands.png",
+            "image": "https://raw.githubusercontent.com/dortalsiarh-cloud/dora-cars/master/public/images/components/speero-brands.svg",
             "is_default": true,
             "fields": [
                 {
@@ -825,7 +825,7 @@
             },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.speero-categories",
-            "image": "https://cdn.salla.network/images/themes/components/home/main-links.png",
+            "image": "https://raw.githubusercontent.com/dortalsiarh-cloud/dora-cars/master/public/images/components/speero-categories.svg",
             "is_default": true,
             "fields": [
                 {
@@ -951,7 +951,7 @@
             },
             "icon": "sicon-discount-calculator",
             "path": "home.speero-offers-banner",
-            "image": "https://cdn.salla.network/images/themes/components/home/enhanced-square-banners.png",
+            "image": "https://raw.githubusercontent.com/dortalsiarh-cloud/dora-cars/master/public/images/components/speero-offers-banner.svg",
             "is_default": true,
             "fields": [
                 {

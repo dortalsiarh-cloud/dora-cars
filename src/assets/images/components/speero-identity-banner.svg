@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="500" height="300">
+  <defs>
+    <linearGradient id="bgGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#061527"/>
+      <stop offset="50%" stop-color="#0b1e36"/>
+      <stop offset="100%" stop-color="#071220"/>
+    </linearGradient>
+    <linearGradient id="goldGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="500" height="300" rx="16" fill="url(#bgGrad1)"/>
+  <rect x="1" y="1" width="498" height="298" rx="15" fill="none" stroke="#1e293b" stroke-width="2"/>
+  
+  <!-- Subtle Grid Dots -->
+  <circle cx="50" cy="40" r="1.5" fill="#334155" opacity="0.6"/>
+  <circle cx="100" cy="40" r="1.5" fill="#334155" opacity="0.6"/>
+  <circle cx="400" cy="40" r="1.5" fill="#334155" opacity="0.6"/>
+  <circle cx="450" cy="40" r="1.5" fill="#334155" opacity="0.6"/>
+  
+  <!-- Ambient Glow -->
+  <circle cx="430" cy="60" r="80" fill="#f59e0b" opacity="0.08" filter="blur(20px)"/>
+  <circle cx="70" cy="240" r="80" fill="#38bdf8" opacity="0.08" filter="blur(20px)"/>
+
+  <!-- Top Badge -->
+  <g transform="translate(160, 28)">
+    <rect width="180" height="26" rx="13" fill="#0f2847" stroke="#334155" stroke-width="1"/>
+    <circle cx="20" cy="13" r="5" fill="#f59e0b"/>
+    <text x="95" y="17" fill="#f59e0b" font-family="'Cairo', sans-serif" font-size="11" font-weight="700" text-anchor="middle">المتجر المعتمد الأول لقطع الغيار</text>
+  </g>
+
+  <!-- Hero Store Title -->
+  <text x="250" y="85" fill="url(#goldGrad1)" font-family="'Cairo', sans-serif" font-size="20" font-weight="900" text-anchor="middle">درة السيارة - أصالة وجودة وضمان</text>
+  
+  <!-- Slogan -->
+  <text x="250" y="110" fill="#94a3b8" font-family="'Cairo', sans-serif" font-size="11" font-weight="500" text-anchor="middle">تشكيلة متكاملة من أجود قطع الغيار المضمونة بأفضل الأسعار مع توصيل فوري</text>
+
+  <!-- CTA Button -->
+  <g transform="translate(180, 126)">
+    <rect width="140" height="30" rx="8" fill="#f59e0b"/>
+    <text x="70" y="19" fill="#061527" font-family="'Cairo', sans-serif" font-size="11" font-weight="800" text-anchor="middle">تصفح كافة الأقسام</text>
+  </g>
+
+  <!-- 4 Trust Pillars Cards -->
+  <g transform="translate(25, 175)">
+    <!-- Pillar 1: Shipping -->
+    <g transform="translate(0, 0)">
+      <rect width="105" height="95" rx="10" fill="#0c2038" stroke="#1e3a5f" stroke-width="1"/>
+      <rect x="36" y="12" width="32" height="32" rx="8" fill="#ef4444" opacity="0.15"/>
+      <path d="M46 32 h-2 v-8 h12 v3 h4 l2 3 v2 h-1 a2 2 0 1 1 -4 0 h-5 a2 2 0 1 1 -4 0 h-2 z" fill="#f87171"/>
+      <text x="52" y="60" fill="#ffffff" font-family="'Cairo', sans-serif" font-size="10" font-weight="700" text-anchor="middle">شحن وتوصيل فوري</text>
+      <text x="52" y="76" fill="#64748b" font-family="'Cairo', sans-serif" font-size="8" text-anchor="middle">تغطية سريعة</text>
+    </g>
+
+    <!-- Pillar 2: 100% Original -->
+    <g transform="translate(115, 0)">
+      <rect width="105" height="95" rx="10" fill="#0c2038" stroke="#1e3a5f" stroke-width="1"/>
+      <rect x="36" y="12" width="32" height="32" rx="8" fill="#f59e0b" opacity="0.15"/>
+      <path d="M52 20 l6 3 v5 c0 5 -6 8 -6 8 s-6 -3 -6 -8 v-5 z" fill="#fbbf24"/>
+      <text x="52" y="60" fill="#ffffff" font-family="'Cairo', sans-serif" font-size="10" font-weight="700" text-anchor="middle">أصلي ومضمون 100%</text>
+      <text x="52" y="76" fill="#64748b" font-family="'Cairo', sans-serif" font-size="8" text-anchor="middle">فحص وتقييمات</text>
+    </g>
+
+    <!-- Pillar 3: Returns -->
+    <g transform="translate(230, 0)">
+      <rect width="105" height="95" rx="10" fill="#0c2038" stroke="#1e3a5f" stroke-width="1"/>
+      <rect x="36" y="12" width="32" height="32" rx="8" fill="#3b82f6" opacity="0.15"/>
+      <circle cx="52" cy="28" r="7" fill="none" stroke="#60a5fa" stroke-width="2.5" stroke-dasharray="8 4"/>
+      <text x="52" y="60" fill="#ffffff" font-family="'Cairo', sans-serif" font-size="10" font-weight="700" text-anchor="middle">إرجاع واستبدال مرن</text>
+      <text x="52" y="76" fill="#64748b" font-family="'Cairo', sans-serif" font-size="8" text-anchor="middle">سياسة ميسرة</text>
+    </g>
+
+    <!-- Pillar 4: WhatsApp Quote -->
+    <g transform="translate(345, 0)">
+      <rect width="105" height="95" rx="10" fill="#0c2038" stroke="#1e3a5f" stroke-width="1"/>
+      <rect x="36" y="12" width="32" height="32" rx="8" fill="#10b981" opacity="0.15"/>
+      <circle cx="52" cy="28" r="7" fill="#34d399"/>
+      <text x="52" y="60" fill="#ffffff" font-family="'Cairo', sans-serif" font-size="10" font-weight="700" text-anchor="middle">طلب ودعم فني</text>
+      <text x="52" y="76" fill="#64748b" font-family="'Cairo', sans-serif" font-size="8" text-anchor="middle">استشارة فورية</text>
+    </g>
+  </g>
+</svg>

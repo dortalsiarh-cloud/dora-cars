@@ -1,43 +1,63 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250">
-  <rect width="400" height="250" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" width="500" height="200">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b192c"/>
+      <stop offset="100%" stop-color="#071220"/>
+    </linearGradient>
+  </defs>
   
-  <rect x="20" y="30" width="130" height="18" rx="3" fill="#e41f37" fill-opacity="0.08" stroke="#e41f37" stroke-opacity="0.2" stroke-width="1"/>
-  <text x="85" y="42" fill="#e41f37" font-size="8" font-family="sans-serif" font-weight="bold" text-anchor="middle">طرق الدفع والتقسيط</text>
-  
-  <text x="20" y="70" fill="#0b2545" font-size="13" font-family="sans-serif" font-weight="800">شريط طرق الدفع والتقسيط المعتمدة</text>
-  <text x="20" y="88" fill="#64748b" font-size="8.5" font-family="sans-serif">أيقونات الدفع الرسمية مع ظهور تفاصيل الأقساط عند التمرير</text>
+  <rect width="500" height="200" rx="16" fill="url(#bgGrad3)"/>
+  <rect x="1" y="1" width="498" height="198" rx="15" fill="none" stroke="#1e293b" stroke-width="2"/>
 
-  <!-- Marquee Ticker Row -->
-  <g transform="translate(15, 115)">
-    <!-- Tabby -->
-    <rect x="0" y="0" width="68" height="46" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="6" y="10" width="56" height="26" rx="3" fill="#29E8B2"/>
-    <text x="34" y="27" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#000000" text-anchor="middle">tabby</text>
-
-    <!-- Tamara -->
-    <rect x="76" y="0" width="68" height="46" rx="4" fill="#ffffff" stroke="#e41f37" stroke-width="1.5"/>
-    <rect x="82" y="10" width="56" height="26" rx="3" fill="#FF5E00"/>
-    <text x="110" y="27" font-family="Arial, sans-serif" font-size="10" font-weight="900" fill="#FFFFFF" text-anchor="middle">tamara</text>
-    <!-- Tooltip mock -->
-    <rect x="74" y="-32" width="72" height="22" rx="3" fill="#0b2545"/>
-    <text x="110" y="-18" font-family="sans-serif" font-size="6.5" font-weight="bold" fill="#FFFFFF" text-anchor="middle">قسّمها على 4 دفعات</text>
-
-    <!-- Mada -->
-    <rect x="152" y="0" width="68" height="46" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="158" y="10" width="56" height="26" rx="3" fill="#008060"/>
-    <text x="186" y="27" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#FFFFFF" text-anchor="middle">mada</text>
-
-    <!-- Apple Pay -->
-    <rect x="228" y="0" width="68" height="46" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <rect x="234" y="10" width="56" height="26" rx="3" fill="#000000"/>
-    <text x="262" y="26" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF" text-anchor="middle"> Pay</text>
-
-    <!-- Visa / Master -->
-    <rect x="304" y="0" width="68" height="46" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
-    <circle cx="332" cy="23" r="8" fill="#EB001B"/>
-    <circle cx="344" cy="23" r="8" fill="#F79E1B" fill-opacity="0.85"/>
+  <!-- Top Title -->
+  <g transform="translate(20, 20)">
+    <circle cx="10" cy="10" r="4" fill="#f59e0b"/>
+    <text x="22" y="14" fill="#f59e0b" font-family="'Cairo', sans-serif" font-size="12" font-weight="800">طرق دفع آمنة 100% وتقسيط ميسر بدون فوائد</text>
   </g>
 
-  <!-- Bottom subtitle -->
-  <text x="200" y="205" fill="#64748b" font-size="8" font-family="sans-serif" text-anchor="middle">شريط متحرك لا نهائي مع خاصية التوقف عند التمرير بالماوس</text>
+  <!-- Continuous Payment Badges Row -->
+  <g transform="translate(20, 55)">
+    <!-- Mada -->
+    <g transform="translate(0, 0)">
+      <rect width="70" height="80" rx="10" fill="#0f2847" stroke="#334155" stroke-width="1"/>
+      <circle cx="35" cy="30" r="14" fill="#00843D" opacity="0.8"/>
+      <text x="35" y="65" fill="#e2e8f0" font-family="'Cairo', sans-serif" font-size="9" font-weight="700" text-anchor="middle">مدى Mada</text>
+    </g>
+
+    <!-- Apple Pay -->
+    <g transform="translate(78, 0)">
+      <rect width="70" height="80" rx="10" fill="#0f2847" stroke="#334155" stroke-width="1"/>
+      <circle cx="35" cy="30" r="14" fill="#000000" opacity="0.9"/>
+      <text x="35" y="65" fill="#e2e8f0" font-family="'Cairo', sans-serif" font-size="9" font-weight="700" text-anchor="middle">Apple Pay</text>
+    </g>
+
+    <!-- Tabby -->
+    <g transform="translate(156, 0)">
+      <rect width="70" height="80" rx="10" fill="#0f2847" stroke="#334155" stroke-width="1"/>
+      <rect x="21" y="20" width="28" height="20" rx="4" fill="#29E8B2"/>
+      <text x="35" y="65" fill="#e2e8f0" font-family="'Cairo', sans-serif" font-size="9" font-weight="700" text-anchor="middle">تابي Tabby</text>
+    </g>
+
+    <!-- Tamara -->
+    <g transform="translate(234, 0)">
+      <rect width="70" height="80" rx="10" fill="#0f2847" stroke="#334155" stroke-width="1"/>
+      <rect x="21" y="20" width="28" height="20" rx="4" fill="#FF9100"/>
+      <text x="35" y="65" fill="#e2e8f0" font-family="'Cairo', sans-serif" font-size="9" font-weight="700" text-anchor="middle">تمارا Tamara</text>
+    </g>
+
+    <!-- Visa -->
+    <g transform="translate(312, 0)">
+      <rect width="70" height="80" rx="10" fill="#0f2847" stroke="#334155" stroke-width="1"/>
+      <rect x="21" y="20" width="28" height="20" rx="4" fill="#1A1F71"/>
+      <text x="35" y="65" fill="#e2e8f0" font-family="'Cairo', sans-serif" font-size="9" font-weight="700" text-anchor="middle">فيزا Visa</text>
+    </g>
+
+    <!-- Mastercard -->
+    <g transform="translate(390, 0)">
+      <rect width="70" height="80" rx="10" fill="#0f2847" stroke="#334155" stroke-width="1"/>
+      <circle cx="30" cy="30" r="10" fill="#EB001B" opacity="0.9"/>
+      <circle cx="40" cy="30" r="10" fill="#F79E1B" opacity="0.85"/>
+      <text x="35" y="65" fill="#e2e8f0" font-family="'Cairo', sans-serif" font-size="9" font-weight="700" text-anchor="middle">ماستركارد</text>
+    </g>
+  </g>
 </svg>

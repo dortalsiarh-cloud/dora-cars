@@ -631,7 +631,37 @@
                             "key": "4571e13b-40ad-446f-950e-acf6d6d5fd94"
                         }
                     ],
-                    "key": "433cfe9e-c63c-45c4-9c5e-38d74994e23c"
+                    "key": "433cfe9e-c63c-45c4-9c5e-38d74994e23c",
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 30,
+                    "value": [
+                        {
+                            "payment_methods.name": "مدى Mada",
+                            "payment_methods.icon": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
+                            "payment_methods.description": "دفع آمن وفوري عبر مدى"
+                        },
+                        {
+                            "payment_methods.name": "أبل باي Apple Pay",
+                            "payment_methods.icon": "https://cdn.salla.sa/ZrBEO/3gOhYSaIhaHxhH2IHWxJYDl9JHwxP6dGKiZFSq4K.jpg",
+                            "payment_methods.description": "دفع سريع بلمسة واحدة"
+                        },
+                        {
+                            "payment_methods.name": "تابي Tabby",
+                            "payment_methods.icon": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
+                            "payment_methods.description": "قسّمها على 4 دفعات بدون فوائد"
+                        },
+                        {
+                            "payment_methods.name": "تمارا Tamara",
+                            "payment_methods.icon": "https://cdn.salla.sa/ZrBEO/3gOhYSaIhaHxhH2IHWxJYDl9JHwxP6dGKiZFSq4K.jpg",
+                            "payment_methods.description": "قسّم مشترياتك بدون رسوم"
+                        },
+                        {
+                            "payment_methods.name": "فيزا وماستركارد",
+                            "payment_methods.icon": "https://cdn.salla.sa/ZrBEO/MopzhoqpTkDObcKc8Q8n77AuydanfsGXdZO7iinH.jpg",
+                            "payment_methods.description": "بطاقات الائتمان المعتمدة"
+                        }
+                    ]
                 }
             ]
         },
@@ -724,7 +754,10 @@
                             "key": "ebb06114-b387-4401-8378-9eded9d2b66b"
                         }
                     ],
-                    "key": "5338e31b-82ee-450b-a295-3efeb376537b"
+                    "key": "5338e31b-82ee-450b-a295-3efeb376537b",
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 50
                 }
             ]
         },
@@ -809,7 +842,10 @@
                             "key": "9469d494-eae1-44b7-843d-95e33a7513f8"
                         }
                     ],
-                    "key": "c369923b-47a4-45c4-aaaa-30f5edbc2818"
+                    "key": "c369923b-47a4-45c4-aaaa-30f5edbc2818",
+                    "required": false,
+                    "minLength": 1,
+                    "maxLength": 50
                 }
             ]
         },

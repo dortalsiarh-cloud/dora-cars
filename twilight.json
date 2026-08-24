@@ -808,6 +808,44 @@
                     "key": "f8c9f602-ec7b-42b1-8ab0-7ac2e8d84ac2"
                 },
                 {
+                    "id": "bg_image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة خلفية القسم (اختياري)",
+                    "value": null,
+                    "required": false,
+                    "key": "b82ff16d-1984-41b4-bddc-94afe103e290"
+                },
+                {
+                    "id": "bg_opacity",
+                    "type": "number",
+                    "format": "integer",
+                    "label": "درجة تعتيم الخلفية (0 إلى 100%)",
+                    "value": 20,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false,
+                    "key": "79ba5034-33b8-498a-8e0c-47794c4a1062"
+                },
+                {
+                    "id": "accent_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون التمييز والأزرار",
+                    "value": "#f59e0b",
+                    "required": false,
+                    "key": "7d7ed671-1538-44e5-be5e-1d3a5ac4abe3"
+                },
+                {
+                    "id": "text_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون النصوص والعناوين",
+                    "value": "#ffffff",
+                    "required": false,
+                    "key": "d396af09-bade-4340-bf01-f87058ea5e27"
+                },
+                {
                     "id": "categories",
                     "type": "collection",
                     "format": "collection",

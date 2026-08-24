@@ -107,6 +107,35 @@
             "selected": true
         },
         {
+            "id": "header_categories_position",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "موقع ظهور شريط التصنيفات في الهيدر",
+            "description": "اختر وضع التصنيفات بين الشعار والسلة أو كشريط مستقل أسفل الهيدر",
+            "icon": "sicon-layout-grid-rearrange",
+            "selected": [
+                {
+                    "label": "في منتصف الهيدر الرئيسي (بين الشعار وأيقونة الحساب والسلة)",
+                    "value": "inside_nav",
+                    "key": "a1b2c3d4-e5f6-47a8-b9c0-d1e2f3a4b5c6"
+                }
+            ],
+            "options": [
+                {
+                    "label": "في منتصف الهيدر الرئيسي (بين الشعار وأيقونة الحساب والسلة)",
+                    "value": "inside_nav",
+                    "key": "a1b2c3d4-e5f6-47a8-b9c0-d1e2f3a4b5c6"
+                },
+                {
+                    "label": "شريط مستقل أسفل الهيدر الرئيسي",
+                    "value": "below_nav",
+                    "key": "b2c3d4e5-f6a7-48b9-c0d1-e2f3a4b5c6d7"
+                }
+            ],
+            "source": "Manual",
+            "required": false
+        },
+        {
             "id": "header_categories_style",
             "type": "items",
             "format": "dropdown-list",

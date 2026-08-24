@@ -1,0 +1,264 @@
+{#
+|--------------------------------------------------------------------------
+| Speero Car Brands Grid & Mobile Horizontal Carousel
+|--------------------------------------------------------------------------
+| Salla Twilight Component: home.speero-brands
+| Features Logo on top, text below, and high-contrast section headers on background
+|--------------------------------------------------------------------------
+#}
+
+{% set bg_img = component.bg_image.url|default(component.bg_image)|default(component.settings.bg_image.url)|default(component.settings.bg_image) %}
+{% set is_contain = component.contain_bg|default(component.settings.contain_bg)|default(false) %}
+{% set bg_size_css = is_contain ? 'contain' : 'cover' %}
+
+{% set raw_opacity = component.bg_overlay_opacity|default(component.settings.bg_overlay_opacity)|default('0') %}
+{% set opacity_num = raw_opacity|trim|number_format(0) %}
+{% set computed_opacity = opacity_num > 0 ? (opacity_num > 1 ? (opacity_num / 100) : opacity_num) : 0 %}
+
+{% set bg_overlay_color = component.bg_overlay_color|default(component.settings.bg_overlay_color)|default('#ffffff') %}
+{% set bg_col = component.bg_color|default(component.settings.bg_color)|default('#ffffff') %}
+
+<section
+    class="speero-brands-section {% if bg_img %}speero-brands-section--has-bg{% endif %}"
+    data-component="speero-brands"
+    style="
+        {% if bg_img %}
+            background-image: url('{{ bg_img }}');
+            background-size: {{ bg_size_css }};
+            background-position: center;
+            background-repeat: no-repeat;
+        {% else %}
+            background-color: {{ bg_col }};
+        {% endif %}
+    "
+>
+    {# Background Opacity Overlay #}
+    {% if bg_img and computed_opacity > 0 %}
+        <div
+            class="speero-brands__overlay"
+            style="
+                background-color: {{ bg_overlay_color }};
+                opacity: {{ computed_opacity }};
+            "
+        ></div>
+    {% endif %}
+
+    <div class="speero-container relative z-10">
+        
+        {# Section Header (Text standing out above background) #}
+        <div class="speero-section-header">
+            <div class="speero-badge" {% if component.accent_color %}style="border-color: {{ component.accent_color }}; color: {{ component.accent_color }};"{% endif %}>
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path>
+                    <circle cx="7" cy="17" r="2"></circle>
+                    <circle cx="17" cy="17" r="2"></circle>
+                </svg>
+                <span>{{ component.badge|default(component.settings.badge)|default('ماركات السيارات') }}</span>
+            </div>
+            <h2 {% if component.text_color %}style="color: {{ component.text_color }};"{% endif %}>
+                {{ component.title|default(component.settings.title)|default('اختر الشركة المصنعة لسيارتك') }}
+            </h2>
+            <p {% if component.text_color %}style="color: {{ component.text_color }}; opacity: 0.9;"{% endif %}>
+                {{ component.description|default(component.settings.description)|default('تصفح كافة قطع الغيار المتوافقة مع ماركة سيارتك بسهولة ودقة.') }}
+            </p>
+        </div>
+
+        <div class="speero-brands-grid">
+            
+            {% if component.brands and component.brands|length > 0 %}
+                {# Dynamic Merchant Brands: Logo on TOP, Text at BOTTOM #}
+                {% for item in component.brands %}
+                    <a href="{{ item.url|default('/products?keyword=' ~ item.title) }}" class="speero-brand-card">
+                        <div class="speero-brand-card__badge">
+                            {% if item.image %}
+                                <img src="{{ item.image.url|default(item.image) }}" alt="{{ item.title }}" loading="lazy" />
+                            {% else %}
+                                <span class="font-black text-primary text-2xl tracking-wider">{{ item.title|slice(0, 3)|upper }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="speero-brand-card__text">
+                            <strong>{{ item.title }}</strong>
+                            {% if item.sub_title %}
+                                <span>{{ item.sub_title }}</span>
+                            {% endif %}
+                        </div>
+                    </a>
+                {% endfor %}
+            {% else %}
+                {# Top 12 Saudi Market Car Brands: Logo on TOP, Text at BOTTOM #}
+                
+                {# Toyota #}
+                <a href="/products?keyword=تويوتا" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <ellipse cx="50" cy="35" rx="46" ry="30" fill="none" stroke="#D32F2F" stroke-width="6"/>
+                            <ellipse cx="50" cy="28" rx="20" ry="18" fill="none" stroke="#D32F2F" stroke-width="5"/>
+                            <ellipse cx="50" cy="40" rx="34" ry="12" fill="none" stroke="#D32F2F" stroke-width="5"/>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>Toyota</strong>
+                        <span>تويوتا</span>
+                    </div>
+                </a>
+
+                {# Hyundai #}
+                <a href="/products?keyword=هيونداي" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <ellipse cx="50" cy="35" rx="45" ry="30" fill="none" stroke="#002C6C" stroke-width="6"/>
+                            <text x="50" y="48" font-family="Arial, sans-serif" font-size="44" font-weight="900" font-style="italic" fill="#002C6C" text-anchor="middle">H</text>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>Hyundai</strong>
+                        <span>هيونداي</span>
+                    </div>
+                </a>
+
+                {# Kia #}
+                <a href="/products?keyword=كيا" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <text x="50" y="46" font-family="Arial, sans-serif" font-size="34" font-weight="900" letter-spacing="3" fill="#05141F" text-anchor="middle">KИ</text>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>Kia</strong>
+                        <span>كيا</span>
+                    </div>
+                </a>
+
+                {# Nissan #}
+                <a href="/products?keyword=نيسان" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <circle cx="50" cy="35" r="28" fill="none" stroke="#A0AEC0" stroke-width="5"/>
+                            <rect x="10" y="27" width="80" height="16" fill="#A0AEC0" rx="3"/>
+                            <text x="50" y="39" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#000000" text-anchor="middle">NISSAN</text>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>Nissan</strong>
+                        <span>نيسان</span>
+                    </div>
+                </a>
+
+                {# Ford #}
+                <a href="/products?keyword=فورد" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <ellipse cx="50" cy="35" rx="46" ry="26" fill="#1C3F94"/>
+                            <text x="50" y="44" font-family="Georgia, serif" font-size="28" font-weight="bold" font-style="italic" fill="#FFFFFF" text-anchor="middle">Ford</text>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>Ford</strong>
+                        <span>فورد</span>
+                    </div>
+                </a>
+
+                {# Chevrolet #}
+                <a href="/products?keyword=شيفروليه" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <path d="M10 28H90V42H10Z" fill="#D4AF37"/>
+                            <path d="M35 15H65V55H35Z" fill="#D4AF37"/>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>Chevrolet</strong>
+                        <span>شيفروليه</span>
+                    </div>
+                </a>
+
+                {# Honda #}
+                <a href="/products?keyword=هوندا" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <rect x="15" y="10" width="70" height="50" rx="10" fill="none" stroke="#D32F2F" stroke-width="5"/>
+                            <text x="50" y="48" font-family="Arial, sans-serif" font-size="40" font-weight="900" fill="#D32F2F" text-anchor="middle">H</text>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>Honda</strong>
+                        <span>هوندا</span>
+                    </div>
+                </a>
+
+                {# Lexus #}
+                <a href="/products?keyword=لكزس" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <ellipse cx="50" cy="35" rx="44" ry="28" fill="none" stroke="#000000" stroke-width="5"/>
+                            <text x="50" y="48" font-family="Arial, sans-serif" font-size="40" font-weight="300" font-style="italic" fill="#000000" text-anchor="middle">L</text>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>Lexus</strong>
+                        <span>لكزس</span>
+                    </div>
+                </a>
+
+                {# Changan #}
+                <a href="/products?keyword=شانجان" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <circle cx="50" cy="35" r="28" fill="#00457C"/>
+                            <path d="M36 26L50 46L64 26H54L50 34L46 26H36Z" fill="#FFFFFF"/>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>Changan</strong>
+                        <span>شانجان</span>
+                    </div>
+                </a>
+
+                {# Geely #}
+                <a href="/products?keyword=جيلي" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <rect x="20" y="16" width="60" height="38" rx="8" fill="#002F6C"/>
+                            <text x="50" y="41" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="#FFFFFF" text-anchor="middle">GEELY</text>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>Geely</strong>
+                        <span>جيلي</span>
+                    </div>
+                </a>
+
+                {# MG #}
+                <a href="/products?keyword=ام%20جي" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <polygon points="50,10 85,22 85,48 50,60 15,48 15,22" fill="#BE0027"/>
+                            <text x="50" y="44" font-family="Arial, sans-serif" font-size="24" font-weight="900" fill="#FFFFFF" text-anchor="middle">MG</text>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>MG</strong>
+                        <span>إم جي</span>
+                    </div>
+                </a>
+
+                {# Mazda #}
+                <a href="/products?keyword=مازدا" class="speero-brand-card">
+                    <div class="speero-brand-card__badge">
+                        <svg viewBox="0 0 100 70" class="w-full h-full">
+                            <circle cx="50" cy="35" r="28" fill="none" stroke="#231F20" stroke-width="4"/>
+                            <path d="M30 35Q50 20 70 35Q50 30 30 35Z" fill="#231F20"/>
+                        </svg>
+                    </div>
+                    <div class="speero-brand-card__text">
+                        <strong>Mazda</strong>
+                        <span>مازدا</span>
+                    </div>
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+</section>

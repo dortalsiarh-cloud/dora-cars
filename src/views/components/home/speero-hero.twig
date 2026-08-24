@@ -1,0 +1,439 @@
+{#
+|--------------------------------------------------------------------------
+| Speero Luxury 3-Action Launchpad & Smart Interactive Discovery Modal
+|--------------------------------------------------------------------------
+| Salla Twilight Component: home.speero-hero
+| 3 Big Interactive Hero Cards + Full Glassmorphism Discovery Modal
+|--------------------------------------------------------------------------
+#}
+
+{% set hero_id = 'speero-hero-' ~ random(1000, 9999) %}
+{% set modal_id = 'speero-search-modal-' ~ random(1000, 9999) %}
+
+<section
+    id="{{ hero_id }}"
+    class="speero-hero relative overflow-hidden py-10 sm:py-16 bg-slate-950 text-white border-b border-slate-800"
+    data-component="speero-hero"
+    style="
+        {% if component.bg_image %}background-image: url('{{ component.bg_image }}'); background-size: cover; background-position: center;{% endif %}
+        {% if component.bg_color %}--speero-hero-bg: {{ component.bg_color }}; background: {{ component.bg_color }};{% endif %}
+        {% if component.text_color %}color: {{ component.text_color }};{% endif %}
+    "
+>
+    {# Ambient Glow Backdrops #}
+    <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-900/80 to-slate-950/95 pointer-events-none"></div>
+    <div class="absolute -top-32 -right-32 w-96 h-96 bg-red-600/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="speero-container relative z-10">
+        
+        {# Main Hero Title & Slogan Header #}
+        <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-3 sm:gap-4 mb-8 sm:mb-12">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-300 text-xs sm:text-sm font-bold shadow-sm">
+                <i class="sicon-award-ribbon text-base"></i>
+                <span>{{ component.badge|default(component.settings.badge)|default('منصة قطع الغيار الأسرع والأكثر ثقة بالمملكة') }}</span>
+            </div>
+
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+                {{ component.title|default(component.settings.title)|default('كل ما تحتاجه لسيارتك') }}
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-white to-red-400">
+                    {{ component.title_highlight|default(component.settings.title_highlight)|default('في مكان واحد وبضمان التوافق') }}
+                </span>
+            </h1>
+
+            <p class="text-xs sm:text-base text-slate-300 max-w-2xl font-normal leading-relaxed">
+                {{ component.description|default(component.settings.description)|default('اختر الطريقة الأنسب لك للوصول إلى قطعتك الأصلية والمطابقة برقم الهيكل أو الموديل.') }}
+            </p>
+
+        </div>
+
+        {# 3 BIG LUXURY INTERACTIVE HERO CARDS (Launchpad) #}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+            
+            {# CARD 1: Filter by Vehicle & Model (Gold/Amber Theme) #}
+            <button
+                type="button"
+                onclick="openSpeeroModal('{{ modal_id }}', 'vehicle')"
+                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-900/60 hover:to-slate-850 border border-slate-800 hover:border-amber-400/50 shadow-lg hover:shadow-amber-500/10 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1"
+            >
+                <div class="absolute -top-12 -left-12 w-28 h-28 bg-amber-400/10 rounded-full blur-2xl group-hover:bg-amber-400/20 transition"></div>
+                
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-amber-400/15 border border-amber-400/30 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-110 transition duration-300 shadow-inner">
+                        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                            <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.22.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/>
+                        </svg>
+                    </div>
+
+                    <h3 class="text-base sm:text-lg font-black text-white group-hover:text-amber-300 transition mb-2">
+                        تصفية حسب سيارتك وموديلها
+                    </h3>
+
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
+                        تصفية دقيقة للقطع الاستهلاكية والصيانة المتوافقة مع نوع وموديل وسنة صنع سيارتك.
+                    </p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-bold text-amber-400">
+                    <span>تصفية القطع والزيوت</span>
+                    <i class="sicon-keyboard_arrow_left group-hover:-translate-x-1 transition rtl:rotate-0 ltr:rotate-180 text-sm"></i>
+                </div>
+            </button>
+
+            {# CARD 2: Request & Inquire via WhatsApp & VIN (Green/WhatsApp Theme) #}
+            <button
+                type="button"
+                onclick="openSpeeroModal('{{ modal_id }}', 'vin')"
+                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-900/60 hover:to-slate-850 border border-slate-800 hover:border-emerald-500/50 shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1"
+            >
+                <div class="absolute -top-12 -left-12 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition"></div>
+                
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4 group-hover:scale-110 transition duration-300 shadow-inner">
+                        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 18.12c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.125 8.125 0 0 1-1.25-4.35c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4 1.55 1.55 2.4 3.61 2.4 5.8 0 4.52-3.68 8.21-8.16 8.21zm4.49-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.53.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.07-.1-.22-.16-.47-.28z"/>
+                        </svg>
+                    </div>
+
+                    <h3 class="text-base sm:text-lg font-black text-white group-hover:text-emerald-300 transition mb-2">
+                        استفسر عن قطعة الغيار اللي تبي
+                    </h3>
+
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
+                        اطلب تسعيرة فورية وتأكيد التوافق برقم الهيكل (VIN) مع تحويل مباشر عبر واتساب.
+                    </p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-bold text-emerald-400">
+                    <span>طلب واستفسار فوري</span>
+                    <i class="sicon-keyboard_arrow_left group-hover:-translate-x-1 transition rtl:rotate-0 ltr:rotate-180 text-sm"></i>
+                </div>
+            </button>
+
+            {# CARD 3: Search by OEM Part Number (Blue/Sky Theme) #}
+            <button
+                type="button"
+                onclick="openSpeeroModal('{{ modal_id }}', 'oem')"
+                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-900/60 hover:to-slate-850 border border-slate-800 hover:border-blue-400/50 shadow-lg hover:shadow-blue-500/10 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1"
+            >
+                <div class="absolute -top-12 -left-12 w-28 h-28 bg-blue-400/10 rounded-full blur-2xl group-hover:bg-blue-400/20 transition"></div>
+                
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-blue-400/15 border border-blue-400/30 flex items-center justify-center text-blue-400 mb-4 group-hover:scale-110 transition duration-300 shadow-inner">
+                        <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </div>
+
+                    <h3 class="text-base sm:text-lg font-black text-white group-hover:text-blue-300 transition mb-2">
+                        بحث برقم القطعة (OEM)
+                    </h3>
+
+                    <p class="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal">
+                        ابحث مباشرة برقم القطعة الأصلي أو التجاري للوصول السريع بدون الحاجة لاختيار السيارة.
+                    </p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-bold text-blue-400">
+                    <span>بحث مباشر برقم القطعة</span>
+                    <i class="sicon-keyboard_arrow_left group-hover:-translate-x-1 transition rtl:rotate-0 ltr:rotate-180 text-sm"></i>
+                </div>
+            </button>
+
+        </div>
+
+    </div>
+
+    {# ========================================================================= #}
+    {# SMART 3-TAB MODAL (نافذة البحث والتصفية المنبثقة الشاملة) #}
+    {# ========================================================================= #}
+    <div id="{{ modal_id }}" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/85 backdrop-blur-md hidden transition-all duration-300">
+        <div class="relative w-full max-w-xl bg-slate-900 text-white rounded-2xl border border-slate-700/80 shadow-2xl overflow-hidden animate-fadeIn">
+            
+            {# Modal Header with Close Button #}
+            <div class="p-4 sm:p-5 bg-slate-850 border-b border-slate-700 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-xl bg-amber-400/20 text-amber-400 flex items-center justify-center text-lg">
+                        <i class="sicon-car-side"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold text-white leading-tight">محرك البحث واختيار قطع الغيار</h3>
+                        <p class="text-xs text-slate-400">اختر نوع البحث أو الاستفسار المطلوب</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeSpeeroModal('{{ modal_id }}')" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-lg transition cursor-pointer">
+                    <i class="sicon-cancel"></i>
+                </button>
+            </div>
+
+            {# 3 Tabs Buttons Inside Modal #}
+            <div class="flex border-b border-slate-700 bg-slate-900/60 p-2 gap-1.5 text-xs sm:text-sm font-bold">
+                <button
+                    type="button"
+                    onclick="switchSpeeroModalTab('{{ modal_id }}', 'vehicle')"
+                    id="tab-btn-{{ modal_id }}-vehicle"
+                    class="flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer bg-slate-800 text-amber-300 border border-slate-700"
+                >
+                    <i class="sicon-car"></i>
+                    <span>تصفية سيارتك</span>
+                </button>
+
+                <button
+                    type="button"
+                    onclick="switchSpeeroModalTab('{{ modal_id }}', 'vin')"
+                    id="tab-btn-{{ modal_id }}-vin"
+                    class="flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-slate-400 hover:text-white"
+                >
+                    <i class="sicon-whatsapp text-emerald-400"></i>
+                    <span>استفسار وطلب قطعة</span>
+                </button>
+
+                <button
+                    type="button"
+                    onclick="switchSpeeroModalTab('{{ modal_id }}', 'oem')"
+                    id="tab-btn-{{ modal_id }}-oem"
+                    class="flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-slate-400 hover:text-white"
+                >
+                    <i class="sicon-search text-blue-400"></i>
+                    <span>رقم القطعة OEM</span>
+                </button>
+            </div>
+
+            {# TAB PANE 1: Vehicle Cascading Filter #}
+            <div id="pane-{{ modal_id }}-vehicle" class="p-4 sm:p-6 space-y-4 text-right">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">الشركة المصنعة / الماركة</label>
+                        <select id="modal-make-{{ modal_id }}" onchange="onMakeChange(this, 'modal-model-{{ modal_id }}')" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-amber-400 focus:outline-none transition cursor-pointer">
+                            <option value="">-- اختر الماركة --</option>
+                            <option value="تويوتا">تويوتا (Toyota)</option>
+                            <option value="هيونداي">هيونداي (Hyundai)</option>
+                            <option value="كيا">كيا (Kia)</option>
+                            <option value="نيسان">نيسان (Nissan)</option>
+                            <option value="فورد">فورد (Ford)</option>
+                            <option value="جيلي">جيلي (Geely)</option>
+                            <option value="شانجان">شانجان (Changan)</option>
+                            <option value="شيفروليه">شيفروليه (Chevrolet)</option>
+                            <option value="هوندا">هوندا (Honda)</option>
+                            <option value="مازدا">مازدا (Mazda)</option>
+                            <option value="ميتسوبيشي">ميتسوبيشي (Mitsubishi)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">موديل السيارة</label>
+                        <select id="modal-model-{{ modal_id }}" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-amber-400 focus:outline-none transition cursor-pointer">
+                            <option value="">-- اختر الماركة أولاً --</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">سنة الصنع</label>
+                        <select id="modal-year-{{ modal_id }}" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-amber-400 focus:outline-none transition cursor-pointer">
+                            <option value="">-- كافة السنوات --</option>
+                            {% for y in (2005..2026)|reverse %}
+                                <option value="{{ y }}">{{ y }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">قسم القطع</label>
+                        <select id="modal-cat-{{ modal_id }}" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-amber-400 focus:outline-none transition cursor-pointer">
+                            <option value="">كافة القطع المتوافقة</option>
+                            <option value="فلاتر">الفلاتر والمنقيات</option>
+                            <option value="فرامل">الفرامل والأقمشة</option>
+                            <option value="زيوت">الزيوت وسوائل الصيانة</option>
+                            <option value="مساعدات">المساعدات والتعليق</option>
+                            <option value="بواجي">الكهرباء والبواجي</option>
+                            <option value="تكييف">التكييف والرديتر</option>
+                            <option value="إنارة">الإنارة والاصطبات</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <button type="button" onclick="submitVehicleFilter('{{ modal_id }}')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-black text-sm sm:text-base flex items-center justify-center gap-2 transition duration-300 shadow-lg hover:shadow-amber-400/20 cursor-pointer">
+                        <i class="sicon-search text-base"></i>
+                        <span>عرض القطع المتوافقة مع سيارتك</span>
+                    </button>
+                </div>
+            </div>
+
+            {# TAB PANE 2: Inquire & VIN WhatsApp Request #}
+            <div id="pane-{{ modal_id }}-vin" class="p-4 sm:p-6 space-y-3.5 text-right hidden">
+                <form onsubmit="submitModalVinQuote(event, '{{ modal_id }}')">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">الاسم الكريم <span class="text-red-400">*</span></label>
+                            <input type="text" id="vin-name-{{ modal_id }}" required placeholder="مثال: محمد عبدالله" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-emerald-400 focus:outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">رقم الجوال <span class="text-red-400">*</span></label>
+                            <input type="tel" id="vin-phone-{{ modal_id }}" required placeholder="مثال: 05xxxxxxxx" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-emerald-400 focus:outline-none transition">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">نوع وموديل السيارة <span class="text-red-400">*</span></label>
+                            <input type="text" id="vin-car-{{ modal_id }}" required placeholder="مثال: سوناتا 2023 / كامري 2021" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-emerald-400 focus:outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">رقم الهيكل VIN <span class="text-slate-400 text-[10px]">(17 حرف)</span></label>
+                            <input type="text" id="vin-code-{{ modal_id }}" maxlength="17" placeholder="مثال: KMHD84LF..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-emerald-400 focus:outline-none transition uppercase tracking-wider">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">القطعة المطلوبة أو الاستفسار <span class="text-red-400">*</span></label>
+                        <textarea id="vin-details-{{ modal_id }}" required rows="2" placeholder="اكتب اسم القطعة بالتفصيل..." class="w-full px-3.5 py-2 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-emerald-400 focus:outline-none transition"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-black text-sm sm:text-base flex items-center justify-center gap-2 transition duration-300 shadow-lg hover:shadow-green-500/20 cursor-pointer">
+                        <i class="sicon-whatsapp text-xl"></i>
+                        <span>إرسال الطلب والاستفسار فوراً عبر واتساب</span>
+                    </button>
+                </form>
+            </div>
+
+            {# TAB PANE 3: Direct OEM Part Number Search #}
+            <div id="pane-{{ modal_id }}-oem" class="p-4 sm:p-6 space-y-4 text-right hidden">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">أدخل رقم القطعة الأصلي (OEM Part Number / SKU)</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="oem-input-{{ modal_id }}" placeholder="مثال: 04465-33471 أو 26300-35505" class="flex-1 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:border-blue-400 focus:outline-none transition tracking-wide font-mono">
+                        <button type="button" onclick="submitOemSearch('{{ modal_id }}')" class="px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold text-sm transition shadow-lg cursor-pointer">
+                            <span>بحث</span>
+                        </button>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-2">
+                        💡 يمكنك إيجاد رقم القطعة مطبوعاً على القطعة القديمة أو في كتالوج الصيانة.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+{# Modal Engine & Cascading Models Logic #}
+<script>
+    var carModelsData = {
+        'تويوتا': ['كامري', 'لاندكروزر', 'كورولا', 'هايلكس', 'يارس', 'افالون', 'فورتشنر', 'راف فور', 'برادو'],
+        'هيونداي': ['سوناتا', 'إلنترا', 'أكسنت', 'توسان', 'سنتافي', 'أزيرا', 'كريتا', 'باليسيد'],
+        'كيا': ['أوبتيما / K5', 'سبورتاج', 'سيراتو / K3', 'ريو', 'سورينتو', 'كادينزا / K8', 'سيلتوس'],
+        'نيسان': ['باترول', 'التيما', 'صني', 'ماكسيما', 'نافارا', 'اكس تريل', 'باثفايندر'],
+        'فورد': ['تورس', 'اكسبلورر', 'F-150', 'موستنج', 'اكسبدشن', 'ايدج'],
+        'جيلي': ['مونجارو', 'كولراي', 'امجراند', 'ازكارا', 'توغيلا'],
+        'شانجان': ['CS95', 'CS75 Plus', 'CS85', 'CS35 Plus', 'Eado Plus', 'UNI-K', 'UNI-T', 'UNI-V'],
+        'شيفروليه': ['تاهو', 'كابرس', 'لومينا', 'ماليبو', 'سيلفرادو', 'ترافيرس'],
+        'هوندا': ['اكورد', 'سيفيك', 'CR-V', 'بايلوت'],
+        'مازدا': ['مازدا 6', 'مازدا 3', 'CX-9', 'CX-5'],
+        'ميتسوبيشي': ['باجيرو', 'لانسر', 'L200', 'اوتلاندر', 'اكليبس كروس']
+    };
+
+    function onMakeChange(makeSelect, modelSelectId) {
+        var make = makeSelect.value;
+        var modelSelect = document.getElementById(modelSelectId);
+        modelSelect.innerHTML = '';
+
+        if (!make || !carModelsData[make]) {
+            modelSelect.innerHTML = '<option value="">-- كافة الموديلات --</option>';
+            return;
+        }
+
+        modelSelect.innerHTML = '<option value="">-- كافة موديلات ' + make + ' --</option>';
+        carModelsData[make].forEach(function(m) {
+            var opt = document.createElement('option');
+            opt.value = m;
+            opt.textContent = m;
+            modelSelect.appendChild(opt);
+        });
+    }
+
+    function openSpeeroModal(modalId, tabName) {
+        var modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('hidden');
+            switchSpeeroModalTab(modalId, tabName);
+        }
+    }
+
+    function closeSpeeroModal(modalId) {
+        var modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.add('hidden');
+        }
+    }
+
+    function switchSpeeroModalTab(modalId, tabName) {
+        var tabs = ['vehicle', 'vin', 'oem'];
+        tabs.forEach(function(t) {
+            var pane = document.getElementById('pane-' + modalId + '-' + t);
+            var btn = document.getElementById('tab-btn-' + modalId + '-' + t);
+            if (pane && btn) {
+                if (t === tabName) {
+                    pane.classList.remove('hidden');
+                    btn.className = 'flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer bg-slate-800 text-amber-300 border border-slate-700';
+                } else {
+                    pane.classList.add('hidden');
+                    btn.className = 'flex-1 py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer text-slate-400 hover:text-white';
+                }
+            }
+        });
+    }
+
+    function submitVehicleFilter(modalId) {
+        var make = document.getElementById('modal-make-' + modalId).value;
+        var model = document.getElementById('modal-model-' + modalId).value;
+        var year = document.getElementById('modal-year-' + modalId).value;
+        var cat = document.getElementById('modal-cat-' + modalId).value;
+
+        var query = [];
+        if (make) query.push(make);
+        if (model) query.push(model);
+        if (year) query.push(year);
+        if (cat) query.push(cat);
+
+        var keyword = query.join(' ');
+        if (!keyword) keyword = 'قطع غيار';
+        
+        window.location.href = '/products?keyword=' + encodeURIComponent(keyword);
+    }
+
+    function submitOemSearch(modalId) {
+        var oem = document.getElementById('oem-input-' + modalId).value.trim();
+        if (oem) {
+            window.location.href = '/products?keyword=' + encodeURIComponent(oem);
+        }
+    }
+
+    function submitModalVinQuote(e, modalId) {
+        e.preventDefault();
+        var name = document.getElementById('vin-name-' + modalId).value.trim();
+        var phone = document.getElementById('vin-phone-' + modalId).value.trim();
+        var car = document.getElementById('vin-car-' + modalId).value.trim();
+        var vin = document.getElementById('vin-code-' + modalId).value.trim();
+        var details = document.getElementById('vin-details-' + modalId).value.trim();
+
+        var whatsappNumber = '{{ store.contacts.whatsapp|default(store.contacts.phone|default("966500000000"))|replace({"+": "", " ": "", "-": ""}) }}';
+
+        var message = "🚗 *طلب تسعير واستفسار قطع غيار - " + encodeURIComponent('{{ store.name }}') + "*\n" +
+            "━━━━━━━━━━━━━━━━━\n" +
+            "👤 *اسم العميل:* " + name + "\n" +
+            "📱 *رقم الجوال:* " + phone + "\n" +
+            "🚘 *السيارة والموديل:* " + car + "\n" +
+            (vin ? ("🔢 *رقم الهيكل (VIN):* " + vin + "\n") : "") +
+            "⚙️ *القطع المطلوبة:* " + details + "\n" +
+            "━━━━━━━━━━━━━━━━━\n" +
+            "يرجى تزويدي بالأسعار والتوافر، وشكراً لكم.";
+
+        var whatsappUrl = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + encodeURIComponent(message);
+        
+        closeSpeeroModal(modalId);
+        window.open(whatsappUrl, '_blank');
+    }
+</script>

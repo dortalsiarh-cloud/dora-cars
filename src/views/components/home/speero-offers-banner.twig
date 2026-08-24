@@ -1,0 +1,62 @@
+{#
+|--------------------------------------------------------------------------
+| Speero Maintenance Packages & Offers Banner
+|--------------------------------------------------------------------------
+| Salla Twilight Component: home.speero-offers-banner
+| Eye-catching Promo Banner with Color and Image Customization
+|--------------------------------------------------------------------------
+#}
+
+<section
+    class="speero-offers-section py-8"
+    data-component="speero-offers-banner"
+    {% if component.bg_color %}style="background-color: {{ component.bg_color }};"{% endif %}
+>
+    <div class="speero-container">
+        
+        <div
+            class="relative overflow-hidden rounded-md p-8 sm:p-10 text-white shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-slate-700/30"
+            style="
+                background: linear-gradient(135deg, #0b2545 0%, #133b6b 100%);
+                {% if component.banner_bg %}background: {{ component.banner_bg }};{% endif %}
+                {% if component.image %}background-image: url('{{ component.image.url|default(component.image) }}'); background-size: cover; background-position: center;{% endif %}
+            "
+        >
+            {% if component.image %}
+                <div class="absolute inset-0 bg-black bg-opacity-60 z-0"></div>
+            {% endif %}
+
+            <div class="relative z-10 max-w-2xl">
+                <div
+                    class="speero-badge mb-2 bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
+                    {% if component.accent_color %}style="border-color: {{ component.accent_color }}; color: {{ component.accent_color }};"{% endif %}
+                >
+                    <i class="sicon-tag"></i>
+                    <span>{{ component.badge|default(component.settings.badge)|default('عروض وتوفير الصيانة الدورية') }}</span>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-extrabold mb-2 text-white">
+                    {{ component.title|default(component.settings.title)|default('باقات صيانة موفرة لسيارتك') }}
+                </h2>
+
+                <p class="text-gray-200 text-sm sm:text-base leading-relaxed">
+                    {{ component.description|default(component.settings.description)|default('احصل على خصومات حصرية عند شراء باقات الزيوت والفلاتر والأقمشة مع ضمان التوافق 100%.') }}
+                </p>
+            </div>
+
+            <div class="relative z-10 flex-shrink-0">
+                <a
+                    href="{{ component.btn_url|default('/products') }}"
+                    class="speero-btn speero-btn--primary text-sm py-3 px-6"
+                    {% if component.accent_color %}style="background-color: {{ component.accent_color }}; border-color: {{ component.accent_color }};"{% endif %}
+                >
+                    <span>{{ component.btn_text|default(component.settings.btn_text)|default('تصفح عروض التوفير') }}</span>
+                    <i class="sicon-arrow-left rtl:inline ltr:hidden"></i>
+                    <i class="sicon-arrow-right rtl:hidden ltr:inline"></i>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+</section>

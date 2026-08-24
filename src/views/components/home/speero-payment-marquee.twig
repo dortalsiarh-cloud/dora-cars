@@ -1,0 +1,165 @@
+{#
+|--------------------------------------------------------------------------
+| Speero Icon-Only Payment & Installment Marquee (Hover Tooltip Reveal)
+|--------------------------------------------------------------------------
+| Salla Twilight Component: home.speero-payment-marquee
+| Features clean right-aligned top title and unobstructed 100% width scrolling ticker
+|--------------------------------------------------------------------------
+#}
+
+<section
+    class="speero-payment-marquee"
+    data-component="speero-payment-marquee"
+    aria-label="طرق الدفع والتقسيط المعتمدة"
+    {% if component.bg_color %}style="background-color: {{ component.bg_color }};"{% endif %}
+>
+    <div class="speero-container">
+        
+        {# Clean Top Row: Right-aligned small label #}
+        {% if component.title|default(component.settings.title) %}
+            <div class="speero-payment-top-bar">
+                <span class="speero-payment-top-label" {% if component.accent_color %}style="color: {{ component.accent_color }};"{% endif %}>
+                    <svg class="w-4 h-4 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                        <line x1="2" y1="10" x2="22" y2="10"></line>
+                    </svg>
+                    <span>{{ component.title|default(component.settings.title)|default('طرق الدفع والتقسيط المعتمدة:') }}</span>
+                </span>
+            </div>
+        {% endif %}
+
+        {# Unobstructed Full Width Scrolling Viewport #}
+        <div class="speero-payment-marquee__viewport">
+            <div class="speero-payment-marquee__wrapper">
+                
+                {% if component.payment_methods and component.payment_methods|length > 0 %}
+                    {# Dynamic Custom Merchant Payment Methods #}
+                    {% for i in 1..2 %}
+                        {% for item in component.payment_methods %}
+                            {% set pay_img = item.image.url|default(item.image) %}
+                            <div class="speero-payment-icon-badge" tabindex="0" role="button" aria-label="{{ item.title }}">
+                                {% if pay_img %}
+                                    <img src="{{ pay_img }}" alt="{{ item.title }}" loading="lazy" />
+                                {% else %}
+                                    <span class="font-extrabold text-xs text-primary">{{ item.title|slice(0, 4) }}</span>
+                                {% endif %}
+                                <div class="speero-payment-tooltip">
+                                    {{ item.title }}{% if item.sub_title %} - {{ item.sub_title }}{% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                {% else %}
+                    {# Clean Realistic Icon-Only Badges with Tooltip on Hover #}
+                    {% for i in 1..2 %}
+                        
+                        {# 1. Tabby #}
+                        <div class="speero-payment-icon-badge" tabindex="0" role="button" aria-label="تابي: قسّمها على 4 دفعات">
+                            <svg viewBox="0 0 100 32" class="h-6 w-auto">
+                                <rect width="100" height="32" rx="6" fill="#29E8B2"/>
+                                <text x="50" y="21" font-family="Arial, sans-serif" font-size="15" font-weight="900" fill="#000000" text-anchor="middle">tabby</text>
+                            </svg>
+                            <div class="speero-payment-tooltip">
+                                تابي (Tabby): قسّمها على 4 دفعات بدون فوائد
+                            </div>
+                        </div>
+
+                        {# 2. Tamara #}
+                        <div class="speero-payment-icon-badge" tabindex="0" role="button" aria-label="تمارا: قسّم فاتورتك">
+                            <svg viewBox="0 0 100 32" class="h-6 w-auto">
+                                <rect width="100" height="32" rx="6" fill="#FFF3E0"/>
+                                <path d="M12 16L18 8H26L20 16L26 24H18L12 16Z" fill="#FF9100"/>
+                                <text x="58" y="21" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="#2D2D2D" text-anchor="middle">tamara</text>
+                            </svg>
+                            <div class="speero-payment-tooltip">
+                                تمارا (Tamara): قسّم فاتورتك بكل سهولة وبدون فوائد
+                            </div>
+                        </div>
+
+                        {# 3. Mada #}
+                        <div class="speero-payment-icon-badge" tabindex="0" role="button" aria-label="مدى: دفع مباشر وآمن">
+                            <svg viewBox="0 0 60 30" class="h-6 w-auto">
+                                <circle cx="20" cy="15" r="7" fill="#00843D"/>
+                                <circle cx="32" cy="15" r="7" fill="#00A3E0" fill-opacity="0.8"/>
+                                <text x="47" y="19" font-family="Arial, sans-serif" font-size="9" font-weight="900" fill="#00843D">mada</text>
+                            </svg>
+                            <div class="speero-payment-tooltip">
+                                مدى (Mada): دفع إلكتروني مباشر وآمن
+                            </div>
+                        </div>
+
+                        {# 4. Apple Pay #}
+                        <div class="speero-payment-icon-badge" tabindex="0" role="button" aria-label="Apple Pay">
+                            <svg viewBox="0 0 70 30" class="h-6 w-auto">
+                                <rect width="70" height="30" rx="6" fill="#000000"/>
+                                <path d="M22.5 13.2C22.5 11.5 23.9 10.5 24 10.4C23.2 9.2 21.9 9 21.5 9C20.3 8.9 19.2 9.7 18.6 9.7C18 9.7 17 9 16.1 9C14.8 9 13.6 9.8 13 10.9C11.6 13.2 12.7 16.6 14 18.5C14.7 19.4 15.5 20.4 16.5 20.4C17.5 20.4 17.9 19.8 19.1 19.8C20.3 19.8 20.7 20.4 21.7 20.4C22.7 20.4 23.4 19.5 24.1 18.5C24.8 17.4 25.1 16.4 25.2 16.3C25 16.2 22.5 15.2 22.5 13.2Z" fill="#FFFFFF"/>
+                                <text x="48" y="20" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">Pay</text>
+                            </svg>
+                            <div class="speero-payment-tooltip">
+                                Apple Pay: دفع سريع وآمن بلمسة واحدة
+                            </div>
+                        </div>
+
+                        {# 5. Visa #}
+                        <div class="speero-payment-icon-badge" tabindex="0" role="button" aria-label="Visa">
+                            <svg viewBox="0 0 54 24" class="h-5 w-auto">
+                                <text x="27" y="18" font-family="Arial, sans-serif" font-size="16" font-weight="900" font-style="italic" fill="#1A1F71" text-anchor="middle">VISA</text>
+                            </svg>
+                            <div class="speero-payment-tooltip">
+                                فيزا (Visa): بطاقات الائتمان والخصم المباشر
+                            </div>
+                        </div>
+
+                        {# 6. Mastercard #}
+                        <div class="speero-payment-icon-badge" tabindex="0" role="button" aria-label="Mastercard">
+                            <svg viewBox="0 0 44 26" class="h-6 w-auto">
+                                <circle cx="16" cy="13" r="11" fill="#EB001B"/>
+                                <circle cx="28" cy="13" r="11" fill="#F79E1B" fill-opacity="0.85"/>
+                            </svg>
+                            <div class="speero-payment-tooltip">
+                                ماستركارد (Mastercard): مقبولة عالمياً ومحلياً
+                            </div>
+                        </div>
+
+                        {# 7. STC Pay #}
+                        <div class="speero-payment-icon-badge" tabindex="0" role="button" aria-label="STC Pay">
+                            <svg viewBox="0 0 65 26" class="h-5 w-auto">
+                                <rect width="65" height="26" rx="5" fill="#4F008C"/>
+                                <text x="32" y="17" font-family="Arial, sans-serif" font-size="10" font-weight="900" fill="#FF375F" text-anchor="middle">stc pay</text>
+                            </svg>
+                            <div class="speero-payment-tooltip">
+                                STC Pay: ادفع بسهولة عبر محفظتك الرقمية
+                            </div>
+                        </div>
+
+                        {# 8. Urpay #}
+                        <div class="speero-payment-icon-badge" tabindex="0" role="button" aria-label="Urpay">
+                            <svg viewBox="0 0 60 26" class="h-5 w-auto">
+                                <rect width="60" height="26" rx="5" fill="#003865"/>
+                                <text x="30" y="17" font-family="Arial, sans-serif" font-size="11" font-weight="900" fill="#00C48C" text-anchor="middle">urpay</text>
+                            </svg>
+                            <div class="speero-payment-tooltip">
+                                Urpay: محفظة الراجحي الرقمية
+                            </div>
+                        </div>
+
+                        {# 9. Cash on Delivery #}
+                        <div class="speero-payment-icon-badge" tabindex="0" role="button" aria-label="الدفع عند الاستلام">
+                            <svg class="w-6 h-6 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                                <circle cx="12" cy="12" r="2"></circle>
+                                <path d="M6 12h.01M18 12h.01"></path>
+                            </svg>
+                            <div class="speero-payment-tooltip">
+                                الدفع عند الاستلام: ادفع نقداً بعد معاينة القطعة
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+
+    </div>
+</section>

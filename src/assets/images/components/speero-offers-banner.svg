@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250">
+  <defs>
+    <linearGradient id="offersBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b2545"/>
+      <stop offset="100%" stop-color="#133b6b"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="250" fill="#f8fafc"/>
+  
+  <g transform="translate(20, 25)">
+    <!-- Main Banner Box -->
+    <rect width="360" height="200" rx="6" fill="url(#offersBg)" stroke="#334155" stroke-width="1"/>
+    
+    <!-- Badge -->
+    <rect x="25" y="25" width="130" height="20" rx="3" fill="#eab308" fill-opacity="0.2" stroke="#eab308" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="90" y="38" fill="#fde047" font-size="8" font-family="sans-serif" font-weight="bold" text-anchor="middle">🏷️ عروض وتوفير الصيانة</text>
+
+    <!-- Title -->
+    <text x="25" y="75" fill="#ffffff" font-size="18" font-family="sans-serif" font-weight="900">باقات صيانة موفرة لسيارتك</text>
+    
+    <!-- Desc -->
+    <text x="25" y="100" fill="#e2e8f0" font-size="9" font-family="sans-serif">احصل على خصومات حصرية عند شراء باقات</text>
+    <text x="25" y="115" fill="#e2e8f0" font-size="9" font-family="sans-serif">الزيوت والفلاتر والأقمشة مع ضمان التوافق 100%.</text>
+
+    <!-- Visual Element Graphic -->
+    <circle cx="300" cy="95" r="42" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.15" stroke-width="1.5"/>
+    <text x="300" y="90" fill="#fde047" font-size="16" font-family="sans-serif" font-weight="900" text-anchor="middle">خصم</text>
+    <text x="300" y="112" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="900" text-anchor="middle">30%</text>
+
+    <!-- Button -->
+    <rect x="25" y="145" width="145" height="34" rx="4" fill="#e41f37"/>
+    <text x="97" y="166" fill="#ffffff" font-size="9.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">تصفح عروض التوفير ←</text>
+  </g>
+</svg>

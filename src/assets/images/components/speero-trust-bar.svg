@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250">
+  <rect width="400" height="250" fill="#f8fafc"/>
+  
+  <text x="200" y="40" fill="#0b2545" font-size="13" font-family="sans-serif" font-weight="800" text-anchor="middle">شريط ركائز الثقة وضمانات قطع الغيار</text>
+  <text x="200" y="58" fill="#64748b" font-size="8.5" font-family="sans-serif" text-anchor="middle">معايير الجودة والموثوقية والسرعة في خدمة العملاء</text>
+
+  <!-- 4 Trust Cards Grid -->
+  <g transform="translate(20, 75)">
+    <!-- Card 1 -->
+    <rect x="0" y="0" width="175" height="65" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="10" y="14" width="36" height="36" rx="4" fill="#0b2545" fill-opacity="0.06"/>
+    <text x="28" y="37" font-size="18" text-anchor="middle">📋</text>
+    <text x="56" y="28" fill="#0b2545" font-size="9" font-family="sans-serif" font-weight="bold">مطابقة 100% برقم الهيكل</text>
+    <text x="56" y="44" fill="#64748b" font-size="7" font-family="sans-serif">فحص دقيق لتوافق القطعة</text>
+    <text x="56" y="54" fill="#64748b" font-size="7" font-family="sans-serif">مع سيارتك قبل الشحن.</text>
+
+    <!-- Card 2 -->
+    <rect x="185" y="0" width="175" height="65" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="195" y="14" width="36" height="36" rx="4" fill="#0b2545" fill-opacity="0.06"/>
+    <text x="213" y="37" font-size="18" text-anchor="middle">🚚</text>
+    <text x="241" y="28" fill="#0b2545" font-size="9" font-family="sans-serif" font-weight="bold">شحن سريع وموثوق</text>
+    <text x="241" y="44" fill="#64748b" font-size="7" font-family="sans-serif">توصيل آمن لباب بيتك</text>
+    <text x="241" y="54" fill="#64748b" font-size="7" font-family="sans-serif">أو الورشة في كافة المدن.</text>
+
+    <!-- Card 3 -->
+    <rect x="0" y="75" width="175" height="65" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="10" y="89" width="36" height="36" rx="4" fill="#0b2545" fill-opacity="0.06"/>
+    <text x="28" y="112" font-size="18" text-anchor="middle">🛡️</text>
+    <text x="56" y="103" fill="#0b2545" font-size="9" font-family="sans-serif" font-weight="bold">قطع أصلية ومعتمدة</text>
+    <text x="56" y="119" fill="#64748b" font-size="7" font-family="sans-serif">ضمان أصالة المصدر من</text>
+    <text x="56" y="129" fill="#64748b" font-size="7" font-family="sans-serif">كبرى الشركات والوكلاء.</text>
+
+    <!-- Card 4 -->
+    <rect x="185" y="75" width="175" height="65" rx="4" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <rect x="195" y="89" width="36" height="36" rx="4" fill="#0b2545" fill-opacity="0.06"/>
+    <text x="213" y="112" font-size="18" text-anchor="middle">🔄</text>
+    <text x="241" y="103" fill="#0b2545" font-size="9" font-family="sans-serif" font-weight="bold">استرجاع واستبدال مرن</text>
+    <text x="241" y="119" fill="#64748b" font-size="7" font-family="sans-serif">سياسة إرجاع سهلة وميسرة</text>
+    <text x="241" y="129" fill="#64748b" font-size="7" font-family="sans-serif">في حال عدم التوافق.</text>
+  </g>
+</svg>

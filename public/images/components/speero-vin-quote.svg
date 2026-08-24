@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250">
+  <defs>
+    <linearGradient id="vinBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b2545"/>
+      <stop offset="100%" stop-color="#061527"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="250" fill="#f8fafc"/>
+
+  <g transform="translate(20, 20)">
+    <!-- Container Box -->
+    <rect width="360" height="210" rx="6" fill="url(#vinBg)" stroke="#334155" stroke-width="1"/>
+    
+    <!-- Left Info Side -->
+    <g transform="translate(20, 20)">
+      <rect width="110" height="18" rx="3" fill="#ffffff" fill-opacity="0.15"/>
+      <text x="55" y="12" fill="#ffffff" font-size="7.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">🔢 تسعير برقم الهيكل</text>
+
+      <text x="0" y="45" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="800">لم تجد القطعة المطلوبة؟</text>
+      <text x="0" y="62" fill="#cbd5e1" font-size="7" font-family="sans-serif">أدخل رقم الهيكل وسيقوم خبراؤنا</text>
+      <text x="0" y="72" fill="#cbd5e1" font-size="7" font-family="sans-serif">بالبحث في كتالوجات الوكلاء الرسمية.</text>
+
+      <text x="0" y="98" fill="#10b981" font-size="8" font-family="sans-serif">✓ فحص وتأكيد التوافق 100%</text>
+      <text x="0" y="112" fill="#10b981" font-size="8" font-family="sans-serif">✓ قطع أصلية ومضمونة</text>
+      <text x="0" y="126" fill="#10b981" font-size="8" font-family="sans-serif">✓ تسعير فوري عبر WhatsApp</text>
+    </g>
+
+    <!-- Right Form Mock -->
+    <g transform="translate(180, 20)">
+      <rect width="160" height="170" rx="4" fill="#ffffff"/>
+      
+      <!-- Inputs -->
+      <rect x="10" y="12" width="65" height="22" rx="3" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="16" y="26" fill="#64748b" font-size="6.5" font-family="sans-serif">ماركة السيارة</text>
+
+      <rect x="85" y="12" width="65" height="22" rx="3" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="91" y="26" fill="#64748b" font-size="6.5" font-family="sans-serif">الموديل والسنة</text>
+
+      <rect x="10" y="40" width="140" height="22" rx="3" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="16" y="54" fill="#64748b" font-size="6.5" font-family="sans-serif">رقم الهيكل VIN (17 خانة)</text>
+
+      <rect x="10" y="68" width="140" height="22" rx="3" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="16" y="82" fill="#64748b" font-size="6.5" font-family="sans-serif">اسم القطعة المطلوبة</text>
+
+      <rect x="10" y="96" width="140" height="22" rx="3" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1"/>
+      <text x="16" y="110" fill="#64748b" font-size="6.5" font-family="sans-serif">رقم الجوال</text>
+
+      <!-- Submit WhatsApp -->
+      <rect x="10" y="128" width="140" height="28" rx="3" fill="#25d366"/>
+      <text x="80" y="145" fill="#ffffff" font-size="7.5" font-family="sans-serif" font-weight="bold" text-anchor="middle">📲 طلب تسعيرة فورية عبر واتساب</text>
+    </g>
+  </g>
+</svg>

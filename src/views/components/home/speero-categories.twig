@@ -1,0 +1,139 @@
+{#
+|--------------------------------------------------------------------------
+| Speero Visual Auto Categories Grid & Mobile Swipe
+|--------------------------------------------------------------------------
+| Salla Twilight Component: home.speero-categories
+| Supports dynamic merchant collection (images, icons, titles, links) + Colors
+|--------------------------------------------------------------------------
+#}
+
+<section
+    class="speero-categories-section"
+    data-component="speero-categories"
+    {% if component.bg_color %}style="background-color: {{ component.bg_color }};"{% endif %}
+>
+    <div class="speero-container">
+        
+        <div class="speero-section-header">
+            <div class="speero-badge" {% if component.accent_color %}style="border-color: {{ component.accent_color }}; color: {{ component.accent_color }};"{% endif %}>
+                <i class="sicon-layout-grid"></i>
+                <span>{{ component.badge|default(component.settings.badge)|default('أقسام قطع الغيار') }}</span>
+            </div>
+            <h2 {% if component.text_color %}style="color: {{ component.text_color }};"{% endif %}>
+                {{ component.title|default(component.settings.title)|default('تصفح حسب قسم القطعة') }}
+            </h2>
+            <p {% if component.text_color %}style="color: {{ component.text_color }}; opacity: 0.85;"{% endif %}>
+                {{ component.description|default(component.settings.description)|default('الوصول السريع إلى كافة القطع الاستهلاكية ومنظومات الصيانة الأكثر طلباً.') }}
+            </p>
+        </div>
+
+        <div class="speero-categories-grid">
+            
+            {% if component.categories and component.categories|length > 0 %}
+                {# Dynamic Merchant Categories #}
+                {% for cat in component.categories %}
+                    {% set cat_img = cat.image.url|default(cat.image) %}
+                    <a href="{{ cat.url|default('/products?keyword=' ~ cat.title) }}" class="speero-cat-card">
+                        <div class="speero-cat-card__icon" {% if component.accent_color %}style="color: {{ component.accent_color }};"{% endif %}>
+                            {% if cat_img %}
+                                <img src="{{ cat_img }}" alt="{{ cat.title }}" loading="lazy" class="w-full h-full object-contain p-0.5" />
+                            {% else %}
+                                <i class="{{ cat.icon|default('sicon-layout-grid') }}"></i>
+                            {% endif %}
+                        </div>
+                        <div class="speero-cat-card__info">
+                            <strong {% if component.text_color %}style="color: {{ component.text_color }};"{% endif %}>{{ cat.title }}</strong>
+                            {% if cat.description %}
+                                <span>{{ cat.description }}</span>
+                            {% endif %}
+                        </div>
+                    </a>
+                {% endfor %}
+            {% else %}
+                {# Default Pre-configured Categories #}
+                <a href="/products?keyword=فلاتر" class="speero-cat-card">
+                    <div class="speero-cat-card__icon">
+                        <i class="sicon-filter"></i>
+                    </div>
+                    <div class="speero-cat-card__info">
+                        <strong>الفلاتر والمنقيات</strong>
+                        <span>فلاتر زيت، هواء، ومكيف</span>
+                    </div>
+                </a>
+
+                <a href="/products?keyword=فرامل" class="speero-cat-card">
+                    <div class="speero-cat-card__icon">
+                        <i class="sicon-shield-check"></i>
+                    </div>
+                    <div class="speero-cat-card__info">
+                        <strong>الفرامل والمكابح</strong>
+                        <span>فحمات، هوبات، وسوائل الفرامل</span>
+                    </div>
+                </a>
+
+                <a href="/products?keyword=زيوت" class="speero-cat-card">
+                    <div class="speero-cat-card__icon">
+                        <i class="sicon-drop"></i>
+                    </div>
+                    <div class="speero-cat-card__info">
+                        <strong>الزيوت وسوائل التبريد</strong>
+                        <span>زيوت محرك، جيربوكس، ومياه رديتر</span>
+                    </div>
+                </a>
+
+                <a href="/products?keyword=مساعدات" class="speero-cat-card">
+                    <div class="speero-cat-card__icon">
+                        <i class="sicon-car"></i>
+                    </div>
+                    <div class="speero-cat-card__info">
+                        <strong>المساعدات والتعليق</strong>
+                        <span>مساعدات أمامية وخلفية، مقصات، وجلود</span>
+                    </div>
+                </a>
+
+                <a href="/products?keyword=كهرباء" class="speero-cat-card">
+                    <div class="speero-cat-card__icon">
+                        <i class="sicon-zap"></i>
+                    </div>
+                    <div class="speero-cat-card__info">
+                        <strong>الكهرباء والبواجي</strong>
+                        <span>بواجي، كويلات، دينامو، وبطاريات</span>
+                    </div>
+                </a>
+
+                <a href="/products?keyword=تكييف" class="speero-cat-card">
+                    <div class="speero-cat-card__icon">
+                        <i class="sicon-wind"></i>
+                    </div>
+                    <div class="speero-cat-card__info">
+                        <strong>التكييف والتبريد</strong>
+                        <span>كمبروسر، رديتر، وثلاجة مكيف</span>
+                    </div>
+                </a>
+
+                <a href="/products?keyword=إنارة" class="speero-cat-card">
+                    <div class="speero-cat-card__icon">
+                        <i class="sicon-sun"></i>
+                    </div>
+                    <div class="speero-cat-card__info">
+                        <strong>الإنارة والإضاءة</strong>
+                        <span>شمعات رئيسية، اصطبات، وكشافات</span>
+                    </div>
+                </a>
+
+                <a href="/products?keyword=محركات" class="speero-cat-card">
+                    <div class="speero-cat-card__icon">
+                        <i class="sicon-settings"></i>
+                    </div>
+                    <div class="speero-cat-card__info">
+                        <strong>المحرك والسيور</strong>
+                        <span>سيور مكينة، طرمبات ماء وبنزين</span>
+                    </div>
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+</section>

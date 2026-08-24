@@ -300,14 +300,44 @@
   Main Links Block
 */
 .slide--cat-entry {
-  @apply bg-white rounded-md h-36 p-3 text-center flex flex-col items-center justify-center transition duration-500 hover:shadow-default hover:text-gray-500 border border-gray-100;
+  @apply bg-white rounded-2xl p-4 text-center flex flex-col items-center justify-between transition-all duration-300 border border-slate-200/85;
+  min-height: 140px;
+
+  &__img {
+    overflow: hidden;
+
+    img {
+      max-height: 70px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  &:hover {
+    @apply shadow-xl border-slate-800 -translate-y-1;
+
+    .slide--cat-entry__img img {
+      transform: scale(1.12);
+    }
+  }
 
   i {
-    @apply inline-block text-primary text-icon-lg mb-4;
+    @apply inline-block text-primary text-icon-lg mb-2;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover i {
+    transform: scale(1.1);
   }
 
   h2 {
-    @apply font-bold text-sm;
+    @apply font-black text-xs sm:text-sm text-slate-900;
+    transition: color 0.3s ease;
+  }
+
+  &:hover h2 {
+    @apply text-white;
   }
 }
 

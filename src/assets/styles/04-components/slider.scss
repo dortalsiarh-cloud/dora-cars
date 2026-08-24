@@ -2,12 +2,69 @@ salla-slider{
   @apply block;
   
   &.details-slider{
-    .s-slider-container{ 
-      @apply bg-white border-[1px] rounded-md;
+    /* Main Gallery Box */
+    > .s-slider-container,
+    .s-slider-container { 
+      aspect-ratio: 1 / 1 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      max-height: 520px !important;
+      background: #ffffff !important;
+      border: 1px solid var(--speero-border, #e2e8f0) !important;
+      border-radius: var(--speero-radius, 6px) !important;
+      overflow: hidden !important;
+      box-shadow: 0 1px 3px rgba(11, 37, 69, 0.05) !important;
+      position: relative;
     }
 
-    .swiper-slide{
-      @apply relative rounded-md bg-white ring-1 ring-inset ring-gray-100;
+    /* Main Swiper */
+    > .s-slider-container .swiper,
+    .s-slider-container > .swiper {
+      aspect-ratio: 1 / 1 !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-height: 520px !important;
+    }
+
+    > .s-slider-container .swiper-slide,
+    .s-slider-container > .swiper .swiper-slide,
+    [slot="items"] .swiper-slide {
+      aspect-ratio: 1 / 1 !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-height: 520px !important;
+      position: relative;
+      background: #ffffff !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+
+      a.magnify-wrapper,
+      a.homeslider__slide {
+        aspect-ratio: 1 / 1 !important;
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #ffffff !important;
+        padding: 12px;
+        box-sizing: border-box;
+
+        img {
+          width: 100% !important;
+          height: 100% !important;
+          max-width: 100% !important;
+          max-height: 100% !important;
+          object-fit: contain !important;
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        &:hover img {
+          transform: scale(1.03);
+        }
+      }
     }
 
     salla-button.btn--wishlist{
@@ -16,6 +73,61 @@ salla-slider{
 
     .s-slider-block__title-nav{
       @apply hidden sm:flex;
+    }
+
+    /* Thumbnails Slider - Clean Compact Square Thumbs */
+    .s-slider-thumbs,
+    .thumbs-slider,
+    .s-slider-container--thumbs,
+    [slot="thumbs"],
+    .product-thumbs-row {
+      display: flex !important;
+      gap: 8px !important;
+      margin-top: 10px !important;
+      height: 72px !important;
+      max-height: 72px !important;
+      overflow-x: auto !important;
+      padding-bottom: 4px !important;
+      -webkit-overflow-scrolling: touch !important;
+
+      .swiper,
+      .swiper-wrapper {
+        height: 72px !important;
+        max-height: 72px !important;
+      }
+
+      .swiper-slide,
+      .slide--one-fourth {
+        aspect-ratio: 1 / 1 !important;
+        width: 68px !important;
+        height: 68px !important;
+        min-width: 68px !important;
+        max-width: 68px !important;
+        border-radius: 4px !important;
+        border: 1.5px solid var(--speero-border, #e2e8f0) !important;
+        background: #ffffff !important;
+        padding: 3px !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        overflow: hidden !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        &.swiper-slide-thumb-active,
+        &:hover {
+          border-color: var(--speero-accent, #e41f37) !important;
+          box-shadow: 0 0 0 1px var(--speero-accent, #e41f37) !important;
+        }
+
+        img {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: contain !important;
+          background: transparent !important;
+          padding: 0 !important;
+        }
+      }
     }
   }
 
@@ -26,7 +138,6 @@ salla-slider{
   .slide--one-sixth{
     @apply w-1/2 sm:w-2/6 md:w-1/4 lg:w-1/6;
   }
-
 
   // Fix Flickering in Safari 
   .swiper-slide{
@@ -94,98 +205,5 @@ salla-slider.photos-slider {
 .swiper:not(.swiper-initialized) {
   .swiper-button {
     opacity: 0;
-  }
-}
-
-// testimonials-slider
-.s-block--testimonials{
-  &.container{
-    @apply p-0 lg:px-2.5;
-  }
-
-  .s-slider-block__title{
-    @apply px-2.5 lg:px-0;
-
-    &-nav{
-      @apply hidden lg:flex max-w-[88%] top-[65%] #{!important};
-
-      button{ 
-        @apply border-gray-100 shadow-gray-300 #{!important};
-      }
-    }
-  }
-}
-
-
-.best-products-slider {
-  .swiper-wrapper {
-    @media screen and (min-width: 768px) {
-      height: 510px;
-
-      .swiper-slide {
-        height: calc((100% - 30px) / 2);
-      }
-    }
-  }
-}
-
-//general
-.swiper-button-disabled {
-  opacity: 0.5;
-}
-
-// bullet pagination -------
-salla-slider{
-  .swiper-pagination-bullet {
-    width: 20px;
-    border-radius: 5px;
-    background: #fff;
-    opacity: 0.3;
-
-    &-active {
-      opacity: 1;
-      background-color: var(--color-primary);
-    }
-  }
-
-  .swiper-pagination-bullets.swiper-pagination-horizontal{
-    @apply bottom-3 sm:bottom-6; 
-  }
-}
-
-
-// Offer slider
-.offer-slider .s-slider-block__title{
-  @apply mb-5 relative; 
-
-  &:before{
-    @apply text-5xl font-normal text-red-50 absolute leading-none top-4 rtl:right-0 ltr:left-0;
-    content: "\ee30";
-    font-family: 'sallaicons';
-  }
-
-  h2{
-    @apply text-lg text-red-400;
-  }
-
-  p{
-    @apply mt-1 leading-6 line-clamp-none;
-  }
-}
-
-.bank-offer .s-slider-block__title {
-  @apply hidden;
-}
-
-// move to slider component
-model-viewer[style*="width"]:before{
-  @apply hidden;
-}
-
-
-// Blog slider
-.blog-slider{
-  .swiper-slide img{
-    @apply min-h-[380px] max-h-[480px] md:max-h-[680px];
   }
 }

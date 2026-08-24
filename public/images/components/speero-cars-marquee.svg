@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="400" height="250">
+  <!-- Background -->
+  <rect width="400" height="250" fill="#f8fafc"/>
+  
+  <!-- Header Bar -->
+  <rect x="20" y="20" width="130" height="18" rx="3" fill="#e41f37" fill-opacity="0.08" stroke="#e41f37" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="85" y="32" fill="#e41f37" font-size="8" font-family="sans-serif" font-weight="bold" text-anchor="middle">موديلات السيارات المدعومة</text>
+  
+  <text x="20" y="58" fill="#0b2545" font-size="13" font-family="sans-serif" font-weight="800">اختر سيارتك لتصفح قطع الغيار المخصصة لها</text>
+  
+  <!-- Navigation Arrows Mock -->
+  <circle cx="350" cy="40" r="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="350" y="44" fill="#0b2545" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">‹</text>
+  <circle cx="378" cy="40" r="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="378" y="44" fill="#0b2545" font-size="11" font-family="sans-serif" font-weight="bold" text-anchor="middle">›</text>
+
+  <!-- Interactive Draggable Cars Row -->
+  <g transform="translate(15, 75)">
+    <!-- Car 1: Camry -->
+    <g transform="translate(0, 0)">
+      <rect width="115" height="145" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+      <path d="M20 50L35 30H80L95 50H105V60H95C95 68 85 72 80 72C75 72 70 68 70 60H45C45 68 35 72 30 72C25 72 20 68 20 60H10V50H20Z" fill="#d32f2f"/>
+      <text x="57" y="105" fill="#0b2545" font-size="10" font-family="sans-serif" font-weight="bold" text-anchor="middle">تويوتا كامري</text>
+      <text x="57" y="122" fill="#64748b" font-size="7.5" font-family="sans-serif" text-anchor="middle">Camry (2012-2025)</text>
+    </g>
+
+    <!-- Car 2: Land Cruiser -->
+    <g transform="translate(125, 0)">
+      <rect width="115" height="145" rx="6" fill="#ffffff" stroke="#e41f37" stroke-width="1.5"/>
+      <path d="M15 52L28 28H85L100 52H105V62H95C95 70 85 74 80 74C75 74 70 70 70 62H45C45 70 35 74 30 74C25 74 20 70 20 62H10V52H15Z" fill="#002C6C"/>
+      <text x="57" y="105" fill="#0b2545" font-size="10" font-family="sans-serif" font-weight="bold" text-anchor="middle">لاندكروزر</text>
+      <text x="57" y="122" fill="#64748b" font-size="7.5" font-family="sans-serif" text-anchor="middle">LC200 / LC300</text>
+    </g>
+
+    <!-- Car 3: Patrol -->
+    <g transform="translate(250, 0)">
+      <rect width="115" height="145" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+      <path d="M15 50L28 26H85L98 50H105V60H95C95 68 85 72 80 72C75 72 70 68 70 60H45C45 68 35 72 30 72C25 72 20 68 20 60H10V50H15Z" fill="#1e293b"/>
+      <text x="57" y="105" fill="#0b2545" font-size="10" font-family="sans-serif" font-weight="bold" text-anchor="middle">نيسان باترول</text>
+      <text x="57" y="122" fill="#64748b" font-size="7.5" font-family="sans-serif" text-anchor="middle">Patrol Y62 / Safari</text>
+    </g>
+  </g>
+</svg>

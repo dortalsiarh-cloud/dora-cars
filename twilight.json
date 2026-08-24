@@ -1,10 +1,10 @@
 {
     "name": {
-        "ar": "درة السيارة",
-        "en": "Dora Cars"
+        "ar": "درة السيارة (Dora Cars)",
+        "en": "Dora Cars Universal"
     },
     "repository": "https://github.com/dortalsiarh-cloud/dora-cars",
-    "author_email": "dortalsiarh@gmail.com",
+    "author_email": "yahya9031@gmail.com",
     "features": [
         "mega-menu",
         "fonts",
@@ -37,19 +37,19 @@
                 {
                     "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
                     "value": "contain",
-                    "key": "f4adec13-6e4c-654b-b978-b2807935ced9"
+                    "key": "ac0c20d1-01f4-41c2-916b-040c20420626"
                 }
             ],
             "options": [
                 {
                     "label": "تغطية الصورة كامل المساحة مع المحافظة على أبعاد الصورة (Cover)",
                     "value": "cover",
-                    "key": "e9c8ea8f-c5c6-234e-935-3bce269afde4"
+                    "key": "6edec42a-256a-498e-8966-0fcdfb964f75"
                 },
                 {
                     "label": "اظهار الصورة كاملةً في المنتصف (Contain)",
                     "value": "contain",
-                    "key": "f4adec13-6e4c-654b-b978-b2807935ced9"
+                    "key": "ac0c20d1-01f4-41c2-916b-040c20420626"
                 }
             ],
             "source": "Manual",
@@ -272,6 +272,610 @@
         }
     ],
     "components": [
+        {
+            "key": "f0b09b3c-ac8d-486a-9236-93c1820b6c8e",
+            "title": {
+                "en": "Store Identity & Trust Banner",
+                "ar": "بانر هوية المتجر وركائز الثقة المتطورة"
+            },
+            "icon": "sicon-image",
+            "path": "home.store-identity-banner",
+            "image": "https://cdn.salla.network/images/themes/components/home/enhanced-slider.png",
+            "is_default": true,
+            "fields": [
+                {
+                    "id": "store_title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "اسم المتجر / العنوان الترحيبي",
+                    "value": "درة السيارة - وجهتك الأولى للأصالة والجودة",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "d4c70ff8-7068-45bc-85fa-572d05d63d9d"
+                },
+                {
+                    "id": "store_specialty",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الشارة العلوية (Badge)",
+                    "value": "المتجر المعتمد الأول لقطع الغيار ومستلزمات السيارات",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "2d37b4a9-6ea0-4c6c-aca3-733e3ce4ca87"
+                },
+                {
+                    "id": "store_slogan",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "الوصف التعريفي والسلوجان (Slogan & Bio)",
+                    "value": "نوفر لك تشكيلة متكاملة من أجود قطع الغيار والمنتجات الأصلية والمضمونة بأفضل الأسعار وبخدمة شحن وتوصيل فوري لباب بيتك مع ضمان ذهبي.",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "a04748a8-99f8-4b94-9640-745a31d91e1c"
+                },
+                {
+                    "id": "bg_desktop",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة خلفية البانر للكمبيوتر (Desktop Background)",
+                    "value": null,
+                    "required": false,
+                    "key": "5ef88eba-4c96-4c27-b3e6-c99e2a175f1f"
+                },
+                {
+                    "id": "bg_mobile",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة خلفية البانر للجوال (Mobile Background)",
+                    "value": null,
+                    "required": false,
+                    "key": "735383e8-3136-4355-b725-5099fd253454"
+                },
+                {
+                    "id": "bg_opacity",
+                    "type": "number",
+                    "format": "integer",
+                    "label": "درجة تعتيم الخلفية (0 إلى 100%)",
+                    "value": 15,
+                    "required": false,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "key": "5ef4a822-8bd0-4638-840f-12783693ff57"
+                },
+                {
+                    "id": "font_family",
+                    "type": "items",
+                    "format": "dropdown-list",
+                    "label": "نوع الخط المستخدم في البانر",
+                    "selected": [
+                        {
+                            "label": "خط كايو العصري (Cairo)",
+                            "value": "cairo",
+                            "key": "4eda4c66-60f1-4cc0-97f7-df3720bf964b"
+                        }
+                    ],
+                    "options": [
+                        {
+                            "label": "خط المتجر الافتراضي",
+                            "value": "default",
+                            "key": "298f427e-d685-4877-a867-78dcb992d85c"
+                        },
+                        {
+                            "label": "خط كايو العصري (Cairo)",
+                            "value": "cairo",
+                            "key": "4eda4c66-60f1-4cc0-97f7-df3720bf964b"
+                        },
+                        {
+                            "label": "خط تجوال الأنيق (Tajawal)",
+                            "value": "tajawal",
+                            "key": "3c31509b-a773-44bc-9170-f6352af6c7c5"
+                        },
+                        {
+                            "label": "خط آي بي إم بليكس (IBM Plex Arabic)",
+                            "value": "ibm",
+                            "key": "11845b08-3f57-4726-862a-8219ace98214"
+                        },
+                        {
+                            "label": "خط المراعي المتميز (Almarai)",
+                            "value": "almarai",
+                            "key": "c01fca04-61b1-4c4d-8b05-a3ab8f4e9e58"
+                        }
+                    ],
+                    "source": "Manual",
+                    "required": false,
+                    "key": "76e99a18-91f4-4b2b-b689-7a23d332161d"
+                },
+                {
+                    "id": "btn_text",
+                    "type": "string",
+                    "format": "text",
+                    "label": "نص الزر الرئيسي",
+                    "value": "تصفح كافة الأقسام والمنتجات",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "5a617744-3e33-406c-bc79-824847c8e73d"
+                },
+                {
+                    "id": "btn_url",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رابط الزر الرئيسي",
+                    "value": "/categories",
+                    "required": false,
+                    "key": "5d3d6336-2891-4386-ad34-1c5f1704527b"
+                },
+                {
+                    "id": "shipping_url",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رابط بطاقة الشحن والتوصيل الفوري",
+                    "value": "/shipping-policy",
+                    "required": false,
+                    "key": "8dc2e843-cb09-4fac-b8a6-26ae71f331ad"
+                },
+                {
+                    "id": "guarantee_url",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رابط بطاقة الأصالة والضمان والتقييمات",
+                    "value": "/guarantee-reviews",
+                    "required": false,
+                    "key": "ddb6c85f-b2c5-4bef-bbb4-25ec5db1f45b"
+                },
+                {
+                    "id": "returns_url",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رابط بطاقة الإرجاع والاستبدال",
+                    "value": "/return-policy",
+                    "required": false,
+                    "key": "eb1a47e9-526b-484b-94cf-c766bca877af"
+                },
+                {
+                    "id": "support_url",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رابط صفحة الدعم الفني (اتركه فارغاً لفتح نافذة طلب القطع الذكية)",
+                    "value": null,
+                    "required": false,
+                    "key": "b9898def-134e-4e5d-b5d1-e14a0f3a8571"
+                },
+                {
+                    "id": "hyundai_phone",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رقم واتساب قسم هيونداي (مثال: 9665xxxxxxxx)",
+                    "value": "966500000000",
+                    "required": false,
+                    "key": "bf9827a8-86b9-41fc-afac-6170d4988353"
+                },
+                {
+                    "id": "kia_phone",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رقم واتساب قسم كيا (مثال: 9665xxxxxxxx)",
+                    "value": "966500000000",
+                    "required": false,
+                    "key": "5efe704f-aeef-4679-a6a2-d90080a94b2b"
+                },
+                {
+                    "id": "general_phone",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رقم واتساب قسم المبيعات العامة وباقي الماركات",
+                    "value": "966500000000",
+                    "required": false,
+                    "key": "47789269-e961-479e-9eb2-6dfa50151d4b"
+                }
+            ]
+        },
+        {
+            "key": "6cda9ffc-f499-4140-ba3e-fb41a3cb126d",
+            "title": {
+                "en": "Interactive Discovery & Smart Search Hero",
+                "ar": "محرك البحث التفاعلي ونافذة الاستفسار الذكية"
+            },
+            "icon": "sicon-search",
+            "path": "home.speero-hero",
+            "image": "https://cdn.salla.network/images/themes/components/home/main-links.png",
+            "is_default": true,
+            "fields": [
+                {
+                    "id": "badge",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الشارة التمهيدية",
+                    "value": "البحث الذكي والاستفسار الفوري",
+                    "multilanguage": true,
+                    "key": "2bc49dd6-bf47-43a4-8994-e773c5ff68cc"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "value": "اعثر على قطعة الغيار المتوافقة بدقة",
+                    "multilanguage": true,
+                    "key": "07476a60-7180-45e7-8dde-b6d537a67c49"
+                },
+                {
+                    "id": "title_highlight",
+                    "type": "string",
+                    "format": "text",
+                    "label": "النص المميز في العنوان",
+                    "value": "بأسرع وأسهل طريقة",
+                    "multilanguage": true,
+                    "key": "2a6cc4f0-e1f9-4974-82d2-b37c5cfc4d95"
+                },
+                {
+                    "id": "description",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "الوصف التوضيحي",
+                    "value": "تصفح آلاف القطع المتوافقة 100% مع سيارتك أو استفسر برقم الهيكل (VIN) مباشرة عبر واتساب مع خبرائنا الفنيين.",
+                    "multilanguage": true,
+                    "key": "b18ae5d0-9cd4-4347-8b33-c80818c235bb"
+                },
+                {
+                    "id": "bg_image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة خلفية البنر التفاعلي",
+                    "value": null,
+                    "key": "413dbfff-c3f0-4099-8e96-42e92f68fb62"
+                },
+                {
+                    "id": "bg_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون الخلفية الأساسي",
+                    "value": "#061527",
+                    "key": "db522274-e763-4c1c-886f-1b5dacc587c5"
+                },
+                {
+                    "id": "accent_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون التمييز والأزرار",
+                    "value": "#f59e0b",
+                    "key": "a8a725b4-7ac2-4ee6-b038-fc3844c0bba0"
+                },
+                {
+                    "id": "text_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون النصوص والعناوين",
+                    "value": "#ffffff",
+                    "key": "842fb2b3-fe2b-4498-9630-48cc3e9991f5"
+                }
+            ]
+        },
+        {
+            "key": "d091c698-54df-4fd7-9002-5c2753c932b4",
+            "title": {
+                "en": "Payment & Installment Methods Marquee",
+                "ar": "شريط طرق الدفع والتقسيط المعتمدة"
+            },
+            "icon": "sicon-credit-card",
+            "path": "home.speero-payment-marquee",
+            "image": "https://cdn.salla.network/images/themes/components/home/enhanced-square-banners.png",
+            "is_default": true,
+            "fields": [
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "عنوان الشريط",
+                    "value": "طرق دفع آمنة 100% وتقسيط ميسر بدون فوائد",
+                    "multilanguage": true,
+                    "key": "4881388a-793d-4997-89e8-f1baac803b60"
+                },
+                {
+                    "id": "bg_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون الخلفية",
+                    "value": "#0b192c",
+                    "key": "4bb263ac-3dee-4aa7-90a9-747c277db5b2"
+                },
+                {
+                    "id": "payment_methods",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "وسائل الدفع المعروضة",
+                    "item_label": "وسيلة دفع",
+                    "fields": [
+                        {
+                            "id": "payment_methods.name",
+                            "type": "string",
+                            "format": "text",
+                            "label": "اسم وسيلة الدفع",
+                            "value": "مدى Mada",
+                            "required": true,
+                            "key": "9d055be2-8584-4813-8447-fbec627d98ac"
+                        },
+                        {
+                            "id": "payment_methods.icon",
+                            "type": "string",
+                            "format": "image",
+                            "label": "أيقونة وسيلة الدفع (SVG أو PNG)",
+                            "value": null,
+                            "required": false,
+                            "key": "f742b7c8-1f77-45bb-b36d-6be9ec046584"
+                        },
+                        {
+                            "id": "payment_methods.description",
+                            "type": "string",
+                            "format": "text",
+                            "label": "وصف العرض أو الميزة",
+                            "value": "دفع آمن ومدعوم",
+                            "required": false,
+                            "key": "4571e13b-40ad-446f-950e-acf6d6d5fd94"
+                        }
+                    ],
+                    "key": "433cfe9e-c63c-45c4-9c5e-38d74994e23c"
+                }
+            ]
+        },
+        {
+            "key": "32e712b2-bcda-4169-b660-9d71969dba41",
+            "title": {
+                "en": "Brands & Manufacturers Grid",
+                "ar": "شبكة الماركات ومصنعي السيارات"
+            },
+            "icon": "sicon-award-ribbon",
+            "path": "home.speero-brands",
+            "image": "https://cdn.salla.network/images/themes/components/home/brands.png",
+            "is_default": true,
+            "fields": [
+                {
+                    "id": "badge",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الشارة التمهيدية",
+                    "value": "الماركات المعتمدة",
+                    "multilanguage": true,
+                    "key": "bd6e356b-7af9-4f35-9613-a4f7779656dd"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "value": "تسوق قطع الغيار حسب ماركة سيارتك",
+                    "multilanguage": true,
+                    "key": "fd33d27a-77c1-4306-a760-e59ec7772dcf"
+                },
+                {
+                    "id": "description",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "الوصف",
+                    "value": "نوفر قطع غيار أصلية وتجارية درجة أولى معتمدة لأشهر صانعي السيارات.",
+                    "multilanguage": true,
+                    "key": "d26699a5-f658-41fe-b9b6-6e2e3beb8d5d"
+                },
+                {
+                    "id": "bg_image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة خلفية القسم",
+                    "value": null,
+                    "key": "029ba761-7c04-4aa2-8736-4b7dca4fc184"
+                },
+                {
+                    "id": "bg_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون خلفية القسم",
+                    "value": "#061527",
+                    "key": "ef188f0c-b8b7-4099-ae20-e8b95a30e97f"
+                },
+                {
+                    "id": "brands",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الماركات المعروضة",
+                    "item_label": "ماركة",
+                    "fields": [
+                        {
+                            "id": "brands.name",
+                            "type": "string",
+                            "format": "text",
+                            "label": "اسم الماركة",
+                            "value": "تويوتا Toyota",
+                            "required": true,
+                            "key": "d53e4b08-8579-455f-858f-cbc8a65b11c5"
+                        },
+                        {
+                            "id": "brands.logo",
+                            "type": "string",
+                            "format": "image",
+                            "label": "شعار الماركة PNG شفاف",
+                            "value": null,
+                            "required": false,
+                            "key": "995c9e00-cbfc-49be-b231-cef8d8127b20"
+                        },
+                        {
+                            "id": "brands.url",
+                            "type": "string",
+                            "format": "text",
+                            "label": "رابط قطع الغيار",
+                            "value": "/products?brand=toyota",
+                            "required": false,
+                            "key": "ebb06114-b387-4401-8378-9eded9d2b66b"
+                        }
+                    ],
+                    "key": "5338e31b-82ee-450b-a295-3efeb376537b"
+                }
+            ]
+        },
+        {
+            "key": "86dc8ed1-363f-489e-9878-00dc0bb90f57",
+            "title": {
+                "en": "Visual Categories with Zoom Animation",
+                "ar": "تصنيفات وأقسام المتجر المصورة مع تأثير التكبير"
+            },
+            "icon": "sicon-layout-grid-rearrange",
+            "path": "home.speero-categories",
+            "image": "https://cdn.salla.network/images/themes/components/home/main-links.png",
+            "is_default": true,
+            "fields": [
+                {
+                    "id": "badge",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الشارة التمهيدية",
+                    "value": "أقسام المتجر",
+                    "multilanguage": true,
+                    "key": "52258cbb-31be-4ce4-b17e-c009f1b9154a"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "value": "تصفح قطع الغيار حسب التصنيف الفني",
+                    "multilanguage": true,
+                    "key": "2a55c0ac-caf0-4172-af1d-2151991fb3e6"
+                },
+                {
+                    "id": "description",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "الوصف",
+                    "value": "اختر القسم الفني المطلوب للوصول المباشر إلى قطع الغيار المناسبة.",
+                    "multilanguage": true,
+                    "key": "19fcf1ee-7a5a-4350-be26-4ee6fb0837a4"
+                },
+                {
+                    "id": "bg_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون خلفية القسم",
+                    "value": "#061527",
+                    "key": "f8c9f602-ec7b-42b1-8ab0-7ac2e8d84ac2"
+                },
+                {
+                    "id": "categories",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الأقسام المخصصة",
+                    "item_label": "قسم",
+                    "fields": [
+                        {
+                            "id": "categories.name",
+                            "type": "string",
+                            "format": "text",
+                            "label": "اسم القسم",
+                            "value": "فلاتر وزيوت",
+                            "required": true,
+                            "key": "f0376497-9e46-4ec2-97ff-0420c63d4670"
+                        },
+                        {
+                            "id": "categories.image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "صورة / أيقونة القسم PNG",
+                            "value": null,
+                            "required": false,
+                            "key": "bf80f1a1-1719-43be-b1b5-1f07ab0f73c3"
+                        },
+                        {
+                            "id": "categories.url",
+                            "type": "string",
+                            "format": "text",
+                            "label": "رابط القسم",
+                            "value": "/categories",
+                            "required": false,
+                            "key": "9469d494-eae1-44b7-843d-95e33a7513f8"
+                        }
+                    ],
+                    "key": "c369923b-47a4-45c4-aaaa-30f5edbc2818"
+                }
+            ]
+        },
+        {
+            "key": "3729af06-847d-4ea0-a2f4-951b9c7879ca",
+            "title": {
+                "en": "Special Offers & Savings Banner",
+                "ar": "بنر العروض وباقات الصيانة الدورية"
+            },
+            "icon": "sicon-discount-calculator",
+            "path": "home.speero-offers-banner",
+            "image": "https://cdn.salla.network/images/themes/components/home/enhanced-square-banners.png",
+            "is_default": true,
+            "fields": [
+                {
+                    "id": "badge",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الشارة التمهيدية",
+                    "value": "عروض لفترة محدودة",
+                    "multilanguage": true,
+                    "key": "e2668f88-c830-406e-80f3-93e221e6b54b"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "value": "باقات صيانة موفرة لسيارتك",
+                    "multilanguage": true,
+                    "key": "002f599f-84b6-4d98-ad8a-6143f3b46a3d"
+                },
+                {
+                    "id": "description",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "الوصف",
+                    "value": "احصل على خصومات حصرية عند شراء باقات الزيوت والفلاتر والأقمشة مع ضمان التوافق 100%.",
+                    "multilanguage": true,
+                    "key": "a7e4cf4b-b469-402d-9c08-f993c226c83e"
+                },
+                {
+                    "id": "btn_text",
+                    "type": "string",
+                    "format": "text",
+                    "label": "نص الزر",
+                    "value": "تصفح عروض التوفير",
+                    "multilanguage": true,
+                    "key": "d7a38003-93b5-4df1-a9b3-d2a6cba3eb0e"
+                },
+                {
+                    "id": "image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة خلفية البنر (اختياري)",
+                    "value": null,
+                    "key": "9fa467ed-a808-4841-b4f6-a1c455a613a0"
+                },
+                {
+                    "id": "banner_bg",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون خلفية بطاقة البنر",
+                    "value": "#0f233a",
+                    "key": "a6c8e355-e99c-4324-a69d-f06a066c9cba"
+                },
+                {
+                    "id": "accent_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون زر العرض",
+                    "value": "#f59e0b",
+                    "key": "cc88db2e-8691-4eaa-946c-8240fe798fc5"
+                },
+                {
+                    "id": "bg_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون خلفية القسم الخارجي",
+                    "value": "#061527",
+                    "key": "969eefc1-36ec-4c79-a665-c8221e16c46c"
+                }
+            ]
+        },
         {
             "key": "186b3f4f-25cf-4d3c-abca-cef7eed6f0ab",
             "title": {
@@ -781,7 +1385,8 @@
                         }
                     ]
                 }
-            ]
+            ],
+            "is_default": true
         },
         {
             "key": "b89edc4a-ce0b-468f-8323-2da48147bb32",
@@ -1009,7 +1614,8 @@
                     "searchable": true,
                     "source": "brands"
                 }
-            ]
+            ],
+            "is_default": true
         },
         {
             "key": "541cc423-90c7-4230-8a33-a0342cfde4ad",
@@ -1131,7 +1737,7 @@
     ],
     "support_url": null,
     "description": {
-        "ar": "",
-        "en": ""
+        "ar": "ثيم عصري فائق الأناقة والسرعة للمتاجر الإلكترونية في سلة، يدعم تخصيص الهوية وركائز الثقة العائمة والبحث التفاعلي الذكي وكافة خيارات الدفع والشحن.",
+        "en": "Modern, elegant, high-performance universal theme for Salla stores."
     }
 }

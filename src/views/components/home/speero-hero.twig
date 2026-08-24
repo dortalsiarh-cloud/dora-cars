@@ -10,41 +10,64 @@
 {% set hero_id = 'speero-hero-' ~ random(1000, 9999) %}
 {% set modal_id = 'speero-search-modal-' ~ random(1000, 9999) %}
 
+{% set bg_img = component.bg_image.url|default(component.bg_image)|default(component.settings.bg_image.url)|default(component.settings.bg_image) %}
+{% set bg_color = component.bg_color|default(component.settings.bg_color)|default('#061527') %}
+{% set opacity_raw = component.bg_opacity|default(component.settings.bg_opacity)|default(25) %}
+{% set opacity_val = (opacity_raw is not null and opacity_raw != '') ? (opacity_raw / 100) : 0.25 %}
+{% set accent_color = component.accent_color|default(component.settings.accent_color)|default('#f59e0b') %}
+{% set text_color = component.text_color|default(component.settings.text_color)|default('#ffffff') %}
+
+{% set search_url = component.search_url|default(component.settings.search_url)|default('/products') %}
+{% set wa_phone = component.whatsapp_number|default(component.settings.whatsapp_number)|default(store.contacts.whatsapp|default(store.contacts.phone|default('966500000000')))|replace({'+': '', ' ': '', '-': ''}) %}
+
+{% set makes_raw = component.filter_makes|default(component.settings.filter_makes)|default("تويوتا (Toyota)\nهيونداي (Hyundai)\nكيا (Kia)\nنيسان (Nissan)\nفورد (Ford)\nجيلي (Geely)\nشانجان (Changan)\nشيفروليه (Chevrolet)\nهوندا (Honda)\nمازدا (Mazda)\nميتسوبيشي (Mitsubishi)") %}
+{% set makes_list = makes_raw|split("\n") %}
+
+{% set cats_raw = component.filter_categories|default(component.settings.filter_categories)|default("الفلاتر والمنقيات\nالفرامل والأقمشة\nالزيوت وسوائل الصيانة\nالمساعدات والتعليق\nالكهرباء والبواجي\nالتكييف والرديتر\nالإنارة والاصطبات\nالسيور والشدادات\nقطع المحرك") %}
+{% set cats_list = cats_raw|split("\n") %}
+
 <section
     id="{{ hero_id }}"
-    class="speero-hero relative overflow-hidden py-10 sm:py-16 bg-slate-950 text-white border-b border-slate-800"
+    class="speero-hero relative overflow-hidden py-10 sm:py-16 text-white border-b border-slate-800"
     data-component="speero-hero"
-    style="
-        {% if component.bg_image %}background-image: url('{{ component.bg_image }}'); background-size: cover; background-position: center;{% endif %}
-        {% if component.bg_color %}--speero-hero-bg: {{ component.bg_color }}; background: {{ component.bg_color }};{% endif %}
-        {% if component.text_color %}color: {{ component.text_color }};{% endif %}
-    "
+    style="background-color: {{ bg_color }};"
 >
-    {# Ambient Glow Backdrops #}
-    <div class="absolute inset-0 bg-gradient-to-b from-slate-950/90 via-slate-900/80 to-slate-950/95 pointer-events-none"></div>
-    <div class="absolute -top-32 -right-32 w-96 h-96 bg-red-600/15 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
+    {# 1. Background Image Layer #}
+    {% if bg_img %}
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ bg_img }}');"></div>
+    {% endif %}
 
-    <div class="speero-container relative z-10">
+    {# 2. Background Opacity Overlay #}
+    <div class="absolute inset-0 z-0 bg-slate-950 transition-opacity duration-300" style="opacity: {{ opacity_val }};"></div>
+
+    {# 3. Ambient Glow Backdrops #}
+    <div class="absolute -top-32 -right-32 w-96 h-96 bg-red-600/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -left-32 w-96 h-96 rounded-full blur-3xl pointer-events-none" style="background: radial-gradient(circle, {{ accent_color }}25 0%, transparent 70%);"></div>
+
+    <div class="speero-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         
         {# Main Hero Title & Slogan Header #}
         <div class="max-w-3xl mx-auto text-center flex flex-col items-center gap-3 sm:gap-4 mb-8 sm:mb-12">
             
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-700 text-amber-300 text-xs sm:text-sm font-bold shadow-sm">
-                <i class="sicon-award-ribbon text-base"></i>
-                <span>{{ component.badge|default(component.settings.badge)|default('منصة قطع الغيار الأسرع والأكثر ثقة بالمملكة') }}</span>
-            </div>
+            {% if component.badge|default(component.settings.badge) %}
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-700 text-xs sm:text-sm font-bold shadow-sm" style="color: {{ accent_color }};">
+                    <i class="sicon-award-ribbon text-base"></i>
+                    <span>{{ component.badge|default(component.settings.badge)|default('منصة قطع الغيار الأسرع والأكثر ثقة بالمملكة') }}</span>
+                </div>
+            {% endif %}
 
-            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight" style="color: {{ text_color }};">
                 {{ component.title|default(component.settings.title)|default('كل ما تحتاجه لسيارتك') }}
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-white to-red-400">
+                <span class="text-transparent bg-clip-text" style="background-image: linear-gradient(135deg, {{ accent_color }} 0%, #ffffff 50%, {{ accent_color }} 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                     {{ component.title_highlight|default(component.settings.title_highlight)|default('في مكان واحد وبضمان التوافق') }}
                 </span>
             </h1>
 
-            <p class="text-xs sm:text-base text-slate-300 max-w-2xl font-normal leading-relaxed">
-                {{ component.description|default(component.settings.description)|default('اختر الطريقة الأنسب لك للوصول إلى قطعتك الأصلية والمطابقة برقم الهيكل أو الموديل.') }}
-            </p>
+            {% if component.description|default(component.settings.description) %}
+                <p class="text-xs sm:text-base text-slate-300 max-w-2xl font-normal leading-relaxed opacity-90">
+                    {{ component.description|default(component.settings.description)|default('اختر الطريقة الأنسب لك للوصول إلى قطعتك الأصلية والمطابقة برقم الهيكل أو الموديل.') }}
+                </p>
+            {% endif %}
 
         </div>
 
@@ -55,9 +78,9 @@
             <button
                 type="button"
                 onclick="openSpeeroModal('{{ modal_id }}', 'vehicle')"
-                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-900/60 hover:to-slate-850 border border-slate-800 hover:border-amber-400/50 shadow-lg hover:shadow-amber-500/10 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1"
+                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/70 hover:to-slate-850 border border-slate-800 hover:border-amber-400/60 shadow-lg hover:shadow-amber-500/15 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
             >
-                <div class="absolute -top-12 -left-12 w-28 h-28 bg-amber-400/10 rounded-full blur-2xl group-hover:bg-amber-400/20 transition"></div>
+                <div class="absolute -top-12 -left-12 w-28 h-28 bg-amber-400/10 rounded-full blur-2xl group-hover:bg-amber-400/25 transition"></div>
                 
                 <div>
                     <div class="w-14 h-14 rounded-2xl bg-amber-400/15 border border-amber-400/30 flex items-center justify-center text-amber-400 mb-4 group-hover:scale-110 transition duration-300 shadow-inner">
@@ -85,9 +108,9 @@
             <button
                 type="button"
                 onclick="openSpeeroModal('{{ modal_id }}', 'vin')"
-                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-900/60 hover:to-slate-850 border border-slate-800 hover:border-emerald-500/50 shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1"
+                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/70 hover:to-slate-850 border border-slate-800 hover:border-emerald-500/60 shadow-lg hover:shadow-emerald-500/15 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
             >
-                <div class="absolute -top-12 -left-12 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition"></div>
+                <div class="absolute -top-12 -left-12 w-28 h-28 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/25 transition"></div>
                 
                 <div>
                     <div class="w-14 h-14 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4 group-hover:scale-110 transition duration-300 shadow-inner">
@@ -115,9 +138,9 @@
             <button
                 type="button"
                 onclick="openSpeeroModal('{{ modal_id }}', 'oem')"
-                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-900/60 hover:to-slate-850 border border-slate-800 hover:border-blue-400/50 shadow-lg hover:shadow-blue-500/10 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1"
+                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/70 hover:to-slate-850 border border-slate-800 hover:border-blue-400/60 shadow-lg hover:shadow-blue-500/15 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5"
             >
-                <div class="absolute -top-12 -left-12 w-28 h-28 bg-blue-400/10 rounded-full blur-2xl group-hover:bg-blue-400/20 transition"></div>
+                <div class="absolute -top-12 -left-12 w-28 h-28 bg-blue-400/10 rounded-full blur-2xl group-hover:bg-blue-400/25 transition"></div>
                 
                 <div>
                     <div class="w-14 h-14 rounded-2xl bg-blue-400/15 border border-blue-400/30 flex items-center justify-center text-blue-400 mb-4 group-hover:scale-110 transition duration-300 shadow-inner">
@@ -207,17 +230,12 @@
                         <label class="block text-xs font-semibold text-slate-300 mb-1">الشركة المصنعة / الماركة</label>
                         <select id="modal-make-{{ modal_id }}" onchange="onMakeChange(this, 'modal-model-{{ modal_id }}')" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-amber-400 focus:outline-none transition cursor-pointer">
                             <option value="">-- اختر الماركة --</option>
-                            <option value="تويوتا">تويوتا (Toyota)</option>
-                            <option value="هيونداي">هيونداي (Hyundai)</option>
-                            <option value="كيا">كيا (Kia)</option>
-                            <option value="نيسان">نيسان (Nissan)</option>
-                            <option value="فورد">فورد (Ford)</option>
-                            <option value="جيلي">جيلي (Geely)</option>
-                            <option value="شانجان">شانجان (Changan)</option>
-                            <option value="شيفروليه">شيفروليه (Chevrolet)</option>
-                            <option value="هوندا">هوندا (Honda)</option>
-                            <option value="مازدا">مازدا (Mazda)</option>
-                            <option value="ميتسوبيشي">ميتسوبيشي (Mitsubishi)</option>
+                            {% for make_item in makes_list %}
+                                {% set m_clean = make_item|trim %}
+                                {% if m_clean %}
+                                    <option value="{{ m_clean }}">{{ m_clean }}</option>
+                                {% endif %}
+                            {% endfor %}
                         </select>
                     </div>
 
@@ -242,19 +260,18 @@
                         <label class="block text-xs font-semibold text-slate-300 mb-1">قسم القطع</label>
                         <select id="modal-cat-{{ modal_id }}" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white text-xs sm:text-sm focus:border-amber-400 focus:outline-none transition cursor-pointer">
                             <option value="">كافة القطع المتوافقة</option>
-                            <option value="فلاتر">الفلاتر والمنقيات</option>
-                            <option value="فرامل">الفرامل والأقمشة</option>
-                            <option value="زيوت">الزيوت وسوائل الصيانة</option>
-                            <option value="مساعدات">المساعدات والتعليق</option>
-                            <option value="بواجي">الكهرباء والبواجي</option>
-                            <option value="تكييف">التكييف والرديتر</option>
-                            <option value="إنارة">الإنارة والاصطبات</option>
+                            {% for cat_item in cats_list %}
+                                {% set c_clean = cat_item|trim %}
+                                {% if c_clean %}
+                                    <option value="{{ c_clean }}">{{ c_clean }}</option>
+                                {% endif %}
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
 
                 <div class="pt-2">
-                    <button type="button" onclick="submitVehicleFilter('{{ modal_id }}')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-black text-sm sm:text-base flex items-center justify-center gap-2 transition duration-300 shadow-lg hover:shadow-amber-400/20 cursor-pointer">
+                    <button type="button" onclick="submitVehicleFilter('{{ modal_id }}', '{{ search_url }}')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-black text-sm sm:text-base flex items-center justify-center gap-2 transition duration-300 shadow-lg hover:shadow-amber-400/20 cursor-pointer">
                         <i class="sicon-search text-base"></i>
                         <span>عرض القطع المتوافقة مع سيارتك</span>
                     </button>
@@ -263,7 +280,7 @@
 
             {# TAB PANE 2: Inquire & VIN WhatsApp Request #}
             <div id="pane-{{ modal_id }}-vin" class="p-4 sm:p-6 space-y-3.5 text-right hidden">
-                <form onsubmit="submitModalVinQuote(event, '{{ modal_id }}')">
+                <form onsubmit="submitModalVinQuote(event, '{{ modal_id }}', '{{ wa_phone }}')">
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                         <div>
                             <label class="block text-xs font-semibold text-slate-300 mb-1">الاسم الكريم <span class="text-red-400">*</span></label>
@@ -304,7 +321,7 @@
                     <label class="block text-xs font-semibold text-slate-300 mb-1.5">أدخل رقم القطعة الأصلي (OEM Part Number / SKU)</label>
                     <div class="flex gap-2">
                         <input type="text" id="oem-input-{{ modal_id }}" placeholder="مثال: 04465-33471 أو 26300-35505" class="flex-1 px-4 py-3 rounded-xl bg-slate-800 border border-slate-700 text-white text-sm focus:border-blue-400 focus:outline-none transition tracking-wide font-mono">
-                        <button type="button" onclick="submitOemSearch('{{ modal_id }}')" class="px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold text-sm transition shadow-lg cursor-pointer">
+                        <button type="button" onclick="submitOemSearch('{{ modal_id }}', '{{ search_url }}')" class="px-6 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-bold text-sm transition shadow-lg cursor-pointer">
                             <span>بحث</span>
                         </button>
                     </div>
@@ -336,22 +353,30 @@
     };
 
     function onMakeChange(makeSelect, modelSelectId) {
-        var make = makeSelect.value;
+        var rawMake = makeSelect.value;
         var modelSelect = document.getElementById(modelSelectId);
         modelSelect.innerHTML = '';
 
-        if (!make || !carModelsData[make]) {
+        if (!rawMake) {
             modelSelect.innerHTML = '<option value="">-- كافة الموديلات --</option>';
             return;
         }
 
-        modelSelect.innerHTML = '<option value="">-- كافة موديلات ' + make + ' --</option>';
-        carModelsData[make].forEach(function(m) {
-            var opt = document.createElement('option');
-            opt.value = m;
-            opt.textContent = m;
-            modelSelect.appendChild(opt);
+        var matchedKey = Object.keys(carModelsData).find(function(k) {
+            return rawMake.indexOf(k) !== -1;
         });
+
+        if (matchedKey && carModelsData[matchedKey]) {
+            modelSelect.innerHTML = '<option value="">-- كافة موديلات ' + matchedKey + ' --</option>';
+            carModelsData[matchedKey].forEach(function(m) {
+                var opt = document.createElement('option');
+                opt.value = m;
+                opt.textContent = m;
+                modelSelect.appendChild(opt);
+            });
+        } else {
+            modelSelect.innerHTML = '<option value="">-- كافة الموديلات --</option>';
+        }
     }
 
     function openSpeeroModal(modalId, tabName) {
@@ -386,14 +411,14 @@
         });
     }
 
-    function submitVehicleFilter(modalId) {
+    function submitVehicleFilter(modalId, searchUrl) {
         var make = document.getElementById('modal-make-' + modalId).value;
         var model = document.getElementById('modal-model-' + modalId).value;
         var year = document.getElementById('modal-year-' + modalId).value;
         var cat = document.getElementById('modal-cat-' + modalId).value;
 
         var query = [];
-        if (make) query.push(make);
+        if (make) query.push(make.split(' ')[0]);
         if (model) query.push(model);
         if (year) query.push(year);
         if (cat) query.push(cat);
@@ -401,17 +426,21 @@
         var keyword = query.join(' ');
         if (!keyword) keyword = 'قطع غيار';
         
-        window.location.href = '/products?keyword=' + encodeURIComponent(keyword);
+        var base = searchUrl || '/products';
+        var separator = base.indexOf('?') !== -1 ? '&' : '?';
+        window.location.href = base + separator + 'keyword=' + encodeURIComponent(keyword);
     }
 
-    function submitOemSearch(modalId) {
+    function submitOemSearch(modalId, searchUrl) {
         var oem = document.getElementById('oem-input-' + modalId).value.trim();
         if (oem) {
-            window.location.href = '/products?keyword=' + encodeURIComponent(oem);
+            var base = searchUrl || '/products';
+            var separator = base.indexOf('?') !== -1 ? '&' : '?';
+            window.location.href = base + separator + 'keyword=' + encodeURIComponent(oem);
         }
     }
 
-    function submitModalVinQuote(e, modalId) {
+    function submitModalVinQuote(e, modalId, waPhone) {
         e.preventDefault();
         var name = document.getElementById('vin-name-' + modalId).value.trim();
         var phone = document.getElementById('vin-phone-' + modalId).value.trim();
@@ -419,17 +448,15 @@
         var vin = document.getElementById('vin-code-' + modalId).value.trim();
         var details = document.getElementById('vin-details-' + modalId).value.trim();
 
-        var whatsappNumber = '{{ store.contacts.whatsapp|default(store.contacts.phone|default("966500000000"))|replace({"+": "", " ": "", "-": ""}) }}';
+        var whatsappNumber = waPhone || '966500000000';
 
-        var message = "🚗 *طلب تسعير واستفسار قطع غيار - " + encodeURIComponent('{{ store.name }}') + "*\n" +
-            "━━━━━━━━━━━━━━━━━\n" +
-            "👤 *اسم العميل:* " + name + "\n" +
-            "📱 *رقم الجوال:* " + phone + "\n" +
-            "🚘 *السيارة والموديل:* " + car + "\n" +
-            (vin ? ("🔢 *رقم الهيكل (VIN):* " + vin + "\n") : "") +
-            "⚙️ *القطع المطلوبة:* " + details + "\n" +
-            "━━━━━━━━━━━━━━━━━\n" +
-            "يرجى تزويدي بالأسعار والتوافر، وشكراً لكم.";
+        var message = "👋 مرحباً، أود الاستفسار وطلب تسعير قطع غيار:\n\n" +
+                      "👤 *الاسم:* " + name + "\n" +
+                      "📱 *الجوال:* " + phone + "\n" +
+                      "🚗 *السيارة والموديل:* " + car + "\n" +
+                      (vin ? ("🔢 *رقم الهيكل (VIN):* " + vin + "\n") : "") +
+                      "📝 *القطع المطلوبة:* " + details + "\n\n" +
+                      "⚡ تم الإرسال عبر محرك البحث الذكي في المتجر.";
 
         var whatsappUrl = "https://api.whatsapp.com/send?phone=" + whatsappNumber + "&text=" + encodeURIComponent(message);
         

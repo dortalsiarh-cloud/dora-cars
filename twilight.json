@@ -565,6 +565,53 @@
                     "label": "لون النصوص والعناوين",
                     "value": "#ffffff",
                     "key": "842fb2b3-fe2b-4498-9630-48cc3e9991f5"
+                },
+                {
+                    "id": "whatsapp_number",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رقم واتساب المخصص لاستقبال استفسارات وطلبات القطع (مثال: 9665xxxxxxxx)",
+                    "value": "966500000000",
+                    "required": false,
+                    "key": "41f8378f-5ea8-422d-80a5-4e6eb05a366a"
+                },
+                {
+                    "id": "search_url",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رابط صفحة نتائج البحث والتصفية",
+                    "value": "/products",
+                    "required": false,
+                    "key": "34d6ab64-9de7-4dd8-a57b-9754a6277900"
+                },
+                {
+                    "id": "bg_opacity",
+                    "type": "number",
+                    "format": "integer",
+                    "label": "درجة تعتيم الخلفية (0 إلى 100%)",
+                    "value": 25,
+                    "minimum": 0,
+                    "maximum": 100,
+                    "required": false,
+                    "key": "f5069603-7e62-4231-b74b-6afe795cf780"
+                },
+                {
+                    "id": "filter_categories",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "أقسام وتصنيفات الفلترة المتاحة (قسم في كل سطر)",
+                    "value": "الفلاتر والمنقيات\nالفرامل والأقمشة\nالزيوت وسوائل الصيانة\nالمساعدات والتعليق\nالكهرباء والبواجي\nالتكييف والرديتر\nالإنارة والاصطبات\nالسيور والشدادات\nقطع المحرك",
+                    "required": false,
+                    "key": "250565be-26e9-422c-9112-5c553de4a3fc"
+                },
+                {
+                    "id": "filter_makes",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "ماركات السيارات المتاحة في الفلترة (ماركة في كل سطر)",
+                    "value": "تويوتا (Toyota)\nهيونداي (Hyundai)\nكيا (Kia)\nنيسان (Nissan)\nفورد (Ford)\nجيلي (Geely)\nشانجان (Changan)\nشيفروليه (Chevrolet)\nهوندا (Honda)\nمازدا (Mazda)\nميتسوبيشي (Mitsubishi)",
+                    "required": false,
+                    "key": "ffe50ade-a9f8-4624-a51b-ec6c4c112361"
                 }
             ]
         },

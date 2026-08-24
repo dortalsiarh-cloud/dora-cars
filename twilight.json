@@ -294,6 +294,15 @@
                     "key": "d4c70ff8-7068-45bc-85fa-572d05d63d9d"
                 },
                 {
+                    "id": "title_color",
+                    "type": "string",
+                    "format": "color",
+                    "label": "لون العنوان والتمييز الذهبي الأساسي",
+                    "value": "#f59e0b",
+                    "required": false,
+                    "key": "b0869514-d80a-4ab6-b459-3b9e7878e636"
+                },
+                {
                     "id": "store_specialty",
                     "type": "string",
                     "format": "text",
@@ -466,6 +475,15 @@
                     "value": "966500000000",
                     "required": false,
                     "key": "47789269-e961-479e-9eb2-6dfa50151d4b"
+                },
+                {
+                    "id": "inquiry_brands",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "قائمة ماركات السيارات المعروضة في نافذة الاستفسار (ماركة في كل سطر)",
+                    "value": "هيونداي (Hyundai)\nكيا (Kia)\nتويوتا (Toyota)\nنيسان (Nissan)\nفورد (Ford)\nشانجان (Changan)\nجيلي (Geely)\nهوندا (Honda)\nشيفروليه (Chevrolet)\nماركة أخرى",
+                    "required": false,
+                    "key": "2f22b578-8512-4b10-8734-854eb52342e8"
                 }
             ]
         },

@@ -6,6 +6,14 @@
 | cart.total       | string  | Formatted total ex: "١٠٠ ر.س"   |
 #}
 {% set important_links = theme.settings.get('important_links') %}
+
+{% set show_header_cats = theme.settings.get('header_categories_enabled', true) %}
+{% set header_cats_style_raw = theme.settings.get('header_categories_style', 'marquee') %}
+{% set header_cats_style = (header_cats_style_raw is iterable) ? header_cats_style_raw[0].value|default('marquee') : header_cats_style_raw %}
+{% set header_cats_bg = theme.settings.get('header_categories_bg', '#061527') %}
+{% set header_cats_text = theme.settings.get('header_categories_text_color', '#e2e8f0') %}
+{% set header_cats_accent = theme.settings.get('header_categories_accent_color', '#f59e0b') %}
+
 <header data-testid="store-header" class="store-header">
   {# Bullet Delivery tag — mobile: own full-width row above the top nav
      (Figma "Mobile version"). Desktop keeps the inline pill below, next to
@@ -83,4 +91,92 @@
           </div>
       </div>
   </div>
+
+  {# ========================================================================= #}
+  {# HEADER CATEGORIES BAR (Icon on top + Name below & Infinite Ticker / Scroll) #}
+  {# ========================================================================= #}
+  {% if show_header_cats %}
+    {% set default_cats = [
+        {'name': 'الكمبروسر والتبريد', 'url': '/products?keyword=كمبروسر', 'icon': 'sicon-snowflake'},
+        {'name': 'الفلاتر والزيوت', 'url': '/products?keyword=فلاتر', 'icon': 'sicon-drop'},
+        {'name': 'الفرامل والمكابح', 'url': '/products?keyword=فرامل', 'icon': 'sicon-shield'},
+        {'name': 'المساعدات والتعليق', 'url': '/products?keyword=مساعدات', 'icon': 'sicon-car-side'},
+        {'name': 'الكهرباء والبواجي', 'url': '/products?keyword=بواجي', 'icon': 'sicon-flash'},
+        {'name': 'السيور والشدادات', 'url': '/products?keyword=سيور', 'icon': 'sicon-settings'},
+        {'name': 'الإنارة والاصطبات', 'url': '/products?keyword=انارة', 'icon': 'sicon-bulb'},
+        {'name': 'قطع المحرك وجيربوكس', 'url': '/products?keyword=محرك', 'icon': 'sicon-wrench'}
+    ] %}
+
+    <div class="header-categories-bar relative overflow-hidden border-t border-b border-white/10" style="background-color: {{ header_cats_bg }};">
+        <div class="container mx-auto px-2 sm:px-4">
+            {% if header_cats_style == 'marquee' %}
+                {# Continuous Seamless Ticker Marquee #}
+                <div class="header-cats-viewport">
+                    <div class="header-cats-track">
+                        {% for i in 1..2 %}
+                            {% if categories and categories|length > 0 %}
+                                {% for cat in categories %}
+                                    <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-2 px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
+                                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 group-hover:bg-amber-400/20 border border-white/15 group-hover:border-amber-400/50 flex items-center justify-center mb-1 overflow-hidden transition-all duration-300 shadow-sm group-hover:scale-110">
+                                            {% if cat.icon or cat.image %}
+                                                <img src="{{ cat.icon|default(cat.image) }}" alt="{{ cat.name }}" class="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow" loading="lazy" />
+                                            {% else %}
+                                                <i class="sicon-car-side text-amber-400 text-base sm:text-lg group-hover:scale-110 transition"></i>
+                                            {% endif %}
+                                        </div>
+                                        <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors" style="color: {{ header_cats_text }};">
+                                            {{ cat.name }}
+                                        </span>
+                                    </a>
+                                {% endfor %}
+                            {% else %}
+                                {% for cat in default_cats %}
+                                    <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-2 px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
+                                        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 group-hover:bg-amber-400/20 border border-white/15 group-hover:border-amber-400/50 flex items-center justify-center mb-1 overflow-hidden transition-all duration-300 shadow-sm group-hover:scale-110">
+                                            <i class="{{ cat.icon }} text-amber-400 text-base sm:text-lg group-hover:scale-110 transition"></i>
+                                        </div>
+                                        <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors" style="color: {{ header_cats_text }};">
+                                            {{ cat.name }}
+                                        </span>
+                                    </a>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                {# Horizontal Scroll Track with Smooth Touch #}
+                <div class="flex items-center gap-3 sm:gap-4 overflow-x-auto no-scrollbar py-2 px-1 scroll-smooth justify-start sm:justify-center">
+                    {% if categories and categories|length > 0 %}
+                        {% for cat in categories %}
+                            <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1.5 px-2.5 sm:px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
+                                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 group-hover:bg-amber-400/20 border border-white/15 group-hover:border-amber-400/50 flex items-center justify-center mb-1 overflow-hidden transition-all duration-300 shadow-sm group-hover:scale-110">
+                                    {% if cat.icon or cat.image %}
+                                        <img src="{{ cat.icon|default(cat.image) }}" alt="{{ cat.name }}" class="w-5 h-5 sm:w-6 sm:h-6 object-contain drop-shadow" loading="lazy" />
+                                    {% else %}
+                                        <i class="sicon-car-side text-amber-400 text-base sm:text-lg group-hover:scale-110 transition"></i>
+                                    {% endif %}
+                                </div>
+                                <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors" style="color: {{ header_cats_text }};">
+                                    {{ cat.name }}
+                                </span>
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        {% for cat in default_cats %}
+                            <a href="{{ cat.url }}" class="group flex flex-col items-center justify-center py-1.5 px-2.5 sm:px-3 shrink-0 text-center cursor-pointer no-underline transition hover:-translate-y-0.5">
+                                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/10 group-hover:bg-amber-400/20 border border-white/15 group-hover:border-amber-400/50 flex items-center justify-center mb-1 overflow-hidden transition-all duration-300 shadow-sm group-hover:scale-110">
+                                    <i class="{{ cat.icon }} text-amber-400 text-base sm:text-lg group-hover:scale-110 transition"></i>
+                                </div>
+                                <span class="text-[10.5px] sm:text-[11px] font-bold whitespace-nowrap transition-colors" style="color: {{ header_cats_text }};">
+                                    {{ cat.name }}
+                                </span>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+  {% endif %}
 </header>

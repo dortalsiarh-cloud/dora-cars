@@ -96,6 +96,70 @@
             "selected": true
         },
         {
+            "id": "header_categories_enabled",
+            "label": "عرض شريط التصنيفات المصور في أعلى الصفحة (Header Categories)",
+            "description": "إظهار تصنيفات وأقسام المتجر مع الأيقونة/الصورة في الأعلى واسم التصنيف أسفلها",
+            "type": "boolean",
+            "icon": "sicon-layout-grid-rearrange",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "header_categories_style",
+            "type": "items",
+            "format": "dropdown-list",
+            "label": "طريقة عرض وحركة شريط تصنيفات الهيدر",
+            "description": "اختر بين شريط إعلاني متحرك لا نهائي أو شريط أفقي قابل للتمرير",
+            "icon": "sicon-list",
+            "selected": [
+                {
+                    "label": "شريط إعلاني متحرك لا نهائي بدون توقف (Infinite Ticker)",
+                    "value": "marquee",
+                    "key": "59a90644-ca38-4fb2-9c5d-efca692c0b6b"
+                }
+            ],
+            "options": [
+                {
+                    "label": "شريط إعلاني متحرك لا نهائي بدون توقف (Infinite Ticker)",
+                    "value": "marquee",
+                    "key": "59a90644-ca38-4fb2-9c5d-efca692c0b6b"
+                },
+                {
+                    "label": "شريط أفقي انسيابي قابل للتمرير (Horizontal Scroll)",
+                    "value": "scroll",
+                    "key": "1f45593d-0340-4987-bc02-8db3d099cdd8"
+                }
+            ],
+            "source": "Manual",
+            "required": false
+        },
+        {
+            "id": "header_categories_bg",
+            "type": "string",
+            "format": "color",
+            "label": "لون خلفية شريط التصنيفات في الهيدر",
+            "value": "#061527",
+            "required": false
+        },
+        {
+            "id": "header_categories_text_color",
+            "type": "string",
+            "format": "color",
+            "label": "لون أسماء التصنيفات في الهيدر",
+            "value": "#e2e8f0",
+            "required": false
+        },
+        {
+            "id": "header_categories_accent_color",
+            "type": "string",
+            "format": "color",
+            "label": "لون التمييز والأيقونات عند الوقوف عليها",
+            "value": "#f59e0b",
+            "required": false
+        },
+        {
             "type": "boolean",
             "icon": "sicon-toggle-off",
             "label": "شريط علوي داكن",

@@ -963,15 +963,52 @@
   color: #ffffff;
 }
 
-.speero-cat-card__info strong {
-  display: block;
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: var(--speero-text);
-  margin-bottom: 0.15rem;
-}
-
 .speero-cat-card__info span {
   font-size: 0.725rem;
   color: var(--speero-text-muted);
 }
+
+/* ============================================================================
+   HEADER CATEGORIES BAR & TICKER (Icon on Top + Infinite Loop)
+   ============================================================================ */
+.header-categories-bar {
+  z-index: 15;
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.header-cats-viewport {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+}
+
+.header-cats-track {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-shrink: 0;
+  min-width: 100%;
+  animation: headerCatsTickerRTL 32s linear infinite;
+}
+
+.header-categories-bar:hover .header-cats-track {
+  animation-play-state: paused;
+}
+
+@keyframes headerCatsTickerRTL {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
+[dir="ltr"] .header-cats-track {
+  animation: headerCatsTickerLTR 32s linear infinite;
+}
+
+@keyframes headerCatsTickerLTR {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+

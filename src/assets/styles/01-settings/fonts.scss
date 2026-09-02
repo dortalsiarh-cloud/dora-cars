@@ -1,23 +1,48 @@
 /* ============================================================================
-   GOOGLE FONTS: IBM Plex Sans Arabic & Readex Pro for Dora Cars Store
+   DORA CARS OFFICIAL AUTOMOTIVE BRAND FONTS (CHANGA & CAIRO GEOMETRIC KUFIC)
+   Matches the metallic automotive gear logo "درة السيارة"
    ============================================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700;800&family=Readex+Pro:wght@300;400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;500;600;700;800;900&family=Cairo:wght@400;500;600;700;800;900&family=Alexandria:wght@400;500;600;700;800;900&family=Almarai:wght@400;700;800&display=swap');
 
 :root {
-  --font-main: 'IBM Plex Sans Arabic', 'Readex Pro', 'Tajawal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-arabic: 'IBM Plex Sans Arabic', 'Readex Pro', sans-serif;
+  --font-logo: 'Changa', 'Cairo', 'Alexandria', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-main: 'Changa', 'Cairo', 'Alexandria', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-arabic: 'Changa', 'Cairo', sans-serif;
 }
 
+/* Global Font Assignment */
 body,
 input,
 button,
 select,
 textarea,
 .font-main,
-h1, h2, h3, h4, h5, h6,
-p, span, a, label {
-  font-family: 'IBM Plex Sans Arabic', 'Readex Pro', 'Tajawal', var(--font-main), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+p, span, a, label, li {
+  font-family: 'Cairo', 'Changa', 'Alexandria', 'Almarai', var(--font-main), sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Bold Automotive Headings matching the "درة السيارة" Gear Logo */
+h1, h2, h3, h4, h5, h6,
+.dora-heading,
+.dora-logo-font,
+.dora-coupon-code,
+.dora-countdown-num,
+.dora-prod-price-num,
+.speero-section-header h2,
+.product-entry__title,
+.total-price,
+strong,
+b {
+  font-family: 'Changa', 'Cairo', 'Alexandria', sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.2px;
+}
+
+/* Extra Bold Hero Headings */
+h1, .dora-hero-title {
+  font-family: 'Changa', 'Cairo', 'Alexandria', sans-serif !important;
+  font-weight: 900 !important;
 }

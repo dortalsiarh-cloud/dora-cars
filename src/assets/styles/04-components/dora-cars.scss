@@ -567,4 +567,132 @@
   box-shadow: 0 10px 30px rgba(11, 25, 44, 0.15);
 }
 
+/* ============================================================================
+   11. DORA CARS INFORMATIVE & POLICY PAGES STYLING
+   ============================================================================ */
+.dora-page-hero {
+  background: radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.15) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(220, 38, 38, 0.1) 0%, transparent 40%),
+              #0B192C;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.dora-page-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 24px;
+  box-shadow: 0 10px 30px -5px rgba(11, 25, 44, 0.06), 0 4px 12px -2px rgba(11, 25, 44, 0.03);
+}
+
+.dora-page-body {
+  color: #334155;
+  font-size: 0.95rem;
+  line-height: 2;
+  font-weight: 500;
+  text-align: right;
+}
+
+.dora-page-body h1,
+.dora-page-body h2,
+.dora-page-body h3,
+.dora-page-body h4 {
+  color: #0f172a;
+  font-family: 'Changa', 'Cairo', sans-serif !important;
+  font-weight: 800;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+  position: relative;
+  padding-right: 1rem;
+}
+
+.dora-page-body h2::before,
+.dora-page-body h3::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 70%;
+  background: #0284c7;
+  border-radius: 4px;
+}
+
+.dora-page-body p {
+  margin-bottom: 1.25rem;
+  color: #475569;
+  line-height: 2;
+}
+
+.dora-page-body ul,
+.dora-page-body ol {
+  margin-bottom: 1.5rem;
+  padding-right: 1.5rem;
+  list-style-type: disc;
+}
+
+.dora-page-body li {
+  margin-bottom: 0.65rem;
+  line-height: 1.8;
+  color: #334155;
+}
+
+.dora-page-body strong,
+.dora-page-body b {
+  color: #0f172a;
+  font-weight: 800;
+}
+
+.dora-page-body a {
+  color: #0284c7;
+  text-decoration: underline;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.dora-page-body a:hover {
+  color: #0369a1;
+}
+
+.dora-page-body table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+
+.dora-page-body th {
+  background: #0B192C;
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.dora-page-body td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+}
+
+.dora-page-body tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+.dora-page-body blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  background: #f0f9ff;
+  border-right: 4px solid #0284c7;
+  border-radius: 10px;
+  color: #0369a1;
+  font-weight: 600;
+}
+
+
 

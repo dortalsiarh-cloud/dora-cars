@@ -1,35 +1,65 @@
 {% extends "layouts.master" %}
+
 {% block content %}
-<div class="container">
+    {# 1. DORA LUXURY TESTIMONIALS HERO #}
+    <div class="dora-page-hero py-8 sm:py-12 text-white">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <nav class="breadcrumbs w-full mb-3 text-xs opacity-80">
+                <salla-breadcrumb></salla-breadcrumb>
+            </nav>
 
-    {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
-    <nav class="breadcrumbs w-full py-5">
-        <salla-breadcrumb></salla-breadcrumb>
-    </nav>
-    <div class="flex justify-center">
-        <div class="w-full lg:w-10/12 bg-white rounded p-6 lg:p-8 mt-4 lg:mt-12">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-400/30 text-amber-300 text-xs font-bold mb-2.5">
+                        <span>⭐</span>
+                        <span>تجارب وتقييمات عملاء درة السيارة</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
+                        {{ page.title|default('آراء وتقييمات العملاء') }}
+                    </h1>
+                </div>
 
-           <div class="mb-4 sm:mb-6 flex justify-between items-center">
-                <h1 class="font-bold text-2xl">{{ page.title }}</h1>
-                <div class="flex items-center">
-                    <label class="hidden sm:block rtl:ml-3 ltr:mr-3 whitespace-nowrap"
-                        for="testimonials-filter">{{ trans('pages.categories.sorting') }}</label>
-                    <select id="testimonials-filter" class="form-input pt-0 pb-1 rtl:pl-10 ltr:pr-10">
-                        <option value="latest">{{ trans('pages.testimonials.sort_by_date_desc') }}</option>
-                        <option value="oldest">{{ trans('pages.testimonials.sort_by_date_asc') }}</option>
-                        <option value="top_rating">{{ trans('pages.testimonials.sort_by_rating_desc') }}</option>
-                        <option value="bottom_rating">{{ trans('pages.testimonials.sort_by_rating_asc') }}</option>
-                    </select>
+                <div class="flex items-center gap-2 text-xs text-slate-300">
+                    <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white/5 border border-white/10">
+                        <span class="text-amber-400 font-black">★★★★★</span>
+                        <span>تقييمات موثقة 100%</span>
+                    </span>
                 </div>
             </div>
-         
-            <salla-comments data-testid="store-testimonials-comments" testimonials></salla-comments>
-
         </div>
     </div>
-</div>
+
+    {# 2. TESTIMONIALS CONTENT #}
+    <div class="container mx-auto px-4 py-8 sm:py-12">
+        <div class="max-w-4xl mx-auto">
+            <div class="dora-page-card p-6 sm:p-10 mb-8">
+                <div class="mb-6 flex flex-wrap justify-between items-center gap-4 pb-4 border-b border-slate-100">
+                    <div>
+                        <h2 class="font-black text-xl text-slate-900 m-0 p-0 before:hidden">
+                            ماذا يقول عملاؤنا عن درة السيارة؟
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">تجارب حقيقية لشراء قطع غيار هيونداي وكيا وخدمات الشحن</p>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <label class="text-xs font-bold text-slate-500 whitespace-nowrap" for="testimonials-filter">
+                            {{ trans('pages.categories.sorting') }}:
+                        </label>
+                        <select id="testimonials-filter" class="form-input text-xs font-bold text-slate-800 py-1.5 px-3 rounded-xl border border-slate-200 bg-slate-50 outline-none focus:border-cyan-500">
+                            <option value="latest">{{ trans('pages.testimonials.sort_by_date_desc') }}</option>
+                            <option value="oldest">{{ trans('pages.testimonials.sort_by_date_asc') }}</option>
+                            <option value="top_rating">{{ trans('pages.testimonials.sort_by_rating_desc') }}</option>
+                            <option value="bottom_rating">{{ trans('pages.testimonials.sort_by_rating_asc') }}</option>
+                        </select>
+                    </div>
+                </div>
+             
+                <salla-comments data-testid="store-testimonials-comments" testimonials></salla-comments>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block scripts %}
-<script defer src="{{ 'testimonials.js' | asset }}"></script>
+    <script defer src="{{ 'testimonials.js' | asset }}"></script>
 {% endblock %}

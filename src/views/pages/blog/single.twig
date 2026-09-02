@@ -19,45 +19,59 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
-    <div class="container mb-8 sm:mb-24">
-        {# add breadcumbs container in pages to make a space in case breadcrumbs is off #}
-        <nav class="breadcrumbs w-full py-5 center-between">
-            <salla-breadcrumb></salla-breadcrumb>
-        </nav>
-        <div class="md:flex items-start">
-            <div class="main-content blog-category md:w-96 flex-1 bg-white lg:p-8 rounded-md mb-10 md:mb-0">
-                <h1 class="font-bold text-3xl mb-5 leading-10">{{ article.title }}</h1>
-                <div class="mb-10 text-gray-500 rounded-md inline-flex text-sm rtl:space-x-reverse space-x-5">
-                    <div class=" flex items-center">
-                        <i class="sicon-calendar-date rtl:ml-1 ltr:mr-1"></i>
-                        <span class="">{{ article.created_at|date }}</span>
-                    </div>
-                    <a href="{{ article.author.url }}" class=" flex items-center hover:text-dark">
-                        <i class="sicon-user rtl:ml-1 ltr:mr-1"></i>
-                        <span class="">{{ article.author.name }}</span>
-                    </a>
+    {# 1. DORA LUXURY BLOG HERO BANNER #}
+    <div class="dora-page-hero py-8 sm:py-12 text-white">
+        <div class="container mx-auto px-4 max-w-5xl">
+            <nav class="breadcrumbs w-full mb-3 text-xs opacity-80">
+                <salla-breadcrumb></salla-breadcrumb>
+            </nav>
+
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-400/30 text-cyan-300 text-xs font-bold mb-2.5">
+                <span>📖</span>
+                <span>مدونة ومقالات درة السيارة</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+                {{ article.title }}
+            </h1>
+
+            <div class="mt-4 flex flex-wrap items-center gap-4 text-xs text-slate-300">
+                <div class="flex items-center gap-1.5">
+                    <i class="sicon-calendar-date text-cyan-400"></i>
+                    <span>{{ article.created_at|date }}</span>
                 </div>
+                <a href="{{ article.author.url }}" class="flex items-center gap-1.5 text-slate-300 hover:text-cyan-300 transition no-underline">
+                    <i class="sicon-user text-cyan-400"></i>
+                    <span>{{ article.author.name }}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    {# 2. BLOG CONTENT CONTAINER #}
+    <div class="container mx-auto px-4 py-8 sm:py-12">
+        <div class="md:flex items-start gap-8">
+            <div class="main-content blog-category flex-1 dora-page-card p-6 sm:p-10 mb-10 md:mb-0">
                 {% if article.has_image %}
                     <img src="{{ article.image.url }}" alt="{{ article.image.alt }}" title="{{ article.image.alt }}"
-                         class="h-80 mb-10 w-full object-cover rounded-md"/>
+                         class="h-72 sm:h-96 mb-8 w-full object-cover rounded-2xl shadow-sm"/>
                 {% endif %}
                 
                 {% if store.settings.blog.allow_likes_and_comments %}
-                <div class="flex items-center gap-2.5 text-gray-500 text-base mb-2">
-                    <button id="blog-like" data-blog-id="{{ article.key }}" class="flex items-center gap-1">
-                        <i class="sicon-thumbs-up text-primary"></i>
+                <div class="flex items-center gap-3 text-slate-500 text-sm mb-6 pb-4 border-b border-slate-100">
+                    <button id="blog-like" data-blog-id="{{ article.key }}" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 hover:bg-slate-100 transition text-slate-700 font-bold">
+                        <i class="sicon-thumbs-up text-cyan-600"></i>
                         <span>{{article.likes_count}}</span>
                     </button>                    
                     {% if article.comments_count %}
-                        <div class="flex items-center gap-1">
-                            <i class="sicon-chat text-primary"></i>
-                            {{article.comments_count}}
+                        <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-50 text-slate-700 font-bold">
+                            <i class="sicon-chat text-cyan-600"></i>
+                            <span>{{article.comments_count}}</span>
                         </div>
                     {% endif %}
                 </div>
                 {% endif %}
 
-                <article class="leading-7 text-sm mb-10">{{ article.body|replace({'&nbsp;': ' '})|raw }}</article>
+                <article class="dora-page-body leading-loose text-base mb-10">{{ article.body|replace({'&nbsp;': ' '})|raw }}</article>
                 {% if article.tags|length %}
                     <div class="p-4 flex flex-wrap items-center border-t border-gray-200">
                         {% for tag in article.tags %}

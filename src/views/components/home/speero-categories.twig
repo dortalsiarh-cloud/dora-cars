@@ -1,22 +1,26 @@
 {#
 |--------------------------------------------------------------------------
-| Speero Visual Auto Categories Grid & Showcase
+| DORA CARS: Luxury Frameless Frosted Glass Categories Showcase
 |--------------------------------------------------------------------------
 | Salla Twilight Component: home.speero-categories
-| Features Vertical Cards with Top-Emphasized Hover-Zoom Icons & Bottom Labels
+| Brand: درة السيارة (Dora Cars)
+| Features:
+| 1. Pure Frameless Floating Car/Category Images (No double frames/borders)
+| 2. Extra-Large Free-Floating Display with 3D Depth & Drop Shadows
+| 3. Frosted Glassmorphism Backdrop with Neon Ambient Halos & Light Sweep Animation
 |--------------------------------------------------------------------------
 #}
 
 {% set unique_id = 'speero-cats-' ~ random(1000, 9999) %}
 {% set bg_img = component.bg_image.url|default(component.bg_image)|default(component.settings.bg_image.url)|default(component.settings.bg_image) %}
-{% set bg_color = component.bg_color|default(component.settings.bg_color)|default('#061527') %}
+{% set bg_color = component.bg_color|default(component.settings.bg_color)|default('#0B192C') %}
 {% set opacity_raw = component.bg_opacity|default(component.settings.bg_opacity)|default(20) %}
 {% set opacity_val = (opacity_raw is not null and opacity_raw != '') ? (opacity_raw / 100) : 0.20 %}
-{% set accent_color = component.accent_color|default(component.settings.accent_color)|default('#f59e0b') %}
+{% set accent_color = component.accent_color|default(component.settings.accent_color)|default('#38bdf8') %}
 {% set text_color = component.text_color|default(component.settings.text_color)|default('#ffffff') %}
 
 <section
-    class="speero-categories-section relative overflow-hidden py-10 sm:py-14"
+    class="speero-categories-section relative overflow-hidden py-12 sm:py-16 text-white border-b border-slate-800"
     id="{{ unique_id }}"
     data-component="speero-categories"
     style="background-color: {{ bg_color }};"
@@ -30,32 +34,33 @@
     <div class="absolute inset-0 z-0 bg-slate-950 transition-opacity duration-300" style="opacity: {{ opacity_val }};"></div>
 
     {# 3. Ambient Glow Highlights #}
-    <div class="absolute -top-24 right-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none opacity-20" style="background: radial-gradient(circle, {{ accent_color }} 0%, transparent 70%);"></div>
+    <div class="absolute -top-24 right-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none opacity-25" style="background: radial-gradient(circle, {{ accent_color }} 0%, transparent 70%);"></div>
+    <div class="absolute -bottom-24 left-1/4 w-96 h-96 rounded-full blur-3xl pointer-events-none opacity-20 bg-emerald-500"></div>
 
     <div class="speero-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         
         {# Section Header #}
-        <div class="speero-section-header text-center max-w-2xl mx-auto mb-8 sm:mb-12">
+        <div class="speero-section-header text-center max-w-2xl mx-auto mb-10 sm:mb-14">
             {% if component.badge|default(component.settings.badge) %}
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs sm:text-sm font-bold shadow-sm mb-3" style="color: {{ accent_color }};">
-                    <i class="sicon-layout-grid-rearrange text-base"></i>
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs sm:text-sm font-bold shadow-md mb-3 text-cyan-300 backdrop-blur-md">
+                    <i class="sicon-layout-grid-rearrange text-base text-cyan-400"></i>
                     <span>{{ component.badge|default(component.settings.badge)|default('أقسام قطع الغيار') }}</span>
                 </div>
             {% endif %}
             
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight leading-tight mb-3" style="color: {{ text_color }};">
-                {{ component.title|default(component.settings.title)|default('تصفح قطع الغيار حسب التصنيف الفني') }}
+                {{ component.title|default(component.settings.title)|default('تصفح قطع الغيار حسب سيارتك') }}
             </h2>
             
             {% if component.description|default(component.settings.description) %}
-                <p class="text-sm sm:text-base leading-relaxed font-medium text-slate-300 opacity-90">
-                    {{ component.description|default(component.settings.description)|default('الوصول السريع إلى كافة القطع الاستهلاكية ومنظومات الصيانة الأكثر طلباً.') }}
+                <p class="text-xs sm:text-base leading-relaxed font-normal text-slate-300 opacity-90 max-w-xl mx-auto">
+                    {{ component.description|default(component.settings.description)|default('اختر نوع وموديل السيارة للوصول إلى كافة قطع الغيار المتوافقة معها بدقة.') }}
                 </p>
             {% endif %}
         </div>
 
-        {# Categories Grid (Vertical Cards: Large Icon on Top, Name Below) #}
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5 sm:gap-5">
+        {# Categories Grid (Pure Frameless Floating Large Icons on Frosted Glass) #}
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
             
             {% if component.categories and component.categories|length > 0 %}
                 {# Dynamic Merchant Categories #}
@@ -64,29 +69,38 @@
                     {% set cat_img = cat.image.url|default(cat.image)|default(cat['categories.image']) %}
                     {% set cat_url = cat.url|default(cat['categories.url'])|default('/products?keyword=' ~ cat_name) %}
                     
-                    <a href="{{ cat_url }}" class="group relative flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-800/95 backdrop-blur-md border border-white/10 hover:border-amber-400/60 transition-all duration-300 shadow-md hover:shadow-2xl hover:-translate-y-2 text-center overflow-hidden">
-                        
-                        {# Ambient Card Corner Glow #}
-                        <div class="absolute -top-10 -right-10 w-24 h-24 rounded-full bg-amber-400/10 blur-xl group-hover:bg-amber-400/25 transition duration-300 pointer-events-none"></div>
+                    <a
+                        href="{{ cat_url }}"
+                        class="dora-glass-card group relative flex flex-col items-center justify-between p-5 sm:p-6 rounded-2xl min-h-[195px] sm:min-h-[220px] text-center overflow-hidden cursor-pointer"
+                    >
+                        {# Ambient Neon Halo Behind Floating Image #}
+                        <div class="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-28 rounded-full bg-cyan-400/15 blur-2xl group-hover:bg-cyan-400/35 group-hover:scale-130 transition-all duration-500 pointer-events-none"></div>
 
-                        {# Top Icon / Image Showcase Box with Interactive Hover #}
-                        <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-slate-950/60 border border-white/10 flex items-center justify-center p-2 mb-3 shadow-inner group-hover:border-amber-400/40 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.2)] transition-all duration-300">
+                        {# Large Pure Frameless Image / Icon #}
+                        <div class="relative z-10 w-full h-24 sm:h-28 flex items-center justify-center mb-3">
                             {% if cat_img %}
-                                <img src="{{ cat_img }}" alt="{{ cat_name }}" loading="lazy" class="w-full h-full object-contain filter drop-shadow-md group-hover:scale-115 group-hover:rotate-2 transition-transform duration-300 ease-out" />
+                                <img
+                                    src="{{ cat_img }}"
+                                    alt="{{ cat_name }}"
+                                    loading="lazy"
+                                    class="max-h-full max-w-full object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.45)] group-hover:scale-115 group-hover:-translate-y-2 transition-all duration-400 ease-out"
+                                />
                             {% else %}
-                                <i class="sicon-layout-grid text-3xl sm:text-4xl text-amber-400 group-hover:scale-115 transition-transform duration-300"></i>
+                                <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 group-hover:scale-115 transition-transform duration-400">
+                                    <i class="sicon-layout-grid text-3xl"></i>
+                                </div>
                             {% endif %}
                         </div>
 
-                        {# Category Name & Subtext Underneath #}
-                        <h3 class="text-xs sm:text-sm font-bold text-white group-hover:text-amber-400 transition-colors duration-300 leading-snug line-clamp-2">
+                        {# Category Name Underneath #}
+                        <h3 class="relative z-10 text-xs sm:text-sm font-black text-white group-hover:text-cyan-300 transition-colors duration-300 leading-snug line-clamp-2 drop-shadow">
                             {{ cat_name }}
                         </h3>
 
                         {# Sleek Mini Action Pill #}
-                        <span class="mt-2 inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 group-hover:text-amber-300 transition-colors">
+                        <span class="relative z-10 mt-3 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-bold text-slate-300 group-hover:bg-cyan-500/20 group-hover:border-cyan-400/40 group-hover:text-cyan-300 transition-all shadow-sm">
                             <span>تصفح</span>
-                            <i class="sicon-keyboard_arrow_left text-xs group-hover:-translate-x-0.5 transition-transform rtl:rotate-0 ltr:rotate-180"></i>
+                            <i class="sicon-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i>
                         </span>
 
                     </a>
@@ -94,25 +108,34 @@
             {% else %}
                 {# Default Pre-configured Visual Categories #}
                 {% set default_cats = [
-                    {'name': 'الكمبروسر والتبريد', 'icon': 'sicon-fan', 'url': '/products?keyword=كمبروسر'},
+                    {'name': 'هيونداي سوناتا', 'icon': 'sicon-car-side', 'url': '/products?keyword=سوناتا'},
+                    {'name': 'هيونداي إلنترا', 'icon': 'sicon-car-side', 'url': '/products?keyword=النترا'},
+                    {'name': 'هيونداي سنتافي (ديزل)', 'icon': 'sicon-car-side', 'url': '/products?keyword=سنتافي'},
                     {'name': 'فلاتر وزيوت', 'icon': 'sicon-drop', 'url': '/products?keyword=فلاتر'},
-                    {'name': 'الفرامل والمكابح', 'icon': 'sicon-shield-check', 'url': '/products?keyword=فرامل'},
-                    {'name': 'المساعدات والتعليق', 'icon': 'sicon-car', 'url': '/products?keyword=مساعدات'},
-                    {'name': 'البواجي والكهرباء', 'icon': 'sicon-zap', 'url': '/products?keyword=بواجي'},
-                    {'name': 'السيور والشدادات', 'icon': 'sicon-settings', 'url': '/products?keyword=سيور'}
+                    {'name': 'كيا K5 / أوبتيما', 'icon': 'sicon-car-side', 'url': '/products?keyword=K5'},
+                    {'name': 'كيا سبورتاج', 'icon': 'sicon-car-side', 'url': '/products?keyword=سبورتاج'}
                 ] %}
 
                 {% for dcat in default_cats %}
-                    <a href="{{ dcat.url }}" class="group relative flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-slate-900/80 hover:bg-slate-800/95 backdrop-blur-md border border-white/10 hover:border-amber-400/60 transition-all duration-300 shadow-md hover:shadow-2xl hover:-translate-y-2 text-center overflow-hidden">
-                        <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-slate-950/60 border border-white/10 flex items-center justify-center p-2 mb-3 shadow-inner group-hover:border-amber-400/40 group-hover:shadow-[0_0_20px_rgba(245,158,11,0.2)] transition-all duration-300">
-                            <i class="{{ dcat.icon }} text-3xl sm:text-4xl text-amber-400 group-hover:scale-115 transition-transform duration-300"></i>
+                    <a
+                        href="{{ dcat.url }}"
+                        class="dora-glass-card group relative flex flex-col items-center justify-between p-5 sm:p-6 rounded-2xl min-h-[195px] sm:min-h-[220px] text-center overflow-hidden cursor-pointer"
+                    >
+                        <div class="absolute top-5 left-1/2 -translate-x-1/2 w-28 h-28 rounded-full bg-cyan-400/15 blur-2xl group-hover:bg-cyan-400/35 group-hover:scale-130 transition-all duration-500 pointer-events-none"></div>
+
+                        <div class="relative z-10 w-full h-24 sm:h-28 flex items-center justify-center mb-3">
+                            <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 group-hover:scale-115 transition-transform duration-400">
+                                <i class="{{ dcat.icon }} text-3xl"></i>
+                            </div>
                         </div>
-                        <h3 class="text-xs sm:text-sm font-bold text-white group-hover:text-amber-400 transition-colors duration-300 leading-snug">
+
+                        <h3 class="relative z-10 text-xs sm:text-sm font-black text-white group-hover:text-cyan-300 transition-colors duration-300 leading-snug line-clamp-2 drop-shadow">
                             {{ dcat.name }}
                         </h3>
-                        <span class="mt-2 inline-flex items-center gap-1 text-[10px] font-semibold text-slate-400 group-hover:text-amber-300 transition-colors">
+
+                        <span class="relative z-10 mt-3 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-bold text-slate-300 group-hover:bg-cyan-500/20 group-hover:border-cyan-400/40 group-hover:text-cyan-300 transition-all shadow-sm">
                             <span>تصفح</span>
-                            <i class="sicon-keyboard_arrow_left text-xs group-hover:-translate-x-0.5 transition-transform rtl:rotate-0 ltr:rotate-180"></i>
+                            <i class="sicon-arrow-left text-xs group-hover:-translate-x-1 transition-transform"></i>
                         </span>
                     </a>
                 {% endfor %}

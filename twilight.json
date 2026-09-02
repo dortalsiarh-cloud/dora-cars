@@ -1,10 +1,10 @@
 {
     "name": {
-        "ar": "درة السيارة (Dora Cars)",
-        "en": "Dora Cars Universal"
+        "ar": "درة السيارة",
+        "en": "Dora Cars"
     },
     "repository": "https://github.com/dortalsiarh-cloud/dora-cars",
-    "author_email": "yahya9031@gmail.com",
+    "author_email": "dortalsiarh@gmail.com",
     "features": [
         "mega-menu",
         "fonts",
@@ -2346,9 +2346,9 @@
             ]
         }
     ],
-    "support_url": null,
+    "support_url": "https://github.com/dortalsiarh-cloud/dora-cars",
     "description": {
-        "ar": "ثيم عصري فائق الأناقة والسرعة للمتاجر الإلكترونية في سلة، يدعم تخصيص الهوية وركائز الثقة العائمة والبحث التفاعلي الذكي وكافة خيارات الدفع والشحن.",
-        "en": "Modern, elegant, high-performance universal theme for Salla stores."
+        "ar": null,
+        "en": null
     }
 }

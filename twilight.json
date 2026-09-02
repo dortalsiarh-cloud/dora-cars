@@ -447,6 +447,283 @@
     ],
     "components": [
         {
+            "key": "c9a1d4e2-88f1-46b3-b145-89f7e61a0096",
+            "title": {
+                "en": "National Day 96 Grand Hero & Live Countdown",
+                "ar": "🇸🇦 هيرو اليوم الوطني 96 ومؤقت العرض التفاعلي"
+            },
+            "icon": "sicon-award-ribbon",
+            "path": "home.national-day-hero",
+            "image": "https://raw.githubusercontent.com/dortalsiarh-cloud/dora-cars/master/public/images/components/speero-hero.svg",
+            "is_default": true,
+            "fields": [
+                {
+                    "id": "badge",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الشارة العلوية",
+                    "value": "عِزّنا بطبعنا | عروض اليوم الوطني السعودي 96",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "b1a2c3d4-e5f6-47a8-99b0-c1d2e3f4a5b6"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "value": "عِزّنا بكرمنا.. عروض اليوم الوطني الكبرى",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "a2b3c4d5-e6f7-48a9-b0c1-d2e3f4a5b6c7"
+                },
+                {
+                    "id": "subtitle",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الفرعي الملون",
+                    "value": "على قطع غيار هيونداي وكيا (بنزين وديزل)",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "c3d4e5f6-a7b8-49c0-d1e2-f3a4b5c6d7e8"
+                },
+                {
+                    "id": "description",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "الوصف الترويجي",
+                    "value": "احصل على أقوى خصومات العام على القطع الأصلية والموبيس لمنظومات الديزل والبنزين، مع فحص التوافق برقم الهيكل 100% وشحن سريع لكافة مناطق المملكة.",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "d4e5f6a7-b8c9-40d1-e2f3-a4b5c6d7e8f9"
+                },
+                {
+                    "id": "coupon_code",
+                    "type": "string",
+                    "format": "text",
+                    "label": "كود خصم اليوم الوطني",
+                    "value": "KSA96",
+                    "required": false,
+                    "key": "e5f6a7b8-c9d0-41e2-f3a4-b5c6d7e8f9a0"
+                },
+                {
+                    "id": "end_date",
+                    "type": "string",
+                    "format": "text",
+                    "label": "تاريخ ووقت انتهاء العرض (YYYY-MM-DDTHH:mm:ss)",
+                    "value": "2026-09-24T23:59:59",
+                    "required": false,
+                    "key": "f6a7b8c9-d0e1-42f3-a4b5-c6d7e8f9a0b1"
+                },
+                {
+                    "id": "whatsapp_number",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رقم واتساب التسعير الفوري بالهيكل",
+                    "value": "966500000000",
+                    "required": false,
+                    "key": "a7b8c9d0-e1f2-43a4-b5c6-d7e8f9a0b1c2"
+                },
+                {
+                    "id": "search_url",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رابط تصفح العروض",
+                    "value": "/products",
+                    "required": false,
+                    "key": "b8c9d0e1-f2a3-44b5-c6d7-e8f9a0b1c2d3"
+                },
+                {
+                    "id": "bg_image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "صورة خلفية الهيرو (اختياري)",
+                    "value": null,
+                    "required": false,
+                    "key": "c9d0e1f2-a3b4-45c6-d7e8-f9a0b1c2d3e4"
+                }
+            ]
+        },
+        {
+            "key": "e1b2c3d4-99a8-44b2-a3c1-77e8f90a1122",
+            "title": {
+                "en": "Korean Vehicle & Engine Selector (Hyundai/Kia)",
+                "ar": "🚗 محدد سيارات هيونداي وكيا والوقود (بنزين وديزل)"
+            },
+            "icon": "sicon-car-side",
+            "path": "home.korean-vehicle-selector",
+            "image": "https://raw.githubusercontent.com/dortalsiarh-cloud/dora-cars/master/public/images/components/speero-brands.svg",
+            "is_default": true,
+            "fields": [
+                {
+                    "id": "badge",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الشارة التمهيدية",
+                    "value": "محدد القطع الذكي",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "d0e1f2a3-b4c5-46d7-e8f9-a0b1c2d3e4f5"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "value": "اختر سيارتك للوصول إلى القطع المتوافقة فوراً",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "e1f2a3b4-c5d6-47e8-f9a0-b1c2d3e4f5a6"
+                },
+                {
+                    "id": "description",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "الوصف",
+                    "value": "حدد ماركة وموديل سيارتك ونوع المحرك (بنزين أو ديزل) وسنعرض لك كافة القطع والمنظومات المتطابقة 100%.",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "f2a3b4c5-d6e7-48f9-a0b1-c2d3e4f5a6b7"
+                },
+                {
+                    "id": "whatsapp_number",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رقم واتساب التسعير برقم الهيكل",
+                    "value": "966500000000",
+                    "required": false,
+                    "key": "a3b4c5d6-e7f8-49a0-b1c2-d3e4f5a6b7c8"
+                }
+            ]
+        },
+        {
+            "key": "f3a4b5c6-77e8-42c1-b9d0-11e2f3a4b5c6",
+            "title": {
+                "en": "National Day Bundles & Maintenance Packages",
+                "ar": "🎁 باقات وبكجات التوفير لليوم الوطني (هيونداي وكيا)"
+            },
+            "icon": "sicon-gift",
+            "path": "home.national-day-bundles",
+            "image": "https://raw.githubusercontent.com/dortalsiarh-cloud/dora-cars/master/public/images/components/speero-offers-banner.svg",
+            "is_default": true,
+            "fields": [
+                {
+                    "id": "badge",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الشارة التمهيدية",
+                    "value": "باقات التوفير الكبرى 🇸🇦",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "b4c5d6e7-f8a9-40b1-c2d3-e4f5a6b7c8d9"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "value": "باقات اليوم الوطني لقطع غيار هيونداي وكيا",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "c5d6e7f8-a9b0-41c2-d3e4-f5a6b7c8d9e0"
+                },
+                {
+                    "id": "description",
+                    "type": "string",
+                    "format": "textarea",
+                    "label": "الوصف",
+                    "value": "وفر أكثر مع بكجات الصيانة المتكاملة المصممة خصيصاً لسيارتك الكورية (بنزين أو ديزل) بأعلى جودة وضمان التوافق التام.",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "d6e7f8a9-b0c1-42d3-e4f5-a6b7c8d9e0f1"
+                },
+                {
+                    "id": "coupon_code",
+                    "type": "string",
+                    "format": "text",
+                    "label": "كود الخصم المطبق في رسالة الطلب",
+                    "value": "KSA96",
+                    "required": false,
+                    "key": "e7f8a9b0-c1d2-43e4-f5a6-b7c8d9e0f1a2"
+                },
+                {
+                    "id": "whatsapp_number",
+                    "type": "string",
+                    "format": "text",
+                    "label": "رقم واتساب طلب البكجات",
+                    "value": "966500000000",
+                    "required": false,
+                    "key": "f8a9b0c1-d2e3-44f5-a6b7-c8d9e0f1a2b3"
+                }
+            ]
+        },
+        {
+            "key": "a7b8c9d0-12e3-44f5-a6b7-88c9d0e1f2a3",
+            "title": {
+                "en": "Korean & OEM Auto Parts Brands Marquee",
+                "ar": "⭐ شريط ماركات قطع الغيار والوكالات الكورية"
+            },
+            "icon": "sicon-award-ribbon",
+            "path": "home.korean-brands-marquee",
+            "image": "https://raw.githubusercontent.com/dortalsiarh-cloud/dora-cars/master/public/images/components/speero-payment-marquee.svg",
+            "is_default": true,
+            "fields": [
+                {
+                    "id": "badge",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الشارة التمهيدية",
+                    "value": "وكالات وماركات معتمدة 100%",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "a9b0c1d2-e3f4-45a6-b7c8-d9e0f1a2b3c4"
+                },
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "value": "شركاء الجودة لقطع غيار هيونداي وكيا",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "b0c1d2e3-f4a5-46b7-c8d9-e0f1a2b3c4d5"
+                }
+            ]
+        },
+        {
+            "key": "b1c2d3e4-55f6-47a8-99b0-c1d2e3f4a5b6",
+            "title": {
+                "en": "Visual Korean Models Grid (Hyundai & Kia)",
+                "ar": "🏎️ شبكة موديلات هيونداي وكيا المصورة (بنزين/ديزل)"
+            },
+            "icon": "sicon-car-side",
+            "path": "home.korean-models-grid",
+            "image": "https://raw.githubusercontent.com/dortalsiarh-cloud/dora-cars/master/public/images/components/speero-categories.svg",
+            "is_default": true,
+            "fields": [
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "value": "موديلات هيونداي وكيا المدعومة",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "c1d2e3f4-a5b6-47c8-d9e0-f1a2b3c4d5e6"
+                },
+                {
+                    "id": "subtitle",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الوصف التوضيحي",
+                    "value": "نوفر كافة قطع الغيار الأصلية والموبيس لمنظومات الديزل والبنزين لكافة الموديلات.",
+                    "multilanguage": true,
+                    "required": false,
+                    "key": "d2e3f4a5-b6c7-48d9-e0f1-a2b3c4d5e6f7"
+                }
+            ]
+        },
+        {
             "key": "f0b09b3c-ac8d-486a-9236-93c1820b6c8e",
             "title": {
                 "en": "Store Identity & Trust Banner",

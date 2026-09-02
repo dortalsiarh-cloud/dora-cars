@@ -7,28 +7,7 @@
 #}
 {% extends "layouts.master" %}
 {% block content %}
-    {# 1. Saudi National Day Grand Hero Section #}
-    {% if theme.settings.get('dora_nd_hero_enabled', true) %}
-        {% include 'components.home.national-day-hero' %}
-    {% endif %}
-
-    {# 2. Hyundai & Kia Engine & Vehicle Selector Widget #}
-    {% if theme.settings.get('dora_korean_selector_enabled', true) %}
-        {% include 'components.home.korean-vehicle-selector' %}
-    {% endif %}
-
-    {# 3. Salla Dynamic Custom Home Components #}
     {% component home %}
-
-    {# 4. National Day Savings Bundles #}
-    {% if theme.settings.get('dora_nd_bundles_enabled', true) %}
-        {% include 'components.home.national-day-bundles' %}
-    {% endif %}
-
-    {# 5. Korean & OEM Auto Parts Brands Marquee #}
-    {% if theme.settings.get('dora_korean_brands_enabled', true) %}
-        {% include 'components.home.korean-brands-marquee' %}
-    {% endif %}
 {% endblock %}
 {% block scripts %}
     <script defer src="{{ 'home.js' | asset }}"></script>

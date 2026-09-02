@@ -355,6 +355,9 @@
               {% endif %}
               {# End Digital Files Settings #}
 
+                {# DORA CARS: Smart VIN Compatibility & Korean Engine Specs Widget #}
+                {% include 'components.product.dora-vin-matcher' %}
+
                 <form data-testid="store-product-form" class="form product-form" enctype="multipart/form-data" method="post"
                       onsubmit="return salla.form.onSubmit('cart.addItem', event)" >
                     <input type="hidden" name="id" value="{{ product.id }}">

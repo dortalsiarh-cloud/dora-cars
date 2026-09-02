@@ -35,55 +35,58 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.2rem 0.6rem;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  padding: 0.25rem 0.65rem;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(15, 23, 42, 0.7) 100%);
   color: #38bdf8;
-  border: 1px solid rgba(56, 189, 248, 0.35);
-  border-radius: 6px;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 8px;
   font-size: 0.725rem;
   font-weight: 800;
-  letter-spacing: 0.2px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
 }
 
 .dora-badge-petrol {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.2rem 0.6rem;
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 0.25rem 0.65rem;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(15, 23, 42, 0.7) 100%);
   color: #fbbf24;
-  border: 1px solid rgba(251, 191, 36, 0.35);
-  border-radius: 6px;
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  border-radius: 8px;
   font-size: 0.725rem;
   font-weight: 800;
-  letter-spacing: 0.2px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2);
 }
 
 .dora-badge-mobis {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.2rem 0.65rem;
+  padding: 0.25rem 0.75rem;
   background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
   color: #ffffff;
-  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
   font-size: 0.725rem;
-  font-weight: 800;
-  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
+  font-weight: 900;
+  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.35);
 }
 
 .dora-badge-ksa {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.3rem 0.85rem;
   background: linear-gradient(135deg, #006C35 0%, #059669 100%);
   color: #ffffff;
   border: 1px solid #34d399;
   border-radius: 9999px;
   font-size: 0.75rem;
   font-weight: 800;
-  box-shadow: 0 4px 14px rgba(0, 108, 53, 0.3);
+  box-shadow: 0 4px 14px rgba(0, 108, 53, 0.35);
   animation: dora-pulse-glow 2.5s infinite ease-in-out;
 }
 
@@ -92,12 +95,131 @@
     box-shadow: 0 0 10px rgba(5, 150, 105, 0.4);
   }
   50% {
-    box-shadow: 0 0 20px rgba(52, 211, 153, 0.7);
+    box-shadow: 0 0 22px rgba(52, 211, 153, 0.75);
   }
 }
 
 /* ============================================================================
-   2. DORA CARS ACTION BUTTONS
+   2. ULTRA-LUXURIOUS FROSTED GLASS LAUNCHPAD CARDS & DECORATIVE ANIMATIONS
+   ============================================================================ */
+
+.dora-glass-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(11, 25, 44, 0.65);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.3), 0 20px 45px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  text-decoration: none !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Glass Top Highlight Line */
+.dora-glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  pointer-events: none;
+}
+
+/* Moving Light Beam Sweep on Hover */
+.dora-glass-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 25%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  transition: all 0.75s ease;
+  opacity: 0;
+}
+
+.dora-glass-card:hover::after {
+  left: 140%;
+  opacity: 1;
+}
+
+.dora-glass-card:hover {
+  transform: translateY(-8px) scale(1.025);
+  border-color: rgba(52, 211, 153, 0.6);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 25px 55px rgba(0, 0, 0, 0.6), 0 0 35px rgba(16, 185, 129, 0.25);
+}
+
+/* Card 2 Specific Hover Glow (WhatsApp / VIP) */
+.dora-glass-card-wa:hover {
+  border-color: rgba(37, 211, 102, 0.7);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 25px 55px rgba(0, 0, 0, 0.6), 0 0 40px rgba(37, 211, 102, 0.35);
+}
+
+/* Card 3 Specific Hover Glow (Bundles / Red Accent) */
+.dora-glass-card-bundle:hover {
+  border-color: rgba(220, 38, 38, 0.7);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 25px 55px rgba(0, 0, 0, 0.6), 0 0 40px rgba(220, 38, 38, 0.35);
+}
+
+/* 3D Glass Floating Icon Box */
+.dora-3d-icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5), 0 10px 22px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dora-glass-card:hover .dora-3d-icon-box {
+  transform: scale(1.12) rotate(4deg);
+}
+
+/* Radar Ping Ripple Effect for WhatsApp Card */
+.dora-radar-ping {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  bottom: -4px;
+  left: -4px;
+  border-radius: 20px;
+  border: 1.5px solid #25D366;
+  opacity: 0;
+  animation: dora-radar 2.2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+@keyframes dora-radar {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.95;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* ============================================================================
+   3. DORA CARS ACTION BUTTONS
    ============================================================================ */
 
 .dora-btn-red {
@@ -109,9 +231,9 @@
   color: #ffffff !important;
   font-weight: 800;
   padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.35);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 18px rgba(220, 38, 38, 0.4);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   text-decoration: none;
@@ -119,7 +241,7 @@
 
 .dora-btn-red:hover {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  box-shadow: 0 6px 22px rgba(220, 38, 38, 0.5);
+  box-shadow: 0 6px 24px rgba(220, 38, 38, 0.55);
   transform: translateY(-2px);
 }
 
@@ -132,9 +254,9 @@
   color: #ffffff !important;
   font-weight: 800;
   padding: 0.75rem 1.5rem;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.4);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   text-decoration: none;
@@ -142,17 +264,17 @@
 
 .dora-btn-whatsapp:hover {
   background: linear-gradient(135deg, #2ae771 0%, #15a392 100%);
-  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.55);
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
   transform: translateY(-2px);
 }
 
 /* ============================================================================
-   3. NATIONAL DAY HERO & COUNTDOWN STYLES
+   4. NATIONAL DAY HERO & COUNTDOWN STYLES
    ============================================================================ */
 
 .dora-nd-hero {
   position: relative;
-  background: radial-gradient(circle at 80% 20%, #004B23 0%, #07111E 45%, #0B192C 100%);
+  background: radial-gradient(circle at 80% 15%, rgba(0, 75, 35, 0.65) 0%, rgba(7, 17, 30, 0.95) 50%, #0B192C 100%);
   border-bottom: 2px solid rgba(52, 211, 153, 0.2);
   overflow: hidden;
 }
@@ -164,10 +286,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
 .dora-countdown-card {
@@ -175,105 +297,111 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 60px;
-  padding: 0.5rem 0.75rem;
-  background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(8px);
+  min-width: 64px;
+  padding: 0.5rem 0.85rem;
+  background: rgba(11, 25, 44, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 6px 16px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
 }
 
 @media (min-width: 640px) {
   .dora-countdown-card {
-    min-width: 72px;
-    padding: 0.65rem 1rem;
+    min-width: 76px;
+    padding: 0.75rem 1.1rem;
   }
 }
 
 .dora-countdown-num {
-  font-size: 1.5rem;
+  font-size: 1.65rem;
   font-weight: 900;
   color: #34d399;
   line-height: 1;
   font-family: monospace, system-ui, sans-serif;
+  text-shadow: 0 0 12px rgba(52, 211, 153, 0.5);
 }
 
 .dora-countdown-lbl {
-  font-size: 0.675rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  color: #94a3b8;
-  margin-top: 0.25rem;
+  color: #cbd5e1;
+  margin-top: 0.35rem;
 }
 
 /* 1-Click Coupon Copier Box */
 .dora-coupon-box {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  padding: 0.4rem 0.5rem 0.4rem 1rem;
-  background: rgba(15, 23, 42, 0.9);
+  gap: 0.75rem;
+  padding: 0.45rem 0.55rem 0.45rem 1.1rem;
+  background: rgba(11, 25, 44, 0.85);
   border: 1.5px dashed #34d399;
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 4px 15px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
   cursor: pointer;
   transition: all 0.25s ease;
   user-select: none;
 }
 
 .dora-coupon-box:hover {
-  background: rgba(15, 23, 42, 1);
+  background: rgba(11, 25, 44, 1);
   border-color: #6ee7b7;
-  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.4);
+  transform: scale(1.025);
 }
 
 .dora-coupon-code {
   font-family: monospace;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 900;
   color: #ffffff;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 /* ============================================================================
-   4. KOREAN VEHICLE SELECTOR WIDGET
+   5. KOREAN VEHICLE SELECTOR WIDGET
    ============================================================================ */
 
 .dora-selector-container {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 25, 44, 0.95) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(12px);
-  padding: 1.5rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(11, 25, 44, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 15px 40px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+  padding: 1.75rem;
 }
 
 .dora-select-input {
   width: 100%;
-  background: #0f172a;
+  background: rgba(15, 23, 42, 0.9);
   border: 1px solid #334155;
   color: #ffffff;
-  padding: 0.65rem 0.85rem;
-  border-radius: 8px;
+  padding: 0.75rem 0.95rem;
+  border-radius: 10px;
   font-size: 0.875rem;
   font-weight: 600;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .dora-select-input:focus {
   border-color: #dc2626;
-  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.25);
 }
 
 /* ============================================================================
-   5. BUNDLE SAVINGS CARDS
+   6. BUNDLE SAVINGS CARDS
    ============================================================================ */
 
 .dora-bundle-card {
   position: relative;
-  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 20px;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 15px 35px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
   padding: 1.5rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
@@ -281,8 +409,8 @@
 
 .dora-bundle-card:hover {
   border-color: #dc2626;
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(220, 38, 38, 0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(220, 38, 38, 0.25);
 }
 
 .dora-bundle-discount {
@@ -293,7 +421,7 @@
   color: #ffffff;
   font-size: 0.75rem;
   font-weight: 900;
-  padding: 0.25rem 0.65rem;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(220, 38, 38, 0.45);
 }

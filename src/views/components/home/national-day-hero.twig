@@ -116,100 +116,106 @@
 
         </div>
 
-        {# 3 HIGH-IMPACT LUXURY LAUNCHPAD CARDS #}
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+        {# 3 ULTRA-LUXURIOUS FROSTED GLASS LAUNCHPAD CARDS #}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-5xl mx-auto">
             
             {# CARD 1: Hyundai & Kia Parts (Petrol ⛽ & Diesel 🛢️) #}
             <a
                 href="{{ search_url }}?category=korean-parts"
-                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/80 hover:to-slate-850 border border-slate-700/80 hover:border-emerald-400/70 shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 no-underline block"
+                class="dora-glass-card group text-right p-6 sm:p-7 cursor-pointer"
             >
-                <div class="absolute -top-12 -left-12 w-28 h-28 bg-emerald-400/10 rounded-full blur-2xl group-hover:bg-emerald-400/25 transition"></div>
+                {# Ambient Backlight Glow #}
+                <div class="absolute -top-14 -left-14 w-36 h-36 bg-cyan-500/20 rounded-full blur-3xl group-hover:bg-cyan-400/35 transition duration-500 pointer-events-none"></div>
                 
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition">
-                            <i class="sicon-car-side text-2xl"></i>
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="dora-3d-icon-box bg-gradient-to-br from-cyan-500/30 to-blue-600/20 border-cyan-400/40 text-cyan-300">
+                            <i class="sicon-car-side text-2xl drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]"></i>
                         </div>
                         <div class="flex items-center gap-1.5">
-                            <span class="dora-badge-diesel">🛢️ ديزل</span>
-                            <span class="dora-badge-petrol">⛽ بنزين</span>
+                            <span class="dora-badge-diesel">🛢️ ديزل Turbo</span>
+                            <span class="dora-badge-petrol">⛽ بنزين GDI</span>
                         </div>
                     </div>
 
-                    <h2 class="text-lg sm:text-xl font-black text-white group-hover:text-emerald-300 transition mb-2">
-                        قطع غيار هيونداي وكيا
+                    <h2 class="text-lg sm:text-xl font-black text-white group-hover:text-cyan-300 transition-colors drop-shadow-md mb-2 flex items-center gap-2">
+                        <span>قطع غيار هيونداي وكيا</span>
+                        <span class="text-xs font-bold text-cyan-400 opacity-90">🇰🇷</span>
                     </h2>
-                    <p class="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                    <p class="text-xs sm:text-sm text-slate-200/90 font-normal leading-relaxed">
                         تصفح آلاف القطع المعتمدة لمحركات الديزل والبنزين (سوناتا، إلنترا، توسان، أكسنت، K5، سبورتاج، سنتافي).
                     </p>
                 </div>
 
-                <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs sm:text-sm font-bold text-emerald-400 group-hover:text-emerald-300">
+                <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm font-bold text-cyan-400 group-hover:text-cyan-300">
                     <span>تصفح عروض اليوم الوطني</span>
-                    <i class="sicon-arrow-left group-hover:-translate-x-1.5 transition"></i>
+                    <i class="sicon-arrow-left group-hover:-translate-x-2 transition-transform duration-300"></i>
                 </div>
             </a>
 
-            {# CARD 2: Instant WhatsApp VIN Quote with National Day Discount (Red/WhatsApp Action) #}
+            {# CARD 2: Instant WhatsApp VIN Quote with National Day Discount (VIP WhatsApp Glass Card) #}
             <a
                 href="https://wa.me/{{ wa_phone }}?text={{ ('السلام عليكم، أرغب بطلب تسعيرة قطع غيار برقم الهيكل (VIN) مع الاستفادة من خصم اليوم الوطني ' ~ coupon_code ~ ' لمتجر درة السيارة')|url_encode }}"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/80 hover:to-slate-850 border border-emerald-500/40 hover:border-emerald-400 shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 no-underline block ring-1 ring-emerald-500/20"
+                class="dora-glass-card dora-glass-card-wa group text-right p-6 sm:p-7 cursor-pointer ring-1 ring-emerald-500/30"
             >
-                <div class="absolute -top-12 -left-12 w-28 h-28 bg-emerald-500/15 rounded-full blur-2xl group-hover:bg-emerald-500/30 transition"></div>
+                {# Ambient Backlight Glow #}
+                <div class="absolute -top-14 -left-14 w-36 h-36 bg-emerald-500/25 rounded-full blur-3xl group-hover:bg-emerald-400/40 transition duration-500 pointer-events-none"></div>
                 
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/30 transition">
-                            <i class="sicon-whatsapp text-2xl"></i>
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="dora-3d-icon-box bg-gradient-to-br from-emerald-500/30 to-teal-600/20 border-emerald-400/50 text-emerald-400">
+                            <div class="dora-radar-ping"></div>
+                            <i class="sicon-whatsapp text-2xl drop-shadow-[0_0_10px_rgba(37,211,102,0.7)]"></i>
                         </div>
-                        <span class="px-2.5 py-1 rounded-full bg-red-600/90 text-white text-[11px] font-black shadow-sm">
-                            تسعير فوري ⚡
+                        <span class="px-3 py-1 rounded-full bg-gradient-to-r from-red-600 to-rose-600 text-white text-[11px] font-black shadow-lg border border-red-400/30 flex items-center gap-1.5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
+                            <span>تسعير فوري ⚡</span>
                         </span>
                     </div>
 
-                    <h2 class="text-lg sm:text-xl font-black text-white group-hover:text-emerald-300 transition mb-2">
+                    <h2 class="text-lg sm:text-xl font-black text-white group-hover:text-emerald-300 transition-colors drop-shadow-md mb-2">
                         تسعير فوري برقم الهيكل (VIN)
                     </h2>
-                    <p class="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                    <p class="text-xs sm:text-sm text-slate-200/90 font-normal leading-relaxed">
                         أرسل رقم استمارة سيارتك أو رقم الهيكل عبر الواتساب، وسيقوم خبراؤنا بتجهيز القطع المتوافقة 100% بأقل سعر.
                     </p>
                 </div>
 
-                <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs sm:text-sm font-bold text-emerald-400 group-hover:text-emerald-300">
+                <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm font-bold text-emerald-400 group-hover:text-emerald-300">
                     <span>تواصل مع فني درة السيارة</span>
-                    <i class="sicon-arrow-left group-hover:-translate-x-1.5 transition"></i>
+                    <i class="sicon-arrow-left group-hover:-translate-x-2 transition-transform duration-300"></i>
                 </div>
             </a>
 
-            {# CARD 3: National Day Maintenance Bundles (Action Red / Gold Accent) #}
+            {# CARD 3: National Day Maintenance Bundles (Gold/Ruby Glass Card) #}
             <a
                 href="#dora-bundles-section"
-                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/80 hover:to-slate-850 border border-slate-700/80 hover:border-red-500/70 shadow-xl hover:shadow-red-500/20 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 no-underline block"
+                class="dora-glass-card dora-glass-card-bundle group text-right p-6 sm:p-7 cursor-pointer ring-1 ring-red-500/30"
             >
-                <div class="absolute -top-12 -left-12 w-28 h-28 bg-red-500/10 rounded-full blur-2xl group-hover:bg-red-500/25 transition"></div>
+                {# Ambient Backlight Glow #}
+                <div class="absolute -top-14 -left-14 w-36 h-36 bg-rose-500/20 rounded-full blur-3xl group-hover:bg-rose-400/35 transition duration-500 pointer-events-none"></div>
                 
                 <div>
-                    <div class="flex items-center justify-between mb-4">
-                        <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 group-hover:scale-110 group-hover:bg-red-500/20 transition">
-                            <i class="sicon-gift text-2xl"></i>
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="dora-3d-icon-box bg-gradient-to-br from-rose-500/30 to-amber-600/20 border-rose-400/50 text-rose-300">
+                            <i class="sicon-gift text-2xl drop-shadow-[0_0_10px_rgba(244,63,94,0.7)]"></i>
                         </div>
                         <span class="dora-badge-mobis">🇰🇷 أصلي MOBIS</span>
                     </div>
 
-                    <h2 class="text-lg sm:text-xl font-black text-white group-hover:text-red-300 transition mb-2">
+                    <h2 class="text-lg sm:text-xl font-black text-white group-hover:text-rose-300 transition-colors drop-shadow-md mb-2">
                         بكجات وباقات التوفير الكبرى
                     </h2>
-                    <p class="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                    <p class="text-xs sm:text-sm text-slate-200/90 font-normal leading-relaxed">
                         باقات متكاملة تشمل فلاتر، زيوت، تصفية مكينة البنزين، وصيانة الديزل بخصم يصل حتى 50% مع شحن مجاني.
                     </p>
                 </div>
 
-                <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs sm:text-sm font-bold text-red-400 group-hover:text-red-300">
+                <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm font-bold text-rose-400 group-hover:text-rose-300">
                     <span>استكشف الباقات الحصرية</span>
-                    <i class="sicon-arrow-left group-hover:-translate-x-1.5 transition"></i>
+                    <i class="sicon-arrow-left group-hover:-translate-x-2 transition-transform duration-300"></i>
                 </div>
             </a>
 

@@ -34,6 +34,43 @@
 ] %}
 
 <header data-testid="store-header" class="store-header">
+  {# Saudi National Day Top Announcement Bar #}
+  {% set nd_topbar_enabled = theme.settings.get('dora_nd_topbar_enabled', true) %}
+  {% set nd_topbar_text = theme.settings.get('dora_nd_topbar_text', '🇸🇦 عروض اليوم الوطني 96: خصومات حصرية على قطع غيار هيونداي وكيا (بنزين وديزل) + شحن سريع لكافة مناطق المملكة | نوفر القطع غير المدرجة بالطلب برقم الهيكل') %}
+  {% set nd_wa_phone = store.contacts.whatsapp|default(store.contacts.phone|default('966500000000'))|replace({'+': '', ' ': '', '-': ''}) %}
+  
+  {% if nd_topbar_enabled %}
+    <div id="dora-nd-top-banner" class="bg-gradient-to-r from-emerald-950 via-emerald-900 to-slate-950 border-b border-emerald-500/30 text-white text-xs py-2 px-3 relative z-30 transition-all">
+      <div class="container flex items-center justify-between gap-3">
+        <div class="flex-1 flex items-center justify-center gap-2 text-center overflow-hidden">
+          <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 font-extrabold text-[11px] shrink-0 border border-emerald-500/30">
+            <span>🇸🇦 اليوم الوطني 96</span>
+          </span>
+          <span class="font-bold text-slate-100 truncate sm:text-clip">{{ nd_topbar_text }}</span>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <a
+            href="https://wa.me/{{ nd_wa_phone }}?text={{ 'السلام عليكم، أرغب بطلب توفير قطعة غيار غير مدرجة لسيارة هيونداي/كيا برقم الهيكل لمتجر درة السيارة'|url_encode }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 rounded bg-red-600 hover:bg-red-500 text-white font-black text-[11px] transition shadow"
+          >
+            <i class="sicon-whatsapp"></i>
+            <span>طلب قطعة بالهيكل</span>
+          </a>
+          <button
+            type="button"
+            onclick="document.getElementById('dora-nd-top-banner').style.display='none'"
+            class="text-slate-400 hover:text-white text-sm leading-none p-1 transition"
+            aria-label="إغلاق الشريط"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
   {# Bullet Delivery tag — mobile: own full-width row above the top nav #}
   <div class="lg:hidden">
     <salla-bullet-delivery-tag></salla-bullet-delivery-tag>

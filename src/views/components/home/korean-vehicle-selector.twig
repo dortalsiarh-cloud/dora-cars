@@ -1,0 +1,316 @@
+{#
+|--------------------------------------------------------------------------
+| DORA CARS: Interactive Hyundai & Kia Vehicle & Engine Selector Widget
+|--------------------------------------------------------------------------
+| Salla Twilight Component: home.korean-vehicle-selector
+| Brand: درة السيارة (Dora Cars)
+| Features:
+| 1. Instant Brand Switcher (هيونداي Hyundai / كيا Kia)
+| 2. Engine Fuel Type Switcher (⛽ بنزين Petrol / 🛢️ ديزل Diesel)
+| 3. Dynamic Model, Year, and Part System Selector
+| 4. 1-Click Search Navigation or WhatsApp VIN Compatibility Check
+| 5. Quick Access Visual Badges for Popular Korean Models
+|--------------------------------------------------------------------------
+#}
+
+{% set widget_id = 'korean-selector-' ~ random(1000, 9999) %}
+{% set wa_phone = component.whatsapp_number|default(component.settings.whatsapp_number)|default(store.contacts.whatsapp|default(store.contacts.phone|default('966500000000')))|replace({'+': '', ' ': '', '-': ''}) %}
+
+<section
+    id="{{ widget_id }}"
+    class="relative overflow-hidden py-10 sm:py-14 bg-slate-950 text-white border-b border-slate-800"
+    data-component="korean-vehicle-selector"
+>
+    {# Background Ambient Highlights #}
+    <div class="absolute -top-24 right-10 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-24 left-10 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="speero-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        
+        {# Section Header #}
+        <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900 border border-slate-700 text-xs sm:text-sm font-bold shadow-sm mb-3 text-emerald-400">
+                <i class="sicon-search-engine text-base"></i>
+                <span>{{ component.badge|default(component.settings.badge)|default('محدد القطع الذكي') }}</span>
+                <span class="text-slate-400">|</span>
+                <span class="text-white">متخصصون في السيارات الكورية 🇰🇷</span>
+            </div>
+            
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-3 tracking-tight">
+                {{ component.title|default(component.settings.title)|default('اختر سيارتك للوصول إلى القطع المتوافقة فوراً') }}
+            </h2>
+            
+            <p class="text-xs sm:text-base text-slate-300 max-w-2xl mx-auto opacity-90 leading-relaxed">
+                {{ component.description|default(component.settings.description)|default('حدد ماركة وموديل سيارتك ونوع المحرك (بنزين أو ديزل) وسنعرض لك كافة القطع والمنظومات المتطابقة 100%.') }}
+            </p>
+        </div>
+
+        {# Main Interactive Selector Box #}
+        <div class="dora-selector-container max-w-4xl mx-auto p-5 sm:p-8 rounded-2xl bg-gradient-to-b from-slate-900 to-slate-950 border border-slate-700/80 shadow-2xl">
+            
+            {# 1. Brand & Fuel Selection Tabs #}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                
+                {# Brand Selector #}
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-2">1. ماركة السيارة:</label>
+                    <div class="grid grid-cols-2 gap-2" id="dora-brand-tabs-{{ widget_id }}">
+                        <button
+                            type="button"
+                            onclick="setDoraBrand('hyundai', '{{ widget_id }}')"
+                            id="dora-btn-hyundai-{{ widget_id }}"
+                            class="dora-brand-tab active flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-blue-600 text-white border border-blue-400 shadow-md transition"
+                        >
+                            <i class="sicon-car-side text-lg"></i>
+                            <span>هيونداي HYUNDAI</span>
+                        </button>
+                        <button
+                            type="button"
+                            onclick="setDoraBrand('kia', '{{ widget_id }}')"
+                            id="dora-btn-kia-{{ widget_id }}"
+                            class="dora-brand-tab flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition"
+                        >
+                            <i class="sicon-car-side text-lg"></i>
+                            <span>كيا KIA</span>
+                        </button>
+                    </div>
+                </div>
+
+                {# Fuel Type Selector #}
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-2">2. نوع منظومة المحرك:</label>
+                    <div class="grid grid-cols-2 gap-2" id="dora-fuel-tabs-{{ widget_id }}">
+                        <button
+                            type="button"
+                            onclick="setDoraFuel('petrol', '{{ widget_id }}')"
+                            id="dora-btn-petrol-{{ widget_id }}"
+                            class="dora-fuel-tab active flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-amber-600 text-white border border-amber-400 shadow-md transition"
+                        >
+                            <span>⛽ محرك بنزين</span>
+                        </button>
+                        <button
+                            type="button"
+                            onclick="setDoraFuel('diesel', '{{ widget_id }}')"
+                            id="dora-btn-diesel-{{ widget_id }}"
+                            class="dora-fuel-tab flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition"
+                        >
+                            <span>🛢️ محرك ديزل</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            {# 2. Dropdown Selectors: Model, Year, Category #}
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                
+                {# Model Dropdown #}
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1.5" for="dora-model-select-{{ widget_id }}">
+                        3. الموديل:
+                    </label>
+                    <select id="dora-model-select-{{ widget_id }}" class="dora-select-input cursor-pointer">
+                        <option value="">-- اختر الموديل --</option>
+                        <!-- Hyundai Models (Default) -->
+                        <optgroup label="موديلات هيونداي الأكثر طلباً" id="dora-opt-hyundai-{{ widget_id }}">
+                            <option value="سوناتا">سوناتا (Sonata)</option>
+                            <option value="النترا">إلنترا (Elantra)</option>
+                            <option value="اكسنت">أكسنت (Accent)</option>
+                            <option value="توسان">توسان (Tucson)</option>
+                            <option value="سنتافي">سنتافي (Santa Fe)</option>
+                            <option value="ازيرا">أزيرا (Azera)</option>
+                            <option value="باليسيد">باليسيد (Palisade)</option>
+                            <option value="ستاريا">ستاريا (Staria - ديزل/بنزين)</option>
+                            <option value="كريتا">كريتا (Creta)</option>
+                            <option value="كونا">كونا (Kona)</option>
+                            <option value="H1">فان H1 (ديزل)</option>
+                        </optgroup>
+                        <!-- Kia Models -->
+                        <optgroup label="موديلات كيا الأكثر طلباً" id="dora-opt-kia-{{ widget_id }}" style="display: none;">
+                            <option value="K5">K5 / أوبتيما (Optima)</option>
+                            <option value="سبورتاج">سبورتاج (Sportage)</option>
+                            <option value="سيراتو">سيراتو / K3 (Cerato)</option>
+                            <option value="كادينزا">كادينزا / K8 (Cadenza)</option>
+                            <option value="سورينتو">سورينتو (Sorento)</option>
+                            <option value="كارينز">كارينز (Carens)</option>
+                            <option value="تيلورايد">تيلورايد (Telluride)</option>
+                            <option value="بيجاس">بيجاس (Pegas)</option>
+                            <option value="ريو">ريو (Rio)</option>
+                            <option value="كرنفال">كرنفال (Carnival)</option>
+                        </optgroup>
+                    </select>
+                </div>
+
+                {# Year Dropdown #}
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1.5" for="dora-year-select-{{ widget_id }}">
+                        4. سنة الصنع:
+                    </label>
+                    <select id="dora-year-select-{{ widget_id }}" class="dora-select-input cursor-pointer">
+                        <option value="">-- كافة السنوات --</option>
+                        <option value="2026">2026</option>
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="2019">2019</option>
+                        <option value="2018">2018</option>
+                        <option value="2017">2017</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                    </select>
+                </div>
+
+                {# Part System Dropdown #}
+                <div>
+                    <label class="block text-xs font-bold text-slate-300 mb-1.5" for="dora-system-select-{{ widget_id }}">
+                        5. منظومة القطع:
+                    </label>
+                    <select id="dora-system-select-{{ widget_id }}" class="dora-select-input cursor-pointer">
+                        <option value="">-- كافة المنظومات --</option>
+                        <option value="فلاتر">الفلاتر والزيوت والصيانة</option>
+                        <option value="فرامل">الفرامل والهوبات والأقمشة</option>
+                        <option value="مساعدات">المساعدين والعكوس والتعليق</option>
+                        <option value="تبريد">التبريد ورديترات ومكيف</option>
+                        <option value="كهرباء">الكهرباء والحساسات والبواجي</option>
+                        <option value="محرك">المحرك والسيور والبخاخات</option>
+                        <option value="بدي">البدي الخارجي والإنارة</option>
+                    </select>
+                </div>
+
+            </div>
+
+            {# 3. Action Buttons: Search + WhatsApp Quick VIN Quote #}
+            <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                <button
+                    type="button"
+                    onclick="executeDoraSearch('{{ widget_id }}')"
+                    class="dora-btn-red w-full sm:flex-1 text-base py-3.5"
+                >
+                    <i class="sicon-search text-lg"></i>
+                    <span>عرض قطع الغيار المتوافقة</span>
+                </button>
+
+                <a
+                    id="dora-wa-link-{{ widget_id }}"
+                    href="https://wa.me/{{ wa_phone }}?text={{ 'السلام عليكم، أرغب بطلب تسعيرة لسيارة هيونداي/كيا برقم الهيكل (VIN) لمتجر درة السيارة'|url_encode }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="dora-btn-whatsapp w-full sm:w-auto text-sm py-3.5 px-6"
+                >
+                    <i class="sicon-whatsapp text-lg"></i>
+                    <span>استفسار برقم الهيكل (VIN)</span>
+                </a>
+            </div>
+
+        </div>
+
+        {# Popular Quick Access Model Chips #}
+        <div class="mt-8 flex flex-wrap items-center justify-center gap-2 max-w-4xl mx-auto">
+            <span class="text-xs font-bold text-slate-400">الأكثر بحثاً:</span>
+            <a href="/products?keyword=سوناتا" class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-emerald-500 transition">سوناتا</a>
+            <a href="/products?keyword=النترا" class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-emerald-500 transition">إلنترا</a>
+            <a href="/products?keyword=توسان" class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-emerald-500 transition">توسان (ديزل/بنزين)</a>
+            <a href="/products?keyword=سبورتاج" class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-emerald-500 transition">سبورتاج (ديزل/بنزين)</a>
+            <a href="/products?keyword=K5" class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-emerald-500 transition">كيا K5</a>
+            <a href="/products?keyword=سنتافي" class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-emerald-500 transition">سنتافي (ديزل)</a>
+            <a href="/products?keyword=ستاريا" class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-emerald-500 transition">ستاريا ديزل</a>
+            <a href="/products?keyword=أكسنت" class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-emerald-500 transition">أكسنت</a>
+            <a href="/products?keyword=سيراتو" class="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-300 hover:text-white hover:border-emerald-500 transition">سيراتو</a>
+        </div>
+
+    </div>
+</section>
+
+{# Selector Client Script #}
+<script>
+(function() {
+    var state = {
+        brand: 'hyundai',
+        fuel: 'petrol'
+    };
+
+    var widgetId = "{{ widget_id }}";
+
+    window.setDoraBrand = function(brand, id) {
+        state.brand = brand;
+        var btnH = document.getElementById('dora-btn-hyundai-' + id);
+        var btnK = document.getElementById('dora-btn-kia-' + id);
+        var optH = document.getElementById('dora-opt-hyundai-' + id);
+        var optK = document.getElementById('dora-opt-kia-' + id);
+        var select = document.getElementById('dora-model-select-' + id);
+
+        if (brand === 'hyundai') {
+            btnH.className = 'dora-brand-tab active flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-blue-600 text-white border border-blue-400 shadow-md transition';
+            btnK.className = 'dora-brand-tab flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition';
+            if (optH) optH.style.display = '';
+            if (optK) optK.style.display = 'none';
+        } else {
+            btnK.className = 'dora-brand-tab active flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-red-600 text-white border border-red-400 shadow-md transition';
+            btnH.className = 'dora-brand-tab flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition';
+            if (optH) optH.style.display = 'none';
+            if (optK) optK.style.display = '';
+        }
+
+        if (select) select.value = '';
+        updateDoraWaLink(id);
+    };
+
+    window.setDoraFuel = function(fuel, id) {
+        state.fuel = fuel;
+        var btnP = document.getElementById('dora-btn-petrol-' + id);
+        var btnD = document.getElementById('dora-btn-diesel-' + id);
+
+        if (fuel === 'petrol') {
+            btnP.className = 'dora-fuel-tab active flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-amber-600 text-white border border-amber-400 shadow-md transition';
+            btnD.className = 'dora-fuel-tab flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition';
+        } else {
+            btnD.className = 'dora-fuel-tab active flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-sky-600 text-white border border-sky-400 shadow-md transition';
+            btnP.className = 'dora-fuel-tab flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-black text-sm bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 hover:text-white transition';
+        }
+        updateDoraWaLink(id);
+    };
+
+    function updateDoraWaLink(id) {
+        var modelEl = document.getElementById('dora-model-select-' + id);
+        var yearEl = document.getElementById('dora-year-select-' + id);
+        var systemEl = document.getElementById('dora-system-select-' + id);
+        var waLink = document.getElementById('dora-wa-link-' + id);
+
+        var brandName = state.brand === 'hyundai' ? 'هيونداي' : 'كيا';
+        var fuelName = state.fuel === 'diesel' ? 'ديزل' : 'بنزين';
+        var modelName = (modelEl && modelEl.value) ? modelEl.value : '';
+        var yearName = (yearEl && yearEl.value) ? yearEl.value : '';
+        var systemName = (systemEl && systemEl.value) ? systemEl.value : '';
+
+        var text = 'السلام عليكم، أرغب بطلب تسعيرة قطع غيار لسيارة ' + brandName + ' ' + modelName + ' ' + yearName + ' (محرك ' + fuelName + ')' + (systemName ? ' - قسم ' + systemName : '') + ' برقم الهيكل (VIN) عبر متجر درة السيارة.';
+        if (waLink) {
+            waLink.href = 'https://wa.me/{{ wa_phone }}?text=' + encodeURIComponent(text);
+        }
+    }
+
+    window.executeDoraSearch = function(id) {
+        var modelEl = document.getElementById('dora-model-select-' + id);
+        var yearEl = document.getElementById('dora-year-select-' + id);
+        var systemEl = document.getElementById('dora-system-select-' + id);
+
+        var queryParts = [];
+        var brandName = state.brand === 'hyundai' ? 'هيونداي' : 'كيا';
+        queryParts.push(brandName);
+
+        if (modelEl && modelEl.value) queryParts.push(modelEl.value);
+        if (yearEl && yearEl.value) queryParts.push(yearEl.value);
+        if (systemEl && systemEl.value) queryParts.push(systemEl.value);
+
+        var keyword = queryParts.join(' ');
+        window.location.href = '/products?keyword=' + encodeURIComponent(keyword);
+    };
+})();
+</script>

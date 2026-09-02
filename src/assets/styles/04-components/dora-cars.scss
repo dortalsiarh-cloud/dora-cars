@@ -1,0 +1,299 @@
+/**
+ * ============================================================================
+ * DORA CARS DESIGN SYSTEM (هوية درة السيارة لقطع غيار هيونداي وكيا الكورية)
+ * ============================================================================
+ * Colors: Deep Navy (#0B192C), Dark Charcoal (#1E293B, #0F172A), Action Red (#DC2626)
+ * Accent: Gold (#F59E0B), Saudi Green (#006C35, #059669)
+ * Focus: Hyundai & Kia Parts (Petrol ⛽ & Diesel 🛢️) + Saudi National Day 96
+ * ============================================================================
+ */
+
+:root {
+  --dora-navy: #0B192C;
+  --dora-navy-dark: #07111E;
+  --dora-navy-light: #152A4A;
+  --dora-slate: #1E293B;
+  --dora-slate-dark: #0F172A;
+  --dora-slate-light: #334155;
+  --dora-red: #DC2626;
+  --dora-red-hover: #B91C1C;
+  --dora-red-glow: rgba(220, 38, 38, 0.35);
+  --dora-gold: #F59E0B;
+  --dora-gold-glow: rgba(245, 158, 11, 0.3);
+  --dora-green-ksa: #006C35;
+  --dora-green-ksa-dark: #004B23;
+  --dora-green-emerald: #059669;
+  --dora-border: rgba(255, 255, 255, 0.1);
+  --dora-radius: 12px;
+}
+
+/* ============================================================================
+   1. DORA CARS UTILITY & BADGE STYLES
+   ============================================================================ */
+
+.dora-badge-diesel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 6px;
+  font-size: 0.725rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.dora-badge-petrol {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.6rem;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  border-radius: 6px;
+  font-size: 0.725rem;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.dora-badge-mobis {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.65rem;
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 0.725rem;
+  font-weight: 800;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
+}
+
+.dora-badge-ksa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  background: linear-gradient(135deg, #006C35 0%, #059669 100%);
+  color: #ffffff;
+  border: 1px solid #34d399;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  box-shadow: 0 4px 14px rgba(0, 108, 53, 0.3);
+  animation: dora-pulse-glow 2.5s infinite ease-in-out;
+}
+
+@keyframes dora-pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(5, 150, 105, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(52, 211, 153, 0.7);
+  }
+}
+
+/* ============================================================================
+   2. DORA CARS ACTION BUTTONS
+   ============================================================================ */
+
+.dora-btn-red {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: #ffffff !important;
+  font-weight: 800;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.35);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.dora-btn-red:hover {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  box-shadow: 0 6px 22px rgba(220, 38, 38, 0.5);
+  transform: translateY(-2px);
+}
+
+.dora-btn-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff !important;
+  font-weight: 800;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.dora-btn-whatsapp:hover {
+  background: linear-gradient(135deg, #2ae771 0%, #15a392 100%);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.55);
+  transform: translateY(-2px);
+}
+
+/* ============================================================================
+   3. NATIONAL DAY HERO & COUNTDOWN STYLES
+   ============================================================================ */
+
+.dora-nd-hero {
+  position: relative;
+  background: radial-gradient(circle at 80% 20%, #004B23 0%, #07111E 45%, #0B192C 100%);
+  border-bottom: 2px solid rgba(52, 211, 153, 0.2);
+  overflow: hidden;
+}
+
+.dora-nd-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.dora-countdown-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  padding: 0.5rem 0.75rem;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+@media (min-width: 640px) {
+  .dora-countdown-card {
+    min-width: 72px;
+    padding: 0.65rem 1rem;
+  }
+}
+
+.dora-countdown-num {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #34d399;
+  line-height: 1;
+  font-family: monospace, system-ui, sans-serif;
+}
+
+.dora-countdown-lbl {
+  font-size: 0.675rem;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-top: 0.25rem;
+}
+
+/* 1-Click Coupon Copier Box */
+.dora-coupon-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.4rem 0.5rem 0.4rem 1rem;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1.5px dashed #34d399;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.dora-coupon-box:hover {
+  background: rgba(15, 23, 42, 1);
+  border-color: #6ee7b7;
+  transform: scale(1.02);
+}
+
+.dora-coupon-code {
+  font-family: monospace;
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+/* ============================================================================
+   4. KOREAN VEHICLE SELECTOR WIDGET
+   ============================================================================ */
+
+.dora-selector-container {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(11, 25, 44, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  padding: 1.5rem;
+}
+
+.dora-select-input {
+  width: 100%;
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: #ffffff;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.dora-select-input:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2);
+}
+
+/* ============================================================================
+   5. BUNDLE SAVINGS CARDS
+   ============================================================================ */
+
+.dora-bundle-card {
+  position: relative;
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.dora-bundle-card:hover {
+  border-color: #dc2626;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(220, 38, 38, 0.2);
+}
+
+.dora-bundle-discount {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 900;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+}

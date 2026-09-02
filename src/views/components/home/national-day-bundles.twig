@@ -1,0 +1,279 @@
+{#
+|--------------------------------------------------------------------------
+| DORA CARS: National Day Bundles & Special Maintenance Packages
+|--------------------------------------------------------------------------
+| Salla Twilight Component: home.national-day-bundles
+| Brand: درة السيارة (Dora Cars)
+| Target: Hyundai & Kia Petrol ⛽ & Diesel 🛢️ Bundles
+|--------------------------------------------------------------------------
+#}
+
+{% set bundles_id = 'dora-bundles-' ~ random(1000, 9999) %}
+{% set wa_phone = component.whatsapp_number|default(component.settings.whatsapp_number)|default(store.contacts.whatsapp|default(store.contacts.phone|default('966500000000')))|replace({'+': '', ' ': '', '-': ''}) %}
+{% set coupon_code = component.coupon_code|default(component.settings.coupon_code)|default('KSA96') %}
+
+<section
+    id="dora-bundles-section"
+    class="relative overflow-hidden py-12 sm:py-16 bg-slate-900 text-white border-b border-slate-800"
+    data-component="national-day-bundles"
+>
+    {# Ambient Lighting #}
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="speero-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        
+        {# Section Header #}
+        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-xs sm:text-sm font-bold text-emerald-300 shadow-sm mb-3">
+                <i class="sicon-gift text-base"></i>
+                <span>{{ component.badge|default(component.settings.badge)|default('باقات التوفير الكبرى 🇸🇦') }}</span>
+            </div>
+            
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-3 tracking-tight">
+                {{ component.title|default(component.settings.title)|default('باقات اليوم الوطني لقطع غيار هيونداي وكيا') }}
+            </h2>
+            
+            <p class="text-xs sm:text-base text-slate-300 max-w-2xl mx-auto opacity-90 leading-relaxed">
+                {{ component.description|default(component.settings.description)|default('وفر أكثر مع بكجات الصيانة المتكاملة المصممة خصيصاً لسيارتك الكورية (بنزين أو ديزل) بأعلى جودة وضمان التوافق التام.') }}
+            </p>
+        </div>
+
+        {# Bundles Grid #}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
+            
+            {# BUNDLE 1: Petrol Full Tune-up Package #}
+            <div class="dora-bundle-card flex flex-col justify-between group">
+                <div class="dora-bundle-discount">خصم 35%</div>
+                
+                <div>
+                    <div class="flex items-center gap-2 mb-3 mt-1">
+                        <span class="dora-badge-petrol">⛽ محركات بنزين</span>
+                        <span class="dora-badge-mobis">MOBIS</span>
+                    </div>
+
+                    <h3 class="text-lg font-black text-white group-hover:text-emerald-300 transition mb-2">
+                        باقة التصفية الشاملة للبنزين
+                    </h3>
+                    
+                    <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+                        مثالية لسيارات سوناتا، إلنترا، أكسنت، سبورتاج، K5 لاستعادة عزم المحرك وتوفير الوقود.
+                    </p>
+
+                    <ul class="space-y-2 mb-6 text-xs text-slate-200 border-t border-slate-700/60 pt-3">
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>طقم بواجي أصلية وكالة (4 حبات)</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>فلتر هواء محرك أصلي MOBIS</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>فلتر مكيف هواء نقي للمقصورة</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>منظف بخاخات ودورة وقود لوكاس أمريكي</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pt-4 border-t border-slate-800">
+                    <div class="flex items-baseline justify-between mb-3">
+                        <span class="text-xs text-slate-400">سعر العرض الوطني:</span>
+                        <div class="text-left">
+                            <span class="text-xs text-slate-400 line-through mr-1">320 ر.س</span>
+                            <span class="text-xl font-black text-emerald-400">208 ر.س</span>
+                        </div>
+                    </div>
+                    <a
+                        href="https://wa.me/{{ wa_phone }}?text={{ ('طلب باقة التصفية الشاملة للبنزين لمتجر درة السيارة بكود ' ~ coupon_code)|url_encode }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="dora-btn-red w-full text-xs py-2.5"
+                    >
+                        <span>اطلب الباقة الآن</span>
+                        <i class="sicon-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+
+            {# BUNDLE 2: Diesel Advanced Care Package #}
+            <div class="dora-bundle-card flex flex-col justify-between group ring-1 ring-emerald-500/30">
+                <div class="dora-bundle-discount bg-emerald-600">الأكثر طلباً ⭐</div>
+                
+                <div>
+                    <div class="flex items-center gap-2 mb-3 mt-1">
+                        <span class="dora-badge-diesel">🛢️ محركات ديزل</span>
+                        <span class="dora-badge-mobis">MOBIS</span>
+                    </div>
+
+                    <h3 class="text-lg font-black text-white group-hover:text-emerald-300 transition mb-2">
+                        باقة العناية بمحركات الديزل
+                    </h3>
+                    
+                    <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+                        مخصصة لسيارات توسان ديزل، سنتافي ديزل، ستاريا، وفان H1 لحماية البخاخات والطرمبة.
+                    </p>
+
+                    <ul class="space-y-2 mb-6 text-xs text-slate-200 border-t border-slate-700/60 pt-3">
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>فلتر ديزل أصلي وكالة مضاد للشوائب</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>فلتر زيت محرك أصلي ديزل</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>معالج قير أوتوماتيك ERRECOM إيطالي</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>معالج ومنظف دورة الديزل والتيربو</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pt-4 border-t border-slate-800">
+                    <div class="flex items-baseline justify-between mb-3">
+                        <span class="text-xs text-slate-400">سعر العرض الوطني:</span>
+                        <div class="text-left">
+                            <span class="text-xs text-slate-400 line-through mr-1">390 ر.س</span>
+                            <span class="text-xl font-black text-emerald-400">249 ر.س</span>
+                        </div>
+                    </div>
+                    <a
+                        href="https://wa.me/{{ wa_phone }}?text={{ ('طلب باقة العناية بمحركات الديزل لمتجر درة السيارة بكود ' ~ coupon_code)|url_encode }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="dora-btn-red w-full text-xs py-2.5 bg-gradient-to-r from-emerald-600 to-emerald-700"
+                    >
+                        <span>اطلب باقة الديزل</span>
+                        <i class="sicon-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+
+            {# BUNDLE 3: Golden Brake & Safety Package #}
+            <div class="dora-bundle-card flex flex-col justify-between group">
+                <div class="dora-bundle-discount">خصم 30%</div>
+                
+                <div>
+                    <div class="flex items-center gap-2 mb-3 mt-1">
+                        <span class="dora-badge-mobis">أمان 100%</span>
+                        <span class="px-2 py-0.5 rounded bg-slate-800 text-[11px] font-bold text-slate-300">هيونداي & كيا</span>
+                    </div>
+
+                    <h3 class="text-lg font-black text-white group-hover:text-emerald-300 transition mb-2">
+                        باقة الفرامل والأمان الذهبية
+                    </h3>
+                    
+                    <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+                        استجابة فورية بدون صوت صفير لجميع فئات وموديلات هيونداي وكيا.
+                    </p>
+
+                    <ul class="space-y-2 mb-6 text-xs text-slate-200 border-t border-slate-700/60 pt-3">
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>طقم فحمات/أقمشة فرامل أمامية سيراميك</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>طقم فحمات فرامل خلفية أصلية</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>علبة زيت فرامل DOT4 فائق التحمل</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>شحم كليبرات حراري ياباني</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pt-4 border-t border-slate-800">
+                    <div class="flex items-baseline justify-between mb-3">
+                        <span class="text-xs text-slate-400">سعر العرض الوطني:</span>
+                        <div class="text-left">
+                            <span class="text-xs text-slate-400 line-through mr-1">350 ر.س</span>
+                            <span class="text-xl font-black text-emerald-400">235 ر.س</span>
+                        </div>
+                    </div>
+                    <a
+                        href="https://wa.me/{{ wa_phone }}?text={{ ('طلب باقة الفرامل والأمان لمتجر درة السيارة بكود ' ~ coupon_code)|url_encode }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="dora-btn-red w-full text-xs py-2.5"
+                    >
+                        <span>اطلب باقة الفرامل</span>
+                        <i class="sicon-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+
+            {# BUNDLE 4: Extreme Cooling & AC Package #}
+            <div class="dora-bundle-card flex flex-col justify-between group">
+                <div class="dora-bundle-discount">خصم 45%</div>
+                
+                <div>
+                    <div class="flex items-center gap-2 mb-3 mt-1">
+                        <span class="px-2 py-0.5 rounded bg-blue-900/60 border border-blue-500/40 text-[11px] font-bold text-blue-300">تبريد وتكييف ❄️</span>
+                        <span class="dora-badge-mobis">ERRECOM</span>
+                    </div>
+
+                    <h3 class="text-lg font-black text-white group-hover:text-emerald-300 transition mb-2">
+                        باقة التبريد والتكييف القصوى
+                    </h3>
+                    
+                    <p class="text-xs text-slate-300 mb-4 leading-relaxed">
+                        برودة استثنائية وثبات حرارة المحرك في أصعب ظروف الصيف السعودي.
+                    </p>
+
+                    <ul class="space-y-2 mb-6 text-xs text-slate-200 border-t border-slate-700/60 pt-3">
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>إبرة معالجة تهريب فريون ERRECOM إيطالية</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>جالون ماء رديتر أحمر أصلي 50/50</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>فلتر مقصورة كربوني مضاد للبكتيريا</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="sicon-check text-emerald-400 font-bold"></i>
+                            <span>معطر ومنظف مجاري تكييف السيارة</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="pt-4 border-t border-slate-800">
+                    <div class="flex items-baseline justify-between mb-3">
+                        <span class="text-xs text-slate-400">سعر العرض الوطني:</span>
+                        <div class="text-left">
+                            <span class="text-xs text-slate-400 line-through mr-1">260 ر.س</span>
+                            <span class="text-xl font-black text-emerald-400">149 ر.س</span>
+                        </div>
+                    </div>
+                    <a
+                        href="https://wa.me/{{ wa_phone }}?text={{ ('طلب باقة التبريد والتكييف لمتجر درة السيارة بكود ' ~ coupon_code)|url_encode }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="dora-btn-red w-full text-xs py-2.5"
+                    >
+                        <span>اطلب باقة التكييف</span>
+                        <i class="sicon-arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

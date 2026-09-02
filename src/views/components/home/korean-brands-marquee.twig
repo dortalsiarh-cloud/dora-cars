@@ -1,0 +1,116 @@
+{#
+|--------------------------------------------------------------------------
+| DORA CARS: Korean & Global OEM Auto Parts Brands Marquee Showcase
+|--------------------------------------------------------------------------
+| Salla Twilight Component: home.korean-brands-marquee
+| Brand: درة السيارة (Dora Cars)
+| Features:
+| 1. Continuous Marquee of Official Hyundai, Kia, Mobis, and Top OEM Brands
+| 2. Trust Guarantee Badges (100% VIN Check, Fast Delivery across KSA, Mobis Genuine)
+|--------------------------------------------------------------------------
+#}
+
+{% set marquee_id = 'dora-brands-' ~ random(1000, 9999) %}
+
+{% set official_brands = [
+    {'name': 'موبيس أصلي MOBIS', 'subtitle': 'قطع وكالة معتمدة 🇰🇷', 'icon': 'sicon-award-ribbon', 'bg': 'from-red-950/60 to-slate-900'},
+    {'name': 'هيونداي HYUNDAI', 'subtitle': 'بنزين & ديزل', 'icon': 'sicon-car-side', 'bg': 'from-blue-950/60 to-slate-900'},
+    {'name': 'كيا KIA', 'subtitle': 'بنزين & ديزل', 'icon': 'sicon-car-side', 'bg': 'from-red-950/60 to-slate-900'},
+    {'name': 'ايريكوم ERRECOM', 'subtitle': 'معالجات إيطالية 🇮🇹', 'icon': 'sicon-shield-check', 'bg': 'from-sky-950/60 to-slate-900'},
+    {'name': 'دينسو DENSO', 'subtitle': 'كهرباء وبواجي ياباني 🇯🇵', 'icon': 'sicon-flash', 'bg': 'from-red-950/60 to-slate-900'},
+    {'name': 'بوش BOSCH', 'subtitle': 'فلاتر ومحركات ألماني 🇩🇪', 'icon': 'sicon-settings', 'bg': 'from-blue-950/60 to-slate-900'},
+    {'name': 'ليكوي مولي LIQUI MOLY', 'subtitle': 'زيوت ومعالجات ألمانية', 'icon': 'sicon-oil-can', 'bg': 'from-blue-950/60 to-slate-900'},
+    {'name': 'أمزويل AMSOIL', 'subtitle': 'زيوت تخليقية فائقة 🇺🇸', 'icon': 'sicon-star', 'bg': 'from-amber-950/60 to-slate-900'},
+    {'name': 'مساعدات KYB', 'subtitle': 'عكوس وتعليق ياباني', 'icon': 'sicon-tool', 'bg': 'from-red-950/60 to-slate-900'},
+    {'name': 'فاليو VALEO', 'subtitle': 'كلتشات ودينمو فرنسي', 'icon': 'sicon-check', 'bg': 'from-emerald-950/60 to-slate-900'},
+    {'name': 'لوكاس LUCAS', 'subtitle': 'منظفات وقود أمريكي 🇺🇸', 'icon': 'sicon-drop', 'bg': 'from-blue-950/60 to-slate-900'}
+] %}
+
+<section
+    id="{{ marquee_id }}"
+    class="py-8 sm:py-12 bg-slate-950 border-b border-slate-800/80 overflow-hidden relative"
+    data-component="korean-brands-marquee"
+>
+    {# Background Gradient #}
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 pointer-events-none"></div>
+
+    <div class="speero-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 mb-6">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-slate-800 pb-5">
+            <div>
+                <div class="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 mb-1">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>وكالات وماركات معتمدة 100%</span>
+                </div>
+                <h3 class="text-lg sm:text-xl font-black text-white">
+                    شركاء الجودة لقطع غيار هيونداي وكيا
+                </h3>
+            </div>
+            
+            {# Trust Features #}
+            <div class="flex flex-wrap items-center gap-3 text-xs text-slate-300">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900 border border-slate-800">
+                    <i class="sicon-shield-check text-emerald-400"></i>
+                    <span>ضمان التوافق برقم الهيكل (VIN)</span>
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900 border border-slate-800">
+                    <i class="sicon-shipping-fast text-blue-400"></i>
+                    <span>شحن سريع لجميع مدن المملكة</span>
+                </span>
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-slate-900 border border-slate-800">
+                    <i class="sicon-award-ribbon text-amber-400"></i>
+                    <span>قطع أصلية وموبيس معتمدة</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    {# Continuous Infinite Ticker Strip #}
+    <div class="relative w-full overflow-hidden">
+        <div class="flex gap-4 w-max animate-dora-marquee hover:[animation-play-state:paused]">
+            {# Double Loop for Infinite Scrolling #}
+            {% for i in 1..2 %}
+                {% for brand in official_brands %}
+                    <div class="flex items-center gap-3.5 px-5 py-3 rounded-xl bg-gradient-to-br {{ brand.bg }} border border-slate-800 hover:border-emerald-500/50 shadow-lg min-w-[210px] shrink-0 transition-all">
+                        <div class="w-10 h-10 rounded-lg bg-slate-900/90 border border-slate-700 flex items-center justify-center text-white shrink-0">
+                            <i class="{{ brand.icon }} text-lg text-amber-400"></i>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-black text-white leading-tight">{{ brand.name }}</span>
+                            <span class="block text-[11px] font-semibold text-slate-400 mt-0.5">{{ brand.subtitle }}</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+@keyframes dora-marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(50%);
+    }
+}
+
+.animate-dora-marquee {
+    display: flex;
+    width: max-content;
+    animation: dora-marquee-scroll 32s linear infinite;
+}
+
+[dir="ltr"] .animate-dora-marquee {
+    animation: dora-marquee-scroll-ltr 32s linear infinite;
+}
+
+@keyframes dora-marquee-scroll-ltr {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+</style>

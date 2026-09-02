@@ -85,6 +85,87 @@
             "variant": "h6"
         },
         {
+            "type": "static",
+            "format": "title",
+            "id": "static-dora-nd-title",
+            "value": "<div class='rounded-lg' style='background: linear-gradient(135deg, #004B23 0%, #0B192C 100%); display: flex; justify-content: center; align-items: center;padding: 15px;margin-bottom: 20px !important; flex-direction: column;gap: 8px; border: 1px solid #34d399;'><h6 style='color: #ffffff;font-size: 16px; font-weight: bold;'>🇸🇦 هوية درة السيارة وعروض اليوم الوطني 96</h6><p style='color: #a7f3d0; font-size: 12px; margin: 0;'>تخصيص كامل لقطع غيار هيونداي وكيا (بنزين وديزل) وبكجات التوفير والكوبونات</p></div>",
+            "variant": "h6"
+        },
+        {
+            "id": "dora_nd_topbar_enabled",
+            "label": "تفعيل شريط الإعلانات الوطني العلوي (National Day Top Banner)",
+            "description": "إظهار شريط علوي مع زر الواتساب للطلب بالهيكل وكود الخصم",
+            "type": "boolean",
+            "icon": "sicon-bell",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "dora_nd_topbar_text",
+            "label": "نص الشريط الإعلاني الوطني",
+            "type": "string",
+            "format": "text",
+            "value": "🇸🇦 عروض اليوم الوطني 96: خصومات حصرية على قطع غيار هيونداي وكيا (بنزين وديزل) + شحن سريع لكافة مناطق المملكة | نوفر القطع غير المدرجة بالطلب برقم الهيكل"
+        },
+        {
+            "id": "dora_nd_hero_enabled",
+            "label": "عرض قسم هيرو اليوم الوطني الفاخر (National Day Grand Hero)",
+            "description": "بانر اليوم الوطني الملكي مع مؤقت العد التنازلي التفاعلي ونسخ كود الخصم بنقرة واحدة",
+            "type": "boolean",
+            "icon": "sicon-award-ribbon",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "dora_korean_selector_enabled",
+            "label": "عرض محدد سيارات هيونداي وكيا والوقود (Korean Vehicle & Engine Selector)",
+            "description": "أداة تفاعلية لاختيار الماركة والموديل ونوع المحرك (بنزين/ديزل) والبحث المباشر",
+            "type": "boolean",
+            "icon": "sicon-car-side",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "dora_nd_bundles_enabled",
+            "label": "عرض باقات وبكجات التوفير لليوم الوطني (National Day Bundles)",
+            "description": "بكجات صيانة البنزين، الديزل، الفرامل، والتكييف مع نسبة التوفير والطلب السريع",
+            "type": "boolean",
+            "icon": "sicon-gift",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "dora_korean_brands_enabled",
+            "label": "عرض شريط وكالات وماركات قطع الغيار والزيوت الكورية (Korean OEM Brands Marquee)",
+            "description": "شريط متحرك فاخر لموبيس، هيونداي، كيا، ايريكوم، دينسو، بوش، ليكوي مولي",
+            "type": "boolean",
+            "icon": "sicon-layout-grid-rearrange",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
+        },
+        {
+            "id": "dora_coupon_code",
+            "label": "كود خصم اليوم الوطني الافتراضي",
+            "type": "string",
+            "format": "text",
+            "value": "KSA96"
+        },
+        {
+            "type": "static",
+            "id": "static-line-dora",
+            "format": "line"
+        },
+        {
             "id": "header_is_sticky",
             "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير لأسفل",
             "description": "يُنصح بالغاء تفعيلها في حالة وجود عناصر كثيرة في القائمة المنسدلة",

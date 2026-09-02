@@ -1,0 +1,313 @@
+{#
+|--------------------------------------------------------------------------
+| DORA CARS: Luxury Saudi National Day 96 Grand Hero Section
+|--------------------------------------------------------------------------
+| Salla Twilight Component: home.national-day-hero
+| Brand: درة السيارة (Dora Cars) - متجر قطع غيار هيونداي وكيا (بنزين وديزل)
+| Features:
+| 1. Royal KSA Green & Deep Navy Background with Gold Calligraphy Accents
+| 2. Live Interactive Countdown Timer to National Day Offer Expiry
+| 3. 1-Click Interactive Coupon Code Copier (KSA96) with Success Tooltip
+| 4. 3 High-Impact Launchpad Action Cards (Hyundai/Kia Deals, VIN Quote, Bundles)
+|--------------------------------------------------------------------------
+#}
+
+{% set hero_id = 'dora-nd-hero-' ~ random(1000, 9999) %}
+{% set end_date = component.end_date|default(component.settings.end_date)|default('2026-09-24T23:59:59') %}
+{% set coupon_code = component.coupon_code|default(component.settings.coupon_code)|default('KSA96') %}
+{% set bg_img = component.bg_image.url|default(component.bg_image)|default(component.settings.bg_image.url)|default(component.settings.bg_image) %}
+{% set wa_phone = component.whatsapp_number|default(component.settings.whatsapp_number)|default(store.contacts.whatsapp|default(store.contacts.phone|default('966500000000')))|replace({'+': '', ' ': '', '-': ''}) %}
+{% set search_url = component.search_url|default(component.settings.search_url)|default('/products') %}
+
+<section
+    id="{{ hero_id }}"
+    class="dora-nd-hero relative overflow-hidden py-10 sm:py-16 text-white border-b border-emerald-500/20"
+    data-component="national-day-hero"
+>
+    {# 1. Background Image Layer if uploaded #}
+    {% if bg_img %}
+        <div class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-25" style="background-image: url('{{ bg_img }}');"></div>
+    {% endif %}
+
+    {# 2. Ambient Lighting Effects (Saudi Green + Navy Blue + Gold) #}
+    <div class="absolute -top-28 -right-28 w-96 h-96 bg-emerald-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-28 -left-28 w-96 h-96 bg-blue-700/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-48 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="speero-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        
+        {# Campaign Top Badge & Main Header #}
+        <div class="max-w-4xl mx-auto text-center flex flex-col items-center gap-3 sm:gap-4 mb-8 sm:mb-12">
+            
+            {# Official National Day Badge #}
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-bold shadow-lg backdrop-blur-md">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span>🇸🇦 {{ component.badge|default(component.settings.badge)|default('عِزّنا بطبعنا | عروض اليوم الوطني السعودي 96') }}</span>
+                <span class="text-amber-400 font-black">درة السيارة</span>
+            </div>
+
+            {# Grand Main Title #}
+            <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight text-white">
+                {{ component.title|default(component.settings.title)|default('عِزّنا بكرمنا.. عروض اليوم الوطني الكبرى') }}
+                <span class="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-amber-300 to-emerald-400">
+                    {{ component.subtitle|default(component.settings.subtitle)|default('على قطع غيار هيونداي وكيا (بنزين وديزل)') }}
+                </span>
+            </h1>
+
+            <p class="text-xs sm:text-base text-slate-300 max-w-2xl font-normal leading-relaxed opacity-95">
+                {{ component.description|default(component.settings.description)|default('احصل على أقوى خصومات العام على القطع الأصلية والموبيس لمنظومات الديزل والبنزين، مع فحص التوافق برقم الهيكل 100% وشحن سريع لكافة مناطق المملكة.') }}
+            </p>
+
+            {# Interactive Coupon Box & Live Countdown Timer Container #}
+            <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-2 pt-2 w-full">
+                
+                {# 1-Click Coupon Copier #}
+                <div class="flex flex-col items-center gap-1.5">
+                    <span class="text-xs text-emerald-300 font-bold">كود خصم اليوم الوطني الإضافي</span>
+                    <div
+                        id="dora-coupon-btn-{{ hero_id }}"
+                        class="dora-coupon-box group"
+                        onclick="copyDoraCoupon('{{ coupon_code }}', '{{ hero_id }}')"
+                        title="انقر لنسخ الكوبون"
+                    >
+                        <i class="sicon-ticket text-emerald-400 text-lg group-hover:rotate-12 transition"></i>
+                        <span class="dora-coupon-code">{{ coupon_code }}</span>
+                        <button type="button" class="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition shadow">
+                            نسخ الكود
+                        </button>
+                    </div>
+                    <span id="dora-copy-msg-{{ hero_id }}" class="text-[11px] text-emerald-400 font-bold opacity-0 transition-opacity duration-300">
+                        ✓ تم نسخ كود الخصم بنجاح!
+                    </span>
+                </div>
+
+                {# Vertical Divider #}
+                <div class="hidden sm:block w-px h-14 bg-emerald-500/20"></div>
+
+                {# Live Countdown Timer #}
+                <div class="flex flex-col items-center gap-1.5">
+                    <span class="text-xs text-amber-300 font-bold flex items-center gap-1">
+                        <i class="sicon-time text-sm"></i> ينتهي العرض خلال:
+                    </span>
+                    <div class="flex items-center gap-1.5 sm:gap-2" id="dora-timer-{{ hero_id }}">
+                        <div class="dora-countdown-card">
+                            <span class="dora-countdown-num" id="dora-days-{{ hero_id }}">00</span>
+                            <span class="dora-countdown-lbl">يوم</span>
+                        </div>
+                        <span class="text-emerald-400 font-black">:</span>
+                        <div class="dora-countdown-card">
+                            <span class="dora-countdown-num" id="dora-hours-{{ hero_id }}">00</span>
+                            <span class="dora-countdown-lbl">ساعة</span>
+                        </div>
+                        <span class="text-emerald-400 font-black">:</span>
+                        <div class="dora-countdown-card">
+                            <span class="dora-countdown-num" id="dora-mins-{{ hero_id }}">00</span>
+                            <span class="dora-countdown-lbl">دقيقة</span>
+                        </div>
+                        <span class="text-emerald-400 font-black">:</span>
+                        <div class="dora-countdown-card">
+                            <span class="dora-countdown-num text-red-400" id="dora-secs-{{ hero_id }}">00</span>
+                            <span class="dora-countdown-lbl">ثانية</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        {# 3 HIGH-IMPACT LUXURY LAUNCHPAD CARDS #}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+            
+            {# CARD 1: Hyundai & Kia Parts (Petrol ⛽ & Diesel 🛢️) #}
+            <a
+                href="{{ search_url }}?category=korean-parts"
+                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/80 hover:to-slate-850 border border-slate-700/80 hover:border-emerald-400/70 shadow-xl hover:shadow-emerald-500/20 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 no-underline block"
+            >
+                <div class="absolute -top-12 -left-12 w-28 h-28 bg-emerald-400/10 rounded-full blur-2xl group-hover:bg-emerald-400/25 transition"></div>
+                
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/20 transition">
+                            <i class="sicon-car-side text-2xl"></i>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <span class="dora-badge-diesel">🛢️ ديزل</span>
+                            <span class="dora-badge-petrol">⛽ بنزين</span>
+                        </div>
+                    </div>
+
+                    <h2 class="text-lg sm:text-xl font-black text-white group-hover:text-emerald-300 transition mb-2">
+                        قطع غيار هيونداي وكيا
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                        تصفح آلاف القطع المعتمدة لمحركات الديزل والبنزين (سوناتا، إلنترا، توسان، أكسنت، K5، سبورتاج، سنتافي).
+                    </p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs sm:text-sm font-bold text-emerald-400 group-hover:text-emerald-300">
+                    <span>تصفح عروض اليوم الوطني</span>
+                    <i class="sicon-arrow-left group-hover:-translate-x-1.5 transition"></i>
+                </div>
+            </a>
+
+            {# CARD 2: Instant WhatsApp VIN Quote with National Day Discount (Red/WhatsApp Action) #}
+            <a
+                href="https://wa.me/{{ wa_phone }}?text={{ ('السلام عليكم، أرغب بطلب تسعيرة قطع غيار برقم الهيكل (VIN) مع الاستفادة من خصم اليوم الوطني ' ~ coupon_code ~ ' لمتجر درة السيارة')|url_encode }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/80 hover:to-slate-850 border border-emerald-500/40 hover:border-emerald-400 shadow-xl hover:shadow-emerald-500/30 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 no-underline block ring-1 ring-emerald-500/20"
+            >
+                <div class="absolute -top-12 -left-12 w-28 h-28 bg-emerald-500/15 rounded-full blur-2xl group-hover:bg-emerald-500/30 transition"></div>
+                
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500/30 transition">
+                            <i class="sicon-whatsapp text-2xl"></i>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full bg-red-600/90 text-white text-[11px] font-black shadow-sm">
+                            تسعير فوري ⚡
+                        </span>
+                    </div>
+
+                    <h2 class="text-lg sm:text-xl font-black text-white group-hover:text-emerald-300 transition mb-2">
+                        تسعير فوري برقم الهيكل (VIN)
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                        أرسل رقم استمارة سيارتك أو رقم الهيكل عبر الواتساب، وسيقوم خبراؤنا بتجهيز القطع المتوافقة 100% بأقل سعر.
+                    </p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs sm:text-sm font-bold text-emerald-400 group-hover:text-emerald-300">
+                    <span>تواصل مع فني درة السيارة</span>
+                    <i class="sicon-arrow-left group-hover:-translate-x-1.5 transition"></i>
+                </div>
+            </a>
+
+            {# CARD 3: National Day Maintenance Bundles (Action Red / Gold Accent) #}
+            <a
+                href="#dora-bundles-section"
+                class="group text-right relative overflow-hidden p-6 sm:p-7 rounded-2xl bg-gradient-to-b from-slate-900/95 to-slate-900/80 hover:to-slate-850 border border-slate-700/80 hover:border-red-500/70 shadow-xl hover:shadow-red-500/20 transition-all duration-300 flex flex-col justify-between cursor-pointer hover:-translate-y-1.5 no-underline block"
+            >
+                <div class="absolute -top-12 -left-12 w-28 h-28 bg-red-500/10 rounded-full blur-2xl group-hover:bg-red-500/25 transition"></div>
+                
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 group-hover:scale-110 group-hover:bg-red-500/20 transition">
+                            <i class="sicon-gift text-2xl"></i>
+                        </div>
+                        <span class="dora-badge-mobis">🇰🇷 أصلي MOBIS</span>
+                    </div>
+
+                    <h2 class="text-lg sm:text-xl font-black text-white group-hover:text-red-300 transition mb-2">
+                        بكجات وباقات التوفير الكبرى
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
+                        باقات متكاملة تشمل فلاتر، زيوت، تصفية مكينة البنزين، وصيانة الديزل بخصم يصل حتى 50% مع شحن مجاني.
+                    </p>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-800 flex items-center justify-between text-xs sm:text-sm font-bold text-red-400 group-hover:text-red-300">
+                    <span>استكشف الباقات الحصرية</span>
+                    <i class="sicon-arrow-left group-hover:-translate-x-1.5 transition"></i>
+                </div>
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+{# Dynamic JavaScript for Countdown Timer and 1-Click Coupon Copier #}
+<script>
+(function() {
+    // 1. Coupon Copy Functionality
+    window.copyDoraCoupon = function(code, heroId) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(code).then(function() {
+                showDoraCopyFeedback(heroId);
+            }).catch(function() {
+                fallbackCopy(code, heroId);
+            });
+        } else {
+            fallbackCopy(code, heroId);
+        }
+    };
+
+    function fallbackCopy(code, heroId) {
+        var textArea = document.createElement("textarea");
+        textArea.value = code;
+        textArea.style.position = "fixed";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showDoraCopyFeedback(heroId);
+        } catch (err) {
+            console.error('Copy failed', err);
+        }
+        document.body.removeChild(textArea);
+    }
+
+    function showDoraCopyFeedback(heroId) {
+        var msg = document.getElementById('dora-copy-msg-' + heroId);
+        if (msg) {
+            msg.style.opacity = '1';
+            setTimeout(function() {
+                msg.style.opacity = '0';
+            }, 3000);
+        }
+    }
+
+    // 2. Countdown Timer Functionality
+    var targetDateStr = "{{ end_date }}";
+    var targetTime = new Date(targetDateStr).getTime();
+    if (isNaN(targetTime)) {
+        // Fallback to 7 days from now
+        targetTime = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
+    }
+
+    var heroId = "{{ hero_id }}";
+
+    function updateTimer() {
+        var now = new Date().getTime();
+        var diff = targetTime - now;
+
+        if (diff <= 0) {
+            var elD = document.getElementById('dora-days-' + heroId);
+            var elH = document.getElementById('dora-hours-' + heroId);
+            var elM = document.getElementById('dora-mins-' + heroId);
+            var elS = document.getElementById('dora-secs-' + heroId);
+            if (elD) elD.innerText = '00';
+            if (elH) elH.innerText = '00';
+            if (elM) elM.innerText = '00';
+            if (elS) elS.innerText = '00';
+            return;
+        }
+
+        var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        var secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        var dStr = (days < 10 ? '0' : '') + days;
+        var hStr = (hours < 10 ? '0' : '') + hours;
+        var mStr = (mins < 10 ? '0' : '') + mins;
+        var sStr = (secs < 10 ? '0' : '') + secs;
+
+        var elD = document.getElementById('dora-days-' + heroId);
+        var elH = document.getElementById('dora-hours-' + heroId);
+        var elM = document.getElementById('dora-mins-' + heroId);
+        var elS = document.getElementById('dora-secs-' + heroId);
+
+        if (elD) elD.innerText = dStr;
+        if (elH) elH.innerText = hStr;
+        if (elM) elM.innerText = mStr;
+        if (elS) elS.innerText = sStr;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+})();
+</script>

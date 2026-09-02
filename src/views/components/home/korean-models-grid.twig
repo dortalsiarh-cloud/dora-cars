@@ -1,0 +1,91 @@
+{#
+|--------------------------------------------------------------------------
+| DORA CARS: Visual Korean Models Grid & Showcase (Hyundai & Kia)
+|--------------------------------------------------------------------------
+| Salla Twilight Component: home.korean-models-grid
+| Brand: درة السيارة (Dora Cars)
+| Features:
+| 1. High-Impact Car Model Cards with Fuel Badges (⛽ بنزين / 🛢️ ديزل)
+| 2. Direct Filter Links to Hyundai & Kia Car Parts
+|--------------------------------------------------------------------------
+#}
+
+{% set grid_id = 'dora-models-' ~ random(1000, 9999) %}
+
+{% set korean_models = [
+    {'name': 'هيونداي سوناتا', 'en': 'Sonata', 'fuel': 'petrol', 'fuel_label': '⛽ بنزين', 'url': '/products?keyword=سوناتا', 'badge': 'الأكثر طلباً'},
+    {'name': 'هيونداي إلنترا', 'en': 'Elantra', 'fuel': 'petrol', 'fuel_label': '⛽ بنزين', 'url': '/products?keyword=النترا', 'badge': 'الأكثر مبيعاً'},
+    {'name': 'هيونداي أكسنت', 'en': 'Accent', 'fuel': 'petrol', 'fuel_label': '⛽ بنزين', 'url': '/products?keyword=اكسنت', 'badge': 'اقتصادي'},
+    {'name': 'هيونداي توسان', 'en': 'Tucson', 'fuel': 'both', 'fuel_label': '🛢️ ديزل & ⛽ بنزين', 'url': '/products?keyword=توسان', 'badge': 'دفع رباعي'},
+    {'name': 'هيونداي سنتافي', 'en': 'Santa Fe', 'fuel': 'both', 'fuel_label': '🛢️ ديزل & ⛽ بنزين', 'url': '/products?keyword=سنتافي', 'badge': 'عائلي'},
+    {'name': 'هيونداي أزيرا', 'en': 'Azera', 'fuel': 'petrol', 'fuel_label': '⛽ بنزين V6', 'url': '/products?keyword=ازيرا', 'badge': 'فخامة'},
+    {'name': 'كيا K5 / أوبتيما', 'en': 'Optima / K5', 'fuel': 'petrol', 'fuel_label': '⛽ بنزين', 'url': '/products?keyword=K5', 'badge': 'رياضي'},
+    {'name': 'كيا سبورتاج', 'en': 'Sportage', 'fuel': 'both', 'fuel_label': '🛢️ ديزل & ⛽ بنزين', 'url': '/products?keyword=سبورتاج', 'badge': 'كروس أوفر'},
+    {'name': 'كيا سيراتو / K3', 'en': 'Cerato / K3', 'fuel': 'petrol', 'fuel_label': '⛽ بنزين', 'url': '/products?keyword=سيراتو', 'badge': 'عملي'},
+    {'name': 'كيا سورينتو', 'en': 'Sorento', 'fuel': 'both', 'fuel_label': '🛢️ ديزل & ⛽ بنزين', 'url': '/products?keyword=سورينتو', 'badge': '7 مقاعد'},
+    {'name': 'هيونداي ستاريا', 'en': 'Staria', 'fuel': 'diesel', 'fuel_label': '🛢️ محرك ديزل', 'url': '/products?keyword=ستاريا', 'badge': 'فان حديث'},
+    {'name': 'هيونداي باليسيد', 'en': 'Palisade', 'fuel': 'petrol', 'fuel_label': '⛽ بنزين V6', 'url': '/products?keyword=باليسيد', 'badge': 'VIP'}
+] %}
+
+<section
+    id="{{ grid_id }}"
+    class="py-12 sm:py-16 bg-slate-950 text-white border-b border-slate-800"
+    data-component="korean-models-grid"
+>
+    <div class="speero-container max-w-7xl mx-auto px-4 sm:px-6">
+        
+        {# Header #}
+        <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-8 sm:mb-12">
+            <div>
+                <div class="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 mb-2">
+                    <i class="sicon-car-side"></i>
+                    <span>تصفح حسب سيارتك</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-black text-white">
+                    موديلات هيونداي وكيا المدعومة
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                    نوفر كافة قطع الغيار الأصلية والموبيس لمنظومات الديزل والبنزين لكافة الموديلات.
+                </p>
+            </div>
+
+            <a href="/products" class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-emerald-400 hover:text-emerald-300 transition">
+                <span>عرض كافة المنتجات</span>
+                <i class="sicon-arrow-left"></i>
+            </a>
+        </div>
+
+        {# Grid of Models #}
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3.5 sm:gap-4">
+            {% for model in korean_models %}
+                <a
+                    href="{{ model.url }}"
+                    class="group relative flex flex-col justify-between p-4 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500/60 hover:bg-slate-850 shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 no-underline block overflow-hidden"
+                >
+                    {# Top Badge #}
+                    <div class="flex items-center justify-between gap-1 mb-3">
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300 group-hover:bg-emerald-950 group-hover:text-emerald-300 transition">
+                            {{ model.badge }}
+                        </span>
+                        <i class="sicon-car-side text-slate-600 group-hover:text-emerald-400 text-sm transition"></i>
+                    </div>
+
+                    {# Model Name #}
+                    <div class="mb-3">
+                        <h3 class="text-sm sm:text-base font-black text-white group-hover:text-emerald-300 transition leading-tight">
+                            {{ model.name }}
+                        </h3>
+                        <span class="text-[11px] font-semibold text-slate-400">{{ model.en }}</span>
+                    </div>
+
+                    {# Fuel Type Tag #}
+                    <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-slate-300">{{ model.fuel_label }}</span>
+                        <i class="sicon-arrow-left text-xs text-slate-500 group-hover:text-emerald-400 group-hover:-translate-x-1 transition"></i>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>

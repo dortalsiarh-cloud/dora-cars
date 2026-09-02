@@ -425,3 +425,76 @@
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(220, 38, 38, 0.45);
 }
+
+/* ============================================================================
+   7. LUXURY AUTOMOTIVE PRODUCT DETAILS PAGE (DORA CARS VIP)
+   ============================================================================ */
+
+.container--product-details {
+  max-width: 1280px !important;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3.5rem !important;
+}
+
+.dora-prod-gallery-card {
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 24px;
+  padding: 1rem;
+  box-shadow: 0 10px 30px -10px rgba(11, 25, 44, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.dora-prod-price-card {
+  background: linear-gradient(135deg, rgba(11, 25, 44, 0.03) 0%, rgba(14, 165, 233, 0.06) 100%);
+  border: 1px solid rgba(14, 165, 233, 0.25);
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.dora-prod-price-num {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: #0B192C;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.dora-prod-model-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.95rem;
+  background: #0f172a;
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 10px;
+  font-size: 0.825rem;
+  font-weight: 800;
+  font-family: monospace, sans-serif;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dora-trust-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1e293b;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.dora-trust-badge-item:hover {
+  transform: translateY(-2px);
+  border-color: #0ea5e9;
+}
+

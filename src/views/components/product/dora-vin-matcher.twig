@@ -1,26 +1,24 @@
 {#
 |--------------------------------------------------------------------------
-| DORA CARS: Smart VIN Compatibility & Korean Engine Specs Widget
+| DORA CARS: Genuine Part Specs & VIN Order Attachment Box
 |--------------------------------------------------------------------------
 | Features:
-| 1. Interactive VIN Matcher (Hyundai/Kia - Petrol & Diesel)
-| 2. OEM / MOBIS Part Number Copier
-| 3. Out-of-Stock VIP WhatsApp Special Sourcing Request
-| 4. Genuine Guarantee & Fast Shipping Badges
+| 1. OEM Part Number Copier
+| 2. Genuine Certification Status (أصلي وكالة معتمد)
+| 3. VIN Order Attachment (حفظ رقم الهيكل مع الطلب للمطابقة قبل الشحن)
+| 4. Harmonized Dora Cars Brand Color Palette (#0B192C & Cyan & Red)
 |--------------------------------------------------------------------------
 #}
 
 {% set wa_number = store.contacts.whatsapp|default(store.contacts.phone|default('966500000000'))|replace({'+': '', ' ': '', '-': ''}) %}
-{% set product_sku = product.sku|default(product.barcode|default('MOBIS-OEM')) %}
-{% set is_diesel = ('ديزل' in product.name or 'ديزل' in product.description|default('')) %}
-{% set is_petrol = ('بنزين' in product.name or 'بنزين' in product.description|default('')) %}
+{% set product_sku = product.sku|default(product.barcode|default('GENUINE-OEM')) %}
 
-<div class="dora-product-automotive-card mb-6 rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-900/95 shadow-xl text-white">
+<div class="dora-product-automotive-card mb-6 rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-sm text-slate-800">
     
-    {# Top Automotive Header #}
-    <div class="p-4 sm:p-5 border-b border-slate-800 bg-gradient-to-r from-slate-950 via-slate-900 to-blue-950/40 flex flex-wrap items-center justify-between gap-3">
+    {# Top Automotive Header with Dora Deep Navy #}
+    <div class="p-4 sm:p-4.5 bg-slate-900 border-b border-slate-800 text-white flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center gap-2.5">
-            <div class="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center text-cyan-300 shadow-sm">
+            <div class="w-9 h-9 rounded-xl bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-300">
                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
                     <circle cx="7" cy="17" r="2"/>
@@ -30,41 +28,44 @@
             </div>
             <div>
                 <h4 class="text-sm font-black text-white flex items-center gap-1.5">
-                    <span>بيانات التوافق والمحرك</span>
-                    <span class="text-[11px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">فحص فوري</span>
+                    <span>بيانات القطعة والمطابقة الفنية</span>
                 </h4>
-                <p class="text-[11px] text-slate-300 font-normal">مطابقة 100% لمنظومات هيونداي وكيا الكورية</p>
+                <p class="text-[11px] text-slate-300 font-normal">قطع غيار كورية أصلية معتمدة لهيونداي وكيا</p>
             </div>
         </div>
 
         {# Engine Fuel Chips #}
         <div class="flex items-center gap-1.5">
-            <span class="dora-badge-diesel">🛢️ ديزل CRDi</span>
-            <span class="dora-badge-petrol">⛽ بنزين GDI</span>
+            {% if 'ديزل' in product.name or 'ديزل' in product.description|default('') %}
+                <span class="dora-badge-diesel">🛢️ ديزل CRDi</span>
+            {% endif %}
+            {% if 'بنزين' in product.name or 'بنزين' in product.description|default('') %}
+                <span class="dora-badge-petrol">⛽ بنزين GDI</span>
+            {% endif %}
         </div>
     </div>
 
-    {# Body: Specs Grid & VIN Interactive Checker #}
+    {# Body: Specs & VIN Order Input #}
     <div class="p-4 sm:p-5 space-y-4">
         
         {# Row 1: OEM Part Number & Genuine Status #}
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             
             {# Part Number / SKU Box with 1-Click Copy #}
-            <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-between">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
                 <div>
-                    <span class="block text-[10px] font-bold text-slate-400">رقم القطعة الأصلي (OEM Part #)</span>
-                    <strong id="dora-prod-sku-text" class="text-xs sm:text-sm font-mono font-black text-cyan-300 tracking-wider">
+                    <span class="block text-[11px] font-bold text-slate-500">رقم القطعة الأصلي (OEM Part #)</span>
+                    <strong id="dora-prod-sku-text" class="text-xs sm:text-sm font-mono font-black text-slate-900 tracking-wider">
                         {{ product_sku }}
                     </strong>
                 </div>
                 <button
                     type="button"
                     onclick="copyDoraPartNum('{{ product_sku }}')"
-                    class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-[11px] font-bold text-slate-200 border border-slate-700 transition flex items-center gap-1 cursor-pointer"
+                    class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-[11px] font-bold text-cyan-300 transition flex items-center gap-1 cursor-pointer shadow-sm"
                     title="نسخ رقم القطعة"
                 >
-                    <svg class="w-3.5 h-3.5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                     </svg>
@@ -73,84 +74,61 @@
             </div>
 
             {# Brand / Certification Badge #}
-            <div class="p-3 rounded-xl bg-slate-950/70 border border-slate-800 flex items-center justify-between">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
                 <div>
-                    <span class="block text-[10px] font-bold text-slate-400">الجودة والاعتماد</span>
-                    <strong class="text-xs sm:text-sm font-black text-white flex items-center gap-1">
-                        <span>أصلي MOBIS معتمد</span>
-                        <span class="text-xs text-cyan-400">🇰🇷</span>
+                    <span class="block text-[11px] font-bold text-slate-500">الاعتماد والجودة</span>
+                    <strong class="text-xs sm:text-sm font-black text-slate-900 flex items-center gap-1">
+                        <span>قطع غيار أصلية معتمدة</span>
+                        <span class="text-xs text-cyan-600">🇰🇷</span>
                     </strong>
                 </div>
-                <span class="px-2 py-0.5 rounded text-[10px] font-black bg-red-600/90 text-white shadow-sm">
+                <span class="px-2.5 py-1 rounded-md text-[10px] font-black bg-red-600 text-white shadow-sm">
                     GENUINE
                 </span>
             </div>
 
         </div>
 
-        {# Row 2: Interactive Smart VIN Compatibility Matcher #}
-        <div class="p-3.5 sm:p-4 rounded-xl bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 border border-cyan-500/30">
-            <label class="block text-xs font-bold text-slate-200 mb-2 flex items-center justify-between">
-                <span class="flex items-center gap-1.5">
-                    <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <span>تحقق من توافق القطعة مع سيارتك (رقم الهيكل VIN):</span>
+        {# Row 2: VIN Order Attachment Field #}
+        <div class="p-4 rounded-xl bg-slate-50 border border-cyan-200/90">
+            <label for="dora-vin-input" class="block text-xs font-black text-slate-900 mb-1.5 flex items-center justify-between">
+                <span class="flex items-center gap-1.5 text-slate-900">
+                    <span class="text-cyan-600 text-sm">🔒</span>
+                    <span>أدخل رقم الهيكل (VIN) لسيارتك للتأكد من المطابقة قبل الشحن:</span>
                 </span>
-                <span class="text-[10px] text-cyan-400 font-normal">17 حرف/رقم</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-cyan-100 text-cyan-800 font-bold">17 حرف/رقم</span>
             </label>
 
-            <div class="flex flex-col sm:flex-row gap-2">
-                <div class="relative flex-1">
-                    <input
-                        type="text"
-                        id="dora-vin-input"
-                        placeholder="أدخل رقم الهيكل (مثل: KMHD341...)"
-                        maxlength="17"
-                        class="w-full uppercase font-mono px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white placeholder-slate-500 text-xs sm:text-sm outline-none focus:border-cyan-400 transition"
-                    />
-                </div>
-                <button
-                    type="button"
-                    onclick="checkDoraVinCompatibility('{{ product.name|e('js') }}', '{{ product_sku|e('js') }}', '{{ wa_number }}')"
-                    class="px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs sm:text-sm font-black transition flex items-center justify-center gap-1.5 cursor-pointer shadow-md"
-                >
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                    <span>فحص التوافق</span>
-                </button>
+            <div class="mt-2">
+                <input
+                    type="text"
+                    id="dora-vin-input"
+                    name="notes"
+                    placeholder="اكتب رقم الهيكل (مثل: KMHD341...) لحفظه مع طلبك"
+                    maxlength="25"
+                    class="w-full uppercase font-mono px-3.5 py-2.5 rounded-xl bg-white border border-slate-300 text-slate-900 placeholder-slate-400 text-xs sm:text-sm outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-100 transition shadow-inner"
+                />
             </div>
 
-            {# Live Dynamic Feedback Box #}
-            <div id="dora-vin-result" class="hidden mt-3 p-3 rounded-xl text-xs font-bold transition-all"></div>
+            <p class="mt-2 text-[11px] text-slate-500 font-normal leading-relaxed flex items-center gap-1">
+                <span class="text-emerald-600 font-bold">✓</span>
+                <span>سيتم حفظ رقم الهيكل تلقائياً ضمن مرفقات طلبك ليقوم فريقنا بمطابقة القطعة والتأكد من توافقها 100% قبل الشحن والتسليم.</span>
+            </p>
         </div>
 
-        {# Row 3: Out of Stock Special Order or Instant WhatsApp Quote Button #}
-        <div class="pt-1">
+        {# Row 3: Quick Direct WhatsApp Consultation Button #}
+        <div>
             <a
-                href="https://wa.me/{{ wa_number }}?text={{ ('السلام عليكم، أود الاستفسار عن توافق القطعة: ' ~ product.name ~ ' (كود: ' ~ product_sku ~ ') مع رقم هيكل سيارتي عبر متجر درة السيارة')|url_encode }}"
+                href="https://wa.me/{{ wa_number }}?text={{ ('السلام عليكم، أود التأكد من توافق القطعة: ' ~ product.name ~ ' (كود: ' ~ product_sku ~ ') مع سيارتي قبل إتمام الطلب عبر متجر درة السيارة')|url_encode }}"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full py-2.5 px-4 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 hover:text-emerald-200 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer no-underline"
+                class="w-full py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-800 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 transition cursor-pointer no-underline"
             >
-                <svg class="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                 </svg>
-                <span>طلب تأكيد ومطابقة فورية مع فني درة السيارة عبر واتساب</span>
+                <span>استفسار مباشر ومطابقة مسبقة مع فني درة السيارة عبر واتساب</span>
             </a>
-        </div>
-
-        {# Row 4: Trust Guarantees #}
-        <div class="pt-2 border-t border-slate-800 grid grid-cols-2 gap-2 text-[11px] text-slate-300">
-            <div class="flex items-center gap-1.5">
-                <span class="text-emerald-400 font-black">✓</span>
-                <span>ضمان توافق واستبدال 100%</span>
-            </div>
-            <div class="flex items-center gap-1.5">
-                <span class="text-cyan-400 font-black">🚀</span>
-                <span>شحن سريع لجميع مدن المملكة</span>
-            </div>
         </div>
 
     </div>
@@ -173,24 +151,5 @@ function copyDoraPartNum(text) {
             }
         });
     }
-}
-
-function checkDoraVinCompatibility(prodName, sku, waNum) {
-    var vinInput = document.getElementById('dora-vin-input');
-    var resultBox = document.getElementById('dora-vin-result');
-    if (!vinInput || !resultBox) return;
-
-    var val = vinInput.value.trim().toUpperCase();
-    if (val.length < 5) {
-        resultBox.className = 'mt-3 p-3 rounded-xl text-xs font-bold bg-amber-500/20 border border-amber-400/40 text-amber-300 block';
-        resultBox.innerHTML = '⚠️ الرجاء إدخال رقم الهيكل (VIN) المكون من 17 حرف/رقم أو كتابة اسم وموديل سيارتك وسنتحقق فوراً.';
-        return;
-    }
-
-    resultBox.className = 'mt-3 p-3 rounded-xl text-xs font-bold bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 block';
-    var msg = 'السلام عليكم، تم فحص رقم الهيكل: ' + val + ' للقطعة: ' + prodName + ' (كود: ' + sku + ') هل هي متوفرة ومطابقة 100%؟';
-    var waUrl = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(msg);
-    
-    resultBox.innerHTML = '<div class="flex items-center justify-between gap-2"><div><span class="font-black text-white">✓ رقم الهيكل المسجل: ' + val + '</span><p class="text-[11px] text-emerald-300 font-normal mt-0.5">جاهز للتأكيد النهائي والتسعير المخفض عبر فني الوكالة.</p></div><a href="' + waUrl + '" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs no-underline whitespace-nowrap transition">تأكيد عبر واتساب ⚡</a></div>';
 }
 </script>

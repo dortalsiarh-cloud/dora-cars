@@ -315,13 +315,12 @@
               {% endif %}
               {# End Digital Files Settings #}
 
-                {# DORA CARS: Smart VIN Compatibility & Korean Engine Specs Widget #}
-                {% include 'components.product.dora-vin-matcher' %}
-
                 <form data-testid="store-product-form" class="form product-form" enctype="multipart/form-data" method="post"
                       onsubmit="return salla.form.onSubmit('cart.addItem', event)" >
                     <input type="hidden" name="id" value="{{ product.id }}">
 
+                    {# DORA CARS: Genuine Part Specs & VIN Order Attachment Box #}
+                    {% include 'components.product.dora-vin-matcher' %}
 
                     {% hook 'product:single.form.start' %}
 
@@ -411,7 +410,7 @@
                             </div>
                             <div class="dora-trust-badge-item">
                                 <span class="text-amber-500 text-lg">🇰🇷</span>
-                                <span>أصلي MOBIS معتمد</span>
+                                <span>قطع غيار أصلية معتمدة</span>
                             </div>
                             <div class="dora-trust-badge-item">
                                 <span class="text-rose-500 text-lg">🔄</span>
